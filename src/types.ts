@@ -1,0 +1,45 @@
+export type EffectLevel = 'clean' | 'mild' | 'full';
+
+export interface Project {
+  slug: string;
+  name: string;
+  description: string;
+  longDescription?: string;
+  whyItExists?: string;
+  status: 'active' | 'incubating' | 'archived';
+  type: 'software' | 'media' | 'tools';
+  stack: string[];
+  topics: string[];
+  url?: string;
+  repoUrl: string;
+  homepage?: string;
+  lastUpdated: string;
+  stars?: number;
+  coverColor?: string;
+  coverPattern?: 'circuit' | 'grid' | 'waves' | 'dots' | 'sigil';
+  featured?: boolean;
+  order?: number;
+}
+
+export interface Post {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  tags: string[];
+  author?: string;
+}
+
+export interface GitHubRepo {
+  name: string;
+  full_name: string;
+  description: string | null;
+  html_url: string;
+  homepage: string | null;
+  topics: string[];
+  language: string | null;
+  stargazers_count: number;
+  updated_at: string;
+  archived: boolean;
+  fork: boolean;
+}

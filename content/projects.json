@@ -1,0 +1,39 @@
+{
+  "subcult-tv": {
+    "name": "subcult.tv",
+    "description": "The hub. This very site. Portfolio, manifesto, signal broadcast.",
+    "longDescription": "subcult.tv is the central node of the Subculture Collective network. It serves as our business homepage, project portfolio, zine archive, and Patreon funnel. Built with Vite, React, TypeScript, and Tailwind CSS with a VHS/punk/gothic aesthetic.",
+    "whyItExists": "Every collective needs a signal tower. This is ours.",
+    "status": "active",
+    "type": "software",
+    "stack": ["TypeScript", "React", "Tailwind CSS", "Vite"],
+    "featured": true,
+    "order": 0,
+    "coverColor": "#ff3333",
+    "coverPattern": "circuit"
+  },
+  "signal-noise": {
+    "name": "Signal // Noise",
+    "description": "Audio processing toolkit for lo-fi and glitch aesthetics.",
+    "whyItExists": "Clean audio is a lie. We wanted tools to reveal the static underneath.",
+    "status": "incubating",
+    "type": "tools",
+    "stack": ["Rust", "WASM"],
+    "featured": true,
+    "order": 1,
+    "coverColor": "#00ff88",
+    "coverPattern": "waves"
+  },
+  "dead-letter-drop": {
+    "name": "Dead Letter Drop",
+    "description": "Ephemeral encrypted messaging. Messages self-destruct.",
+    "whyItExists": "Privacy is not a feature. It's a right. We built the tool we needed.",
+    "status": "active",
+    "type": "software",
+    "stack": ["Go", "TypeScript"],
+    "featured": true,
+    "order": 2,
+    "coverColor": "#6633ff",
+    "coverPattern": "sigil"
+  }
+}

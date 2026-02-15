@@ -1,0 +1,291 @@
+// ═══════════════════════════════════════════════════════════
+// SUBCVLT API Client
+// Typed fetch wrapper for the Go backend.
+// ═══════════════════════════════════════════════════════════
+
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
+// ── Token management ─────────────────────────────────────────
+
+let authToken: string | null = null;
+
+export function setToken(token: string | null) {
+  authToken = token;
+  if (token) {
+    localStorage.setItem('subcvlt-token', token);
+  } else {
+    localStorage.removeItem('subcvlt-token');
+  }
+}
+
+export function getToken(): string | null {
+  if (!authToken) {
+    authToken = localStorage.getItem('subcvlt-token');
+  }
+  return authToken;
+}
+
+export function clearToken() {
+  authToken = null;
+  localStorage.removeItem('subcvlt-token');
+}
+
+// ── Fetch wrapper ────────────────────────────────────────────
+
+async function apiFetch<T>(
+  path: string,
+  options: RequestInit = {},
+): Promise<T> {
+  const token = getToken();
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...(options.headers as Record<string, string>),
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const res = await fetch(`${API_BASE}${path}`, {
+    ...options,
+    headers,
+  });
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({ error: res.statusText }));
+    throw new APIError(body.error || res.statusText, res.status);
+  }
+
+  if (res.status === 204) return undefined as T;
+  return res.json();
+}
+
+export class APIError extends Error {
+  status: number;
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = 'APIError';
+    this.status = status;
+  }
+}
+
+// ── Types ────────────────────────────────────────────────────
+
+export interface APIUser {
+  id: string;
+  username: string;
+  email: string;
+  role: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface APIProject {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  long_description?: string;
+  why_it_exists?: string;
+  type: string;
+  status: string;
+  stack: string[];
+  topics: string[];
+  repo_url?: string;
+  homepage?: string;
+  cover_pattern: string;
+  cover_color?: string;
+  featured: boolean;
+  sort_order: number;
+  stars: number;
+  last_updated?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface APIPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  tags: string[];
+  author?: string;
+  published: boolean;
+  date: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface APIContact {
+  id: string;
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+  read: boolean;
+  created_at: string;
+}
+
+export interface APISubscriber {
+  id: string;
+  email: string;
+  confirmed: boolean;
+  subscribed_at: string;
+  unsubscribed_at?: string;
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  total: number;
+  page: number;
+  per_page: number;
+  total_pages: number;
+}
+
+export interface DashboardStats {
+  total_projects: number;
+  total_posts: number;
+  total_contacts: number;
+  unread_contacts: number;
+  total_subscribers: number;
+}
+
+// ── Auth ─────────────────────────────────────────────────────
+
+export async function login(username: string, password: string) {
+  const res = await apiFetch<{ token: string; user: APIUser }>('/api/v1/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ username, password }),
+  });
+  setToken(res.token);
+  return res;
+}
+
+export async function getMe() {
+  return apiFetch<APIUser>('/api/v1/auth/me');
+}
+
+export function logout() {
+  clearToken();
+}
+
+// ── Projects ─────────────────────────────────────────────────
+
+export async function listProjects(filters?: { status?: string; type?: string }) {
+  const params = new URLSearchParams();
+  if (filters?.status) params.set('status', filters.status);
+  if (filters?.type) params.set('type', filters.type);
+  const qs = params.toString();
+  return apiFetch<APIProject[]>(`/api/v1/projects${qs ? '?' + qs : ''}`);
+}
+
+export async function getProject(slug: string) {
+  return apiFetch<APIProject>(`/api/v1/projects/${slug}`);
+}
+
+export async function createProject(data: Omit<APIProject, 'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'>) {
+  return apiFetch<APIProject>('/api/v1/projects', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updateProject(id: string, data: Omit<APIProject, 'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'>) {
+  return apiFetch<APIProject>(`/api/v1/projects/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deleteProject(id: string) {
+  return apiFetch<void>(`/api/v1/projects/${id}`, { method: 'DELETE' });
+}
+
+// ── Posts ─────────────────────────────────────────────────────
+
+export async function listPosts(opts?: { page?: number; perPage?: number; all?: boolean }) {
+  const params = new URLSearchParams();
+  if (opts?.page) params.set('page', String(opts.page));
+  if (opts?.perPage) params.set('per_page', String(opts.perPage));
+  if (opts?.all) params.set('all', 'true');
+  const qs = params.toString();
+  return apiFetch<PaginatedResponse<APIPost>>(`/api/v1/posts${qs ? '?' + qs : ''}`);
+}
+
+export async function getPost(slug: string) {
+  return apiFetch<APIPost>(`/api/v1/posts/${slug}`);
+}
+
+export async function createPost(data: Omit<APIPost, 'id' | 'created_at' | 'updated_at'>) {
+  return apiFetch<APIPost>('/api/v1/posts', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function updatePost(id: string, data: Omit<APIPost, 'id' | 'created_at' | 'updated_at'>) {
+  return apiFetch<APIPost>(`/api/v1/posts/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function deletePost(id: string) {
+  return apiFetch<void>(`/api/v1/posts/${id}`, { method: 'DELETE' });
+}
+
+// ── Contacts ─────────────────────────────────────────────────
+
+export async function submitContact(data: { name: string; email: string; subject?: string; message: string }) {
+  return apiFetch<{ message: string; id: string }>('/api/v1/contacts', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function listContacts(opts?: { page?: number; perPage?: number }) {
+  const params = new URLSearchParams();
+  if (opts?.page) params.set('page', String(opts.page));
+  if (opts?.perPage) params.set('per_page', String(opts.perPage));
+  const qs = params.toString();
+  return apiFetch<PaginatedResponse<APIContact>>(`/api/v1/contacts${qs ? '?' + qs : ''}`);
+}
+
+export async function toggleContactRead(id: string) {
+  return apiFetch<APIContact>(`/api/v1/contacts/${id}/read`, { method: 'PATCH' });
+}
+
+export async function deleteContact(id: string) {
+  return apiFetch<void>(`/api/v1/contacts/${id}`, { method: 'DELETE' });
+}
+
+// ── Newsletter ───────────────────────────────────────────────
+
+export async function subscribe(email: string) {
+  return apiFetch<{ message: string }>('/api/v1/newsletter/subscribe', {
+    method: 'POST',
+    body: JSON.stringify({ email }),
+  });
+}
+
+export async function unsubscribe(token: string) {
+  return apiFetch<{ message: string }>('/api/v1/newsletter/unsubscribe', {
+    method: 'POST',
+    body: JSON.stringify({ token }),
+  });
+}
+
+export async function listSubscribers(opts?: { page?: number; perPage?: number }) {
+  const params = new URLSearchParams();
+  if (opts?.page) params.set('page', String(opts.page));
+  if (opts?.perPage) params.set('per_page', String(opts.perPage));
+  const qs = params.toString();
+  return apiFetch<PaginatedResponse<APISubscriber>>(`/api/v1/newsletter/subscribers${qs ? '?' + qs : ''}`);
+}
+
+// ── Admin ────────────────────────────────────────────────────
+
+export async function getDashboardStats() {
+  return apiFetch<DashboardStats>('/api/v1/admin/stats');
+}

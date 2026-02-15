@@ -1,0 +1,81 @@
+import { Navigate, Outlet, NavLink } from 'react-router-dom';
+import { useAuth } from '@/context/useAuth';
+
+const NAV_ITEMS = [
+  { to: '/admin', label: 'Dashboard', icon: '◈' },
+  { to: '/admin/projects', label: 'Projects', icon: '▣' },
+  { to: '/admin/posts', label: 'Posts', icon: '▤' },
+  { to: '/admin/contacts', label: 'Contacts', icon: '▧' },
+  { to: '/admin/subscribers', label: 'Subscribers', icon: '▥' },
+];
+
+export default function AdminLayout() {
+  const { user, logout, isAuthenticated, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-void flex items-center justify-center">
+        <div className="font-mono text-signal animate-pulse">
+          LOADING CONTROL PANEL...
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" replace />;
+  }
+
+  return (
+    <div className="min-h-screen bg-void flex">
+      {/* ── Sidebar ──────────────────────────────────────────── */}
+      <aside className="w-64 bg-soot border-r border-fog flex flex-col shrink-0">
+        <div className="p-4 border-b border-fog">
+          <div className="font-display text-xl text-signal tracking-wider">
+            SUBCVLT
+          </div>
+          <div className="font-mono text-xs text-dust mt-1">// CONTROL PANEL</div>
+        </div>
+
+        <nav className="flex-1 p-3 space-y-1">
+          {NAV_ITEMS.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === '/admin'}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2.5 font-mono text-sm no-underline transition-colors ${
+                  isActive
+                    ? 'bg-smoke text-signal border-l-2 border-signal'
+                    : 'text-bone hover:text-glow hover:bg-ash border-l-2 border-transparent'
+                }`
+              }
+            >
+              <span className="text-base">{item.icon}</span>
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="p-4 border-t border-fog">
+          <div className="font-mono text-xs text-dust mb-2">
+            &gt; {user?.username}@subcvlt
+          </div>
+          <button
+            onClick={logout}
+            className="w-full px-3 py-1.5 bg-ash border border-fog text-dust font-mono text-xs hover:border-signal hover:text-signal transition-colors cursor-pointer"
+          >
+            DISCONNECT
+          </button>
+        </div>
+      </aside>
+
+      {/* ── Main content ─────────────────────────────────────── */}
+      <main className="flex-1 overflow-auto">
+        <div className="p-6 lg:p-8">
+          <Outlet />
+        </div>
+      </main>
+    </div>
+  );
+}

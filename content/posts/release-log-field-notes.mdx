@@ -1,0 +1,59 @@
+# Release Log // Field Notes
+
+> *Changelog fragments recovered from the workshop floor. Handle with care.*
+
+---
+
+## [2026-02-08] — Patch Notes from the Void
+
+```
+$ git log --oneline -5
+a3f7b2c fix: scanline overlay z-index collision
+9e1d0aa feat: add terminal panel component
+1bc4ef3 chore: purge dead CSS from the pre-punk era
+8f2a91d fix: chromatic aberration was too aggressive on mobile
+0d4c3e7 feat: initial site scaffold — we exist now
+```
+
+### What Shipped
+
+- **subcult.tv v1.0** — You're looking at it. The site is live. The signal broadcasts.
+- **Project index** — Auto-populated from GitHub, with manual overrides for the curated touch.
+- **Effects system** — Three modes: Clean, Mild Glitch, Full VHS. Your CRT, your choice.
+- **Zine engine** — MDX-powered posts with zine margins, glitch callouts, and terminal aesthetics.
+
+### What Broke
+
+- Mobile scanlines were rendering at 120fps. Phones were getting warm. Addressed.
+- The chromatic aberration on h1 tags was causing headaches (literal). Toned down to `mild` by default.
+- RSS feed was returning 418 (I'm a teapot). Still investigating.
+
+> `[WARN] known issue: the void stares back. working on a fix.`
+
+### What We Learned
+
+1. CSS `clip-path` for torn edges is surprisingly performant
+2. `prefers-reduced-motion` is not optional — it's the law
+3. VHS tracking line animation needs to be subtle or it's nauseating
+4. Monospace fonts hit different when everything else is serif
+
+---
+
+## [2026-01-20] — First Commit
+
+```
+$ echo "hello world" > index.html
+$ git init
+$ git add .
+$ git commit -m "init: the void has been initialized"
+```
+
+The repository exists. The domain points somewhere. We have a `package.json` and a dream.
+
+**Status:** Broadcasting test patterns. Stand by.
+
+---
+
+*Field notes are updated irregularly. Subscribe to nothing. Check back when the signal calls.*
+
+`> END TRANSMISSION`

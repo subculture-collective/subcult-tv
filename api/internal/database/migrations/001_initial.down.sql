@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS subscribers;
+DROP TABLE IF EXISTS contacts;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS schema_migrations;

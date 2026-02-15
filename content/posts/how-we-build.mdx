@@ -1,0 +1,99 @@
+# How We Build: Tools, Servers, Rituals
+
+> *Our stack is not a choice. It's a stance.*
+
+---
+
+## The Workstation
+
+Every SUBCVLT project starts in a terminal. Not a browser. Not a Figma file. Not a Jira board. A terminal.
+
+```
+$ neofetch
+  OS: Linux (btw)
+  Shell: zsh + starship
+  Terminal: WezTerm
+  Editor: Neovim (no plugins is a lie, but we try)
+  Font: JetBrains Mono
+  Theme: Tokyo Night, modified until unrecognizable
+```
+
+We believe the terminal is the last honest interface. No dark patterns. No engagement loops. Just a cursor and your intent.
+
+## The Stack
+
+We don't have a "standard stack." We have principles:
+
+### 1. Choose Boring Technology (Then Make It Weird)
+
+- **Go** for backends — because goroutines are cheap and compilation is fast
+- **TypeScript** for frontends — because `any` is a war crime
+- **Rust** when we need to go fast and can't afford garbage collection
+- **Bash** for the glue that holds everything together
+
+### 2. Self-Host Everything You Can
+
+We run our own:
+
+- Git forges (Gitea, falling back to GitHub for public repos)
+- CI/CD pipelines
+- Monitoring and alerting
+- DNS (yes, really)
+
+> `[SYSTEM] external dependency count: as low as we can make it.`
+
+### 3. Ship Fast, Fix Faster
+
+Our deployment ritual:
+
+```bash
+# The SUBCVLT deployment protocol
+$ git push origin main        # push to main, no PRs for solo work
+$ ssh box "cd /srv/app && git pull && make deploy"
+$ curl -s https://subcult.tv | head -1  # smoke test
+$ echo "it lives"             # or it doesn't, and we fix it
+```
+
+No Kubernetes. No Terraform. No 47-step CI pipeline. Just `git push` and `make deploy`.
+
+### 4. Document Like Someone Will Read It
+
+Every project gets:
+
+- A `README.md` that actually explains what the thing does
+- A `CONTRIBUTING.md` if we want contributors
+- Inline comments that explain *why*, not *what*
+- A `CHANGELOG.md` written for humans
+
+## The Rituals
+
+### Naming Conventions
+
+Projects are named like bands, not products. We don't do `SuperTool Pro v2.0`. We do *Dead Letter Drop*, *Signal // Noise*, *Blackout Radio*.
+
+### Code Review
+
+We review each other's code like we're editing a zine. Is it clear? Is it honest? Does it do what it says? Ship it.
+
+### The 3 AM Rule
+
+If you're debugging at 3 AM, you've already shipped a feature that's too complex. Simplify. Sleep. Try again.
+
+---
+
+## The Hardware
+
+- **Primary:** Refurbished ThinkPads. Because new hardware is a scam.
+- **Servers:** Bare metal where we can, VPS when we must, cloud only under duress.
+- **Networking:** Tailscale mesh + WireGuard tunnels. Our network is our castle.
+
+> `$ uptime`
+> `14:23:07 up 847 days, 3:42, 1 user, load average: 0.12, 0.08, 0.03`
+
+The machines don't stop. Neither do we.
+
+---
+
+*This post will be updated as our rituals evolve. The stack changes. The principles don't.*
+
+`> carrier_wave.persist()`

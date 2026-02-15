@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+  # ── PostgreSQL ─────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: subcult-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-subcult}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-subcult_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-subcult}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-subcult}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ── Umami Analytics ────────────────────────────────────────
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    container_name: subcult-umami
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-subcult}:${POSTGRES_PASSWORD:-subcult_dev}@postgres:5432/umami
+      TRACKER_SCRIPT_NAME: ${UMAMI_SCRIPT_NAME:-subcvlt}
+      DISABLE_TELEMETRY: 1
+    ports:
+      - "${UMAMI_PORT:-3000}:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ── Go API ─────────────────────────────────────────────────
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: subcult-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-subcult}:${POSTGRES_PASSWORD:-subcult_dev}@postgres:5432/${POSTGRES_DB:-subcult}?sslmode=disable
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production-please}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5175,http://localhost:4173}
+      PORT: 8080
+      UMAMI_URL: http://umami:3000
+    ports:
+      - "${API_PORT:-8080}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
