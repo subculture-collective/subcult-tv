@@ -3,7 +3,8 @@
 # ═══════════════════════════════════════════════════════════
 
 .PHONY: help dev dev-api dev-frontend build build-api build-frontend \
-        docker-up docker-down docker-logs lint typecheck test clean setup
+        docker-up docker-down docker-logs docker-rebuild \
+        lint typecheck format check test clean setup db-shell db-reset
 
 # Default target
 help: ## Show this help
@@ -69,6 +70,9 @@ format: ## Format code with Prettier
 
 check: lint typecheck ## Run all quality checks
 	@echo "✓ All checks passed."
+
+test: ## Run tests (Go backend)
+	cd api && go test ./...
 
 # ── Database ──────────────────────────────────────────────
 

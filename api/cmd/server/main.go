@@ -12,6 +12,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
+	"golang.org/x/crypto/bcrypt"
 
 	"github.com/subculture-collective/subcult-tv/api/internal/config"
 	"github.com/subculture-collective/subcult-tv/api/internal/database"
@@ -100,17 +101,36 @@ func seedAdminUser(ctx context.Context, pool *pgxpool.Pool) error {
 		return nil // already has users
 	}
 
-	// Default admin: admin / subcvlt2026
-	// CHANGE THIS PASSWORD IMMEDIATELY IN PRODUCTION
-	hash := "$2a$12$LJ3mFGn3C3gCXz1kKDY4Z.f.RfLHr/cq4p7H9H1U2nkEXOQqLgKCi"
-	_, err := pool.Exec(ctx,
+	// Read admin credentials from environment
+	adminUser := os.Getenv("ADMIN_USER")
+	adminPassword := os.Getenv("ADMIN_PASSWORD")
+	adminEmail := os.Getenv("ADMIN_EMAIL")
+
+	if adminUser == "" {
+		adminUser = "admin"
+	}
+	if adminEmail == "" {
+		adminEmail = "admin@subcult.tv"
+	}
+	if adminPassword == "" {
+		slog.Warn("ADMIN_PASSWORD not set, skipping admin user seeding")
+		return nil
+	}
+
+	// Hash password at runtime - never commit password hashes
+	hash, err := bcrypt.GenerateFromPassword([]byte(adminPassword), bcrypt.DefaultCost)
+	if err != nil {
+		return fmt.Errorf("hash admin password: %w", err)
+	}
+
+	_, err = pool.Exec(ctx,
 		`INSERT INTO users (username, email, password_hash, role) VALUES ($1, $2, $3, $4)`,
-		"admin", "admin@subcult.tv", hash, "admin",
+		adminUser, adminEmail, string(hash), "admin",
 	)
 	if err != nil {
 		return fmt.Errorf("seed admin: %w", err)
 	}
 
-	slog.Info("seeded default admin user", "username", "admin")
+	slog.Info("seeded admin user from environment", "username", adminUser)
 	return nil
 }
