@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SUBCVLT Zine</title>
+    <link>https://subcult.tv/zine</link>
+    <description>Transmissions from the Subculture Collective</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Feb 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://subcult.tv/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How We Build: Tools, Servers, Rituals</title>
+      <link>https://subcult.tv/zine/how-we-build</link>
+      <guid isPermaLink="true">https://subcult.tv/zine/how-we-build</guid>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 GMT</pubDate>
+      <description>Our stack is a séance. Linux boxes, terminal multiplexers, self-hosted everything. This is how we work.</description>
+      <author>noreply@subcult.tv (SUBCVLT)</author>
+      <category>process</category>
+      <category>tools</category>
+      <category>infrastructure</category>
+    </item>
+    <item>
+      <title>Release Log // Field Notes</title>
+      <link>https://subcult.tv/zine/release-log-field-notes</link>
+      <guid isPermaLink="true">https://subcult.tv/zine/release-log-field-notes</guid>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+      <description>Changelog fragments from the workshop. What shipped, what broke, what we learned in the static.</description>
+      <author>noreply@subcult.tv (SUBCVLT)</author>
+      <category>releases</category>
+      <category>changelog</category>
+      <category>dev</category>
+    </item>
+    <item>
+      <title>SUBCVLT Manifesto</title>
+      <link>https://subcult.tv/zine/subcvlt-manifesto</link>
+      <guid isPermaLink="true">https://subcult.tv/zine/subcvlt-manifesto</guid>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
+      <description>We are the signal in the noise. A declaration of intent, operational parameters, and the refusal to be optimized.</description>
+      <author>noreply@subcult.tv (SUBCVLT)</author>
+      <category>manifesto</category>
+      <category>mission</category>
+      <category>founding</category>
+    </item>
+  </channel>
+</rss>

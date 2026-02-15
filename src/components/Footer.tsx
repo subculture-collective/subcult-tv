@@ -11,8 +11,9 @@ const FOOTER_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { href: 'https://github.com/subculture-collective', label: 'GitHub' },
-  { href: 'https://www.patreon.com/cw/subcult', label: 'Patreon' },
+  { href: 'https://github.com/subculture-collective', label: 'GitHub', external: true },
+  { href: 'https://www.patreon.com/cw/subcult', label: 'Patreon', external: true },
+  { href: '/feed.xml', label: 'RSS Feed', external: false },
 ];
 
 export default function Footer() {
@@ -74,11 +75,13 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(link.external && {
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                    })}
                     className="font-mono text-sm text-bone hover:text-signal transition-colors"
                   >
-                    {link.label} ↗
+                    {link.label} {link.external && '↗'}
                   </a>
                 </li>
               ))}
