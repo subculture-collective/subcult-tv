@@ -9,6 +9,7 @@ import Zine from '@/pages/Zine';
 import PostPage from '@/pages/PostPage';
 import Contact from '@/pages/Contact';
 import PressKit from '@/pages/PressKit';
+import Invest from '@/pages/Invest';
 import NotFound from '@/pages/NotFound';
 
 // Admin pages
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="zine/:slug" element={<PostPage />} />
         <Route path="contact" element={<Contact />} />
         <Route path="press" element={<PressKit />} />
+        <Route path="invest" element={<Invest />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 
