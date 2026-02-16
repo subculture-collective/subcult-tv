@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { to: '/zine', label: 'Zine' },
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
+  { to: '/invest', label: 'Invest' },
   { to: '/contact', label: 'Contact' },
 ];
 
