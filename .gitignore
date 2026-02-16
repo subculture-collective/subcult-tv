@@ -31,3 +31,6 @@ dist-ssr
 # Go build artifacts
 api/server
 api/tmp/
+
+# Generated RSS feed
+public/feed.xml
