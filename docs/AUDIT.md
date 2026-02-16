@@ -57,7 +57,7 @@ The subcult.tv MVP is a well-structured full-stack application with a clean sepa
 **Location:** [api/cmd/server/main.go](../api/cmd/server/main.go#L81-L82)
 
 ```go
-// Default admin: admin / subcvlt2026
+// Default admin: admin / subcult2026
 // CHANGE THIS PASSWORD IMMEDIATELY IN PRODUCTION
 hash := "$2a$12$LJ3mFGn3C3gCXz1kKDY4Z.f.RfLHr/cq4p7H9H1U2nkEXOQqLgKCi"
 ```

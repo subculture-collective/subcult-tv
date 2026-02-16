@@ -13,18 +13,19 @@ interface SEOHeadProps {
  */
 export default function SEOHead({
   title,
-  description = 'SUBCVLT — We build tools, media, and infrastructure for the counterculture.',
+  description = 'SUBCULT — We build tools, media, and infrastructure for the counterculture.',
   path = '/',
   image = '/og-image.png',
 }: SEOHeadProps) {
-  const fullTitle = title === 'Home' ? 'SUBCVLT — Subculture Collective' : `${title} — SUBCVLT`;
+  const fullTitle = title === 'Home' ? 'SUBCULT — Subculture Collective' : `${title} — SUBCULT`;
   const url = `https://subcult.tv${path}`;
 
   useEffect(() => {
     document.title = fullTitle;
 
     const setMeta = (name: string, content: string) => {
-      let el = document.querySelector(`meta[name="${name}"]`) ||
+      let el =
+        document.querySelector(`meta[name="${name}"]`) ||
         document.querySelector(`meta[property="${name}"]`);
       if (!el) {
         el = document.createElement('meta');

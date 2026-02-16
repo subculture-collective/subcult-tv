@@ -7,10 +7,10 @@ Before launching, fill in or replace the following placeholder content.
 - [ ] **Logo SVG** — Replace `public/favicon.svg` with final logo
 - [ ] **OG Image** — Replace `public/og-image.svg` with a proper 1200x630 PNG (`og-image.png`)
 - [ ] **Press Kit logos** — Add final assets to `public/press-kit/`:
-  - `subcvlt-logo.svg`
-  - `subcvlt-logo.png` (512x512)
-  - `subcvlt-banner-wide.png` (1200x400)
-  - `subcvlt-banner-square.png` (800x800)
+  - `subcult-logo.svg`
+  - `subcult-logo.png` (512x512)
+  - `subcult-banner-wide.png` (1200x400)
+  - `subcult-banner-square.png` (800x800)
 
 ## Contact & Social
 
@@ -24,7 +24,7 @@ Before launching, fill in or replace the following placeholder content.
 - [ ] **Project descriptions** — Enrich `content/projects.json` with full descriptions for each project
 - [ ] **Patreon tier details** — Update `src/pages/Patreon.tsx` with actual tier names and prices
 - [ ] **About page copy** — Review and personalize mission/values text
-- [ ] **Manifesto post** — Review and finalize `content/posts/subcvlt-manifesto.mdx`
+- [ ] **Manifesto post** — Review and finalize `content/posts/subcult-manifesto.mdx`
 
 ## Technical
 

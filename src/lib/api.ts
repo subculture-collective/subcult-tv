@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════
-// SUBCVLT API Client
+// SUBCULT API Client
 // Typed fetch wrapper for the Go backend.
 // ═══════════════════════════════════════════════════════════
 
@@ -12,30 +12,27 @@ let authToken: string | null = null;
 export function setToken(token: string | null) {
   authToken = token;
   if (token) {
-    localStorage.setItem('subcvlt-token', token);
+    localStorage.setItem('subcult-token', token);
   } else {
-    localStorage.removeItem('subcvlt-token');
+    localStorage.removeItem('subcult-token');
   }
 }
 
 export function getToken(): string | null {
   if (!authToken) {
-    authToken = localStorage.getItem('subcvlt-token');
+    authToken = localStorage.getItem('subcult-token');
   }
   return authToken;
 }
 
 export function clearToken() {
   authToken = null;
-  localStorage.removeItem('subcvlt-token');
+  localStorage.removeItem('subcult-token');
 }
 
 // ── Fetch wrapper ────────────────────────────────────────────
 
-async function apiFetch<T>(
-  path: string,
-  options: RequestInit = {},
-): Promise<T> {
+async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getToken();
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -184,14 +181,19 @@ export async function getProject(slug: string) {
   return apiFetch<APIProject>(`/api/v1/projects/${slug}`);
 }
 
-export async function createProject(data: Omit<APIProject, 'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'>) {
+export async function createProject(
+  data: Omit<APIProject, 'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'>,
+) {
   return apiFetch<APIProject>('/api/v1/projects', {
     method: 'POST',
     body: JSON.stringify(data),
   });
 }
 
-export async function updateProject(id: string, data: Omit<APIProject, 'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'>) {
+export async function updateProject(
+  id: string,
+  data: Omit<APIProject, 'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'>,
+) {
   return apiFetch<APIProject>(`/api/v1/projects/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
@@ -224,7 +226,10 @@ export async function createPost(data: Omit<APIPost, 'id' | 'created_at' | 'upda
   });
 }
 
-export async function updatePost(id: string, data: Omit<APIPost, 'id' | 'created_at' | 'updated_at'>) {
+export async function updatePost(
+  id: string,
+  data: Omit<APIPost, 'id' | 'created_at' | 'updated_at'>,
+) {
   return apiFetch<APIPost>(`/api/v1/posts/${id}`, {
     method: 'PUT',
     body: JSON.stringify(data),
@@ -237,7 +242,12 @@ export async function deletePost(id: string) {
 
 // ── Contacts ─────────────────────────────────────────────────
 
-export async function submitContact(data: { name: string; email: string; subject?: string; message: string }) {
+export async function submitContact(data: {
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+}) {
   return apiFetch<{ message: string; id: string }>('/api/v1/contacts', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -281,7 +291,9 @@ export async function listSubscribers(opts?: { page?: number; perPage?: number }
   if (opts?.page) params.set('page', String(opts.page));
   if (opts?.perPage) params.set('per_page', String(opts.perPage));
   const qs = params.toString();
-  return apiFetch<PaginatedResponse<APISubscriber>>(`/api/v1/newsletter/subscribers${qs ? '?' + qs : ''}`);
+  return apiFetch<PaginatedResponse<APISubscriber>>(
+    `/api/v1/newsletter/subscribers${qs ? '?' + qs : ''}`,
+  );
 }
 
 // ── Admin ────────────────────────────────────────────────────

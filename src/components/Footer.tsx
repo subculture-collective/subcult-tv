@@ -3,11 +3,15 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 
 const FOOTER_LINKS = [
   { to: '/projects', label: 'Projects' },
-  { to: '/zine', label: 'Zine' },
+  { to: '/papers', label: 'Papers' },
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
   { to: '/contact', label: 'Contact' },
   { to: '/press', label: 'Press Kit' },
+  { to: '/memo', label: 'Memo' },
+  { to: '/invest', label: 'Invest' },
+  { to: '/metrics', label: 'Metrics' },
+  { to: '/links', label: 'Links' },
 ];
 
 const SOCIAL_LINKS = [
@@ -34,16 +38,16 @@ export default function Footer() {
               to="/"
               className="font-display text-2xl font-bold tracking-[0.2em] text-glow hover:text-signal transition-colors no-underline"
             >
-              SUBCVLT
+              SUBCULT
             </Link>
             <p className="font-mono text-xs text-dust mt-3 leading-relaxed">
-              Subculture Collective<br />
-              Tools, media, and infrastructure<br />
+              Subculture Collective
+              <br />
+              Tools, media, and infrastructure
+              <br />
               for the counterculture.
             </p>
-            <p className="font-mono text-xs text-fog mt-4">
-              &gt; carrier_wave.persist()
-            </p>
+            <p className="font-mono text-xs text-fog mt-4">&gt; carrier_wave.persist()</p>
           </div>
 
           {/* Navigation */}
@@ -89,8 +93,10 @@ export default function Footer() {
 
             <div className="mt-6 pt-4 border-t border-fog">
               <p className="font-mono text-xs text-fog">
-                &gt; No tracking. No cookies. No surveillance.<br />
-                &gt; Built with open source tools.<br />
+                &gt; No tracking. No cookies. No surveillance.
+                <br />
+                &gt; Built with open source tools.
+                <br />
                 &gt; Source available on GitHub.
               </p>
             </div>
@@ -102,9 +108,7 @@ export default function Footer() {
           <p className="font-mono text-xs text-fog">
             © {new Date().getFullYear()} Subculture Collective. All signals reserved.
           </p>
-          <p className="font-mono text-xs text-fog">
-            EST. 2026 — Broadcasting from the static
-          </p>
+          <p className="font-mono text-xs text-fog">EST. 2026 — Broadcasting from the static</p>
         </div>
       </div>
     </footer>

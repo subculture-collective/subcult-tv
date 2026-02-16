@@ -15,9 +15,7 @@ export default function AdminDashboard() {
     <div>
       {/* Header */}
       <div className="mb-8">
-        <p className="font-mono text-xs text-dust mb-1">
-          &gt; STATUS REPORT
-        </p>
+        <p className="font-mono text-xs text-dust mb-1">&gt; STATUS REPORT</p>
         <h1 className="text-2xl">Dashboard</h1>
       </div>
 
@@ -29,18 +27,8 @@ export default function AdminDashboard() {
 
       {/* Stats grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        <StatCard
-          label="Projects"
-          value={stats?.total_projects}
-          icon="▣"
-          color="text-signal"
-        />
-        <StatCard
-          label="Posts"
-          value={stats?.total_posts}
-          icon="▤"
-          color="text-cyan"
-        />
+        <StatCard label="Projects" value={stats?.total_projects} icon="▣" color="text-signal" />
+        <StatCard label="Posts" value={stats?.total_posts} icon="▤" color="text-cyan" />
         <StatCard
           label="Subscribers"
           value={stats?.total_subscribers}
@@ -68,12 +56,10 @@ export default function AdminDashboard() {
           <span className="w-2.5 h-2.5 rounded-full bg-signal" />
           <span className="w-2.5 h-2.5 rounded-full bg-flicker" />
           <span className="w-2.5 h-2.5 rounded-full bg-static" />
-          <span className="font-mono text-xs text-dust ml-2">
-            system.log
-          </span>
+          <span className="font-mono text-xs text-dust ml-2">system.log</span>
         </div>
         <div className="font-mono text-sm space-y-1">
-          <p className="text-dust"># SUBCVLT Control Panel</p>
+          <p className="text-dust"># SUBCULT Control Panel</p>
           <p className="text-dust"># ─────────────────────</p>
           <p>
             <span className="text-chalk">api: </span>
@@ -87,9 +73,7 @@ export default function AdminDashboard() {
             <span className="text-chalk">session: </span>
             <span className="text-flicker">ACTIVE</span>
           </p>
-          <p className="text-dust mt-3">
-            # use the sidebar to manage content.
-          </p>
+          <p className="text-dust mt-3"># use the sidebar to manage content.</p>
         </div>
       </div>
     </div>
@@ -119,9 +103,7 @@ function StatCard({
         <span className={`text-xl ${color}`}>{icon}</span>
         <span className="font-mono text-xs text-dust uppercase">{label}</span>
       </div>
-      <div className="font-display text-3xl text-glow">
-        {value !== undefined ? value : '—'}
-      </div>
+      <div className="font-display text-3xl text-glow">{value !== undefined ? value : '—'}</div>
     </div>
   );
 }

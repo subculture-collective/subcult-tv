@@ -22,7 +22,7 @@ export default function PressKit() {
     <>
       <SEOHead
         title="Press Kit"
-        description="SUBCVLT brand assets, colors, typography, and usage guidelines."
+        description="SUBCULT brand assets, colors, typography, and usage guidelines."
         path="/press"
       />
 
@@ -31,8 +31,8 @@ export default function PressKit() {
           <p className="font-mono text-xs text-dust mb-3">&gt; ls /press-kit/</p>
           <h1 className="mb-4">Press Kit</h1>
           <p className="text-bone max-w-2xl">
-            Brand assets, color palette, typography, and usage guidelines for
-            Subculture Collective / SUBCVLT.
+            Brand assets, color palette, typography, and usage guidelines for Subculture Collective
+            / SUBCULT.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export default function PressKit() {
             </div>
             <div>
               <span className="font-mono text-xs text-dust block mb-1">Short Name</span>
-              <span className="font-display text-2xl text-glow">SUBCVLT</span>
+              <span className="font-display text-2xl text-glow">SUBCULT</span>
             </div>
             <div>
               <span className="font-mono text-xs text-dust block mb-1">Domain</span>
@@ -73,10 +73,7 @@ export default function PressKit() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {BRAND_COLORS.map((color) => (
               <div key={color.name} className="border border-fog overflow-hidden">
-                <div
-                  className="h-16 w-full"
-                  style={{ backgroundColor: color.hex }}
-                />
+                <div className="h-16 w-full" style={{ backgroundColor: color.hex }} />
                 <div className="p-2 bg-ash">
                   <span className="font-mono text-xs text-glow block">{color.name}</span>
                   <span className="font-mono text-xs text-dust block">{color.hex}</span>
@@ -103,7 +100,10 @@ export default function PressKit() {
             </div>
             <div className="bg-ash border border-fog p-6">
               <span className="font-mono text-xs text-dust block mb-2">Body Font</span>
-              <span className="text-3xl text-glow block mb-2" style={{ fontFamily: 'Libre Baskerville, Georgia, serif' }}>
+              <span
+                className="text-3xl text-glow block mb-2"
+                style={{ fontFamily: 'Libre Baskerville, Georgia, serif' }}
+              >
                 Libre Baskerville
               </span>
               <p className="text-sm text-bone">
@@ -129,28 +129,33 @@ export default function PressKit() {
           <TerminalPanel title="brand.rules" className="max-w-2xl">
             <div>
               <span className="text-dust"># brand usage rules:</span>
-              <br /><br />
+              <br />
+              <br />
               <span className="text-static">DO:</span>
               <br />
-              <span className="text-chalk">  → Use "SUBCVLT" or "Subculture Collective"</span>
+              <span className="text-chalk"> → Use "SUBCULT" or "Subculture Collective"</span>
               <br />
-              <span className="text-chalk">  → Maintain dark backgrounds with light text</span>
+              <span className="text-chalk"> → Maintain dark backgrounds with light text</span>
               <br />
-              <span className="text-chalk">  → Use Signal Red (#ff3333) as primary accent</span>
+              <span className="text-chalk"> → Use Signal Red (#ff3333) as primary accent</span>
               <br />
-              <span className="text-chalk">  → Keep monospace for technical/system text</span>
-              <br /><br />
+              <span className="text-chalk"> → Keep monospace for technical/system text</span>
+              <br />
+              <br />
               <span className="text-signal">DON'T:</span>
               <br />
-              <span className="text-chalk">  → Use on light/white backgrounds</span>
+              <span className="text-chalk"> → Use on light/white backgrounds</span>
               <br />
-              <span className="text-chalk">  → Alter the color palette significantly</span>
+              <span className="text-chalk"> → Alter the color palette significantly</span>
               <br />
-              <span className="text-chalk">  → Use decorative/cursive fonts for brand text</span>
+              <span className="text-chalk"> → Use decorative/cursive fonts for brand text</span>
               <br />
-              <span className="text-chalk">  → Add drop shadows or 3D effects to the logo</span>
+              <span className="text-chalk"> → Add drop shadows or 3D effects to the logo</span>
               <br />
-              <span className="text-chalk">  → Associate with political movements we haven't endorsed</span>
+              <span className="text-chalk">
+                {' '}
+                → Associate with political movements we haven't endorsed
+              </span>
             </div>
           </TerminalPanel>
         </section>
@@ -167,15 +172,12 @@ export default function PressKit() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
               {[
-                { name: 'Logo (SVG)', file: 'subcvlt-logo.svg' },
-                { name: 'Logo (PNG)', file: 'subcvlt-logo.png' },
-                { name: 'Banner (Wide)', file: 'subcvlt-banner-wide.png' },
-                { name: 'Banner (Square)', file: 'subcvlt-banner-square.png' },
+                { name: 'Logo (SVG)', file: 'subcult-logo.svg' },
+                { name: 'Logo (PNG)', file: 'subcult-logo.png' },
+                { name: 'Banner (Wide)', file: 'subcult-banner-wide.png' },
+                { name: 'Banner (Square)', file: 'subcult-banner-square.png' },
               ].map((asset) => (
-                <div
-                  key={asset.name}
-                  className="border border-fog p-3 text-center opacity-50"
-                >
+                <div key={asset.name} className="border border-fog p-3 text-center opacity-50">
                   <span className="font-mono text-xs text-dust block">{asset.name}</span>
                   <span className="font-mono text-xs text-fog block mt-1">{asset.file}</span>
                   <span className="font-mono text-xs text-fog block mt-2">[COMING SOON]</span>

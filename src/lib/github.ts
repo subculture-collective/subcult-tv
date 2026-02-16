@@ -2,7 +2,7 @@ import type { GitHubRepo, Project } from '@/types';
 import projectOverrides from '@content/projects.json';
 
 const GITHUB_ORG = 'subculture-collective';
-const CACHE_KEY = 'subcvlt-github-repos';
+const CACHE_KEY = 'subcult-github-repos';
 const CACHE_TTL = 1000 * 60 * 60; // 1 hour
 
 interface CachedData {
@@ -43,17 +43,14 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
 
     // Cache the results
     try {
-      localStorage.setItem(
-        CACHE_KEY,
-        JSON.stringify({ timestamp: Date.now(), repos: filtered }),
-      );
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), repos: filtered }));
     } catch {
       // Storage full, no big deal
     }
 
     return filtered;
   } catch (err) {
-    console.warn('[SUBCVLT] GitHub API fetch failed, using fallback data:', err);
+    console.warn('[SUBCULT] GitHub API fetch failed, using fallback data:', err);
     return [];
   }
 }
@@ -78,7 +75,10 @@ const COVER_COLORS = [
 ];
 
 function slugify(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 function inferType(topics: string[]): Project['type'] {
@@ -99,7 +99,7 @@ function inferStatus(repo: GitHubRepo): Project['status'] {
 }
 
 export function mergeWithOverrides(repos: GitHubRepo[]): Project[] {
-  const overrides = (projectOverrides as Record<string, Partial<Project>>);
+  const overrides = projectOverrides as Record<string, Partial<Project>>;
 
   const projects: Project[] = repos.map((repo, idx) => {
     const slug = slugify(repo.name);
@@ -113,7 +113,7 @@ export function mergeWithOverrides(repos: GitHubRepo[]): Project[] {
       whyItExists: override.whyItExists,
       status: override.status || inferStatus(repo),
       type: override.type || inferType(repo.topics),
-      stack: override.stack || [repo.language].filter(Boolean) as string[],
+      stack: override.stack || ([repo.language].filter(Boolean) as string[]),
       topics: repo.topics,
       repoUrl: repo.html_url,
       homepage: repo.homepage || undefined,
@@ -149,7 +149,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'signal-noise',
     name: 'Signal // Noise',
-    description: 'Audio processing toolkit for lo-fi and glitch aesthetics. Feed it clean audio, get back static.',
+    description:
+      'Audio processing toolkit for lo-fi and glitch aesthetics. Feed it clean audio, get back static.',
     status: 'incubating',
     type: 'tools',
     stack: ['Rust', 'WASM'],
@@ -164,7 +165,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'dead-letter-drop',
     name: 'Dead Letter Drop',
-    description: 'Ephemeral encrypted messaging. Messages self-destruct. No accounts. No logs. No masters.',
+    description:
+      'Ephemeral encrypted messaging. Messages self-destruct. No accounts. No logs. No masters.',
     status: 'active',
     type: 'software',
     stack: ['Go', 'TypeScript'],
@@ -179,7 +181,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'phosphor-grid',
     name: 'Phosphor Grid',
-    description: 'Retro terminal UI component library. CRT phosphor glow, scanlines, amber/green themes.',
+    description:
+      'Retro terminal UI component library. CRT phosphor glow, scanlines, amber/green themes.',
     status: 'active',
     type: 'tools',
     stack: ['TypeScript', 'CSS'],
@@ -194,7 +197,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'zine-press',
     name: 'Zine Press',
-    description: 'Markdown-to-zine generator. Outputs print-ready PDFs with punk layouts, torn edges, and halftone.',
+    description:
+      'Markdown-to-zine generator. Outputs print-ready PDFs with punk layouts, torn edges, and halftone.',
     status: 'incubating',
     type: 'media',
     stack: ['Node.js', 'Puppeteer'],
@@ -209,7 +213,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'blackout-radio',
     name: 'Blackout Radio',
-    description: 'Self-hosted internet radio with auto-DJ. Streams from your library. No algorithms. No ads.',
+    description:
+      'Self-hosted internet radio with auto-DJ. Streams from your library. No algorithms. No ads.',
     status: 'incubating',
     type: 'media',
     stack: ['Go', 'Icecast'],
