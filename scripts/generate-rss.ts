@@ -4,51 +4,21 @@
  * RSS Feed Generator for SUBCVLT Zine
  * 
  * Generates RSS 2.0 feed from the static post registry.
- * Run after build: npm run generate-rss
+ * Run before build: npm run generate-rss
  */
 
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
+import { posts } from '../src/lib/posts.js';
 
-// Import post metadata
 interface Post {
   slug: string;
   title: string;
   date: string;
   excerpt: string;
   tags: string[];
-  author: string;
+  author?: string;
 }
-
-const posts: Post[] = [
-  {
-    slug: 'subcvlt-manifesto',
-    title: 'SUBCVLT Manifesto',
-    date: '2026-01-15',
-    excerpt:
-      'We are the signal in the noise. A declaration of intent, operational parameters, and the refusal to be optimized.',
-    tags: ['manifesto', 'mission', 'founding'],
-    author: 'SUBCVLT',
-  },
-  {
-    slug: 'release-log-field-notes',
-    title: 'Release Log // Field Notes',
-    date: '2026-02-01',
-    excerpt:
-      'Changelog fragments from the workshop. What shipped, what broke, what we learned in the static.',
-    tags: ['releases', 'changelog', 'dev'],
-    author: 'SUBCVLT',
-  },
-  {
-    slug: 'how-we-build',
-    title: 'How We Build: Tools, Servers, Rituals',
-    date: '2026-02-08',
-    excerpt:
-      'Our stack is a séance. Linux boxes, terminal multiplexers, self-hosted everything. This is how we work.',
-    tags: ['process', 'tools', 'infrastructure'],
-    author: 'SUBCVLT',
-  },
-];
 
 // Site configuration
 const SITE_URL = 'https://subcult.tv';
@@ -100,7 +70,7 @@ function generateRSS(posts: Post[]): string {
       <guid isPermaLink="true">${postUrl}</guid>
       <pubDate>${pubDate}</pubDate>
       <description>${escapeXml(post.excerpt)}</description>
-      <author>noreply@subcult.tv (${escapeXml(post.author)})</author>
+      <author>noreply@subcult.tv (${escapeXml(post.author || 'SUBCVLT')})</author>
       ${post.tags.map(tag => `<category>${escapeXml(tag)}</category>`).join('\n      ')}
     </item>`;
     })
