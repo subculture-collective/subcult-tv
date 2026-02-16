@@ -60,9 +60,7 @@ export default function NewsletterSignup() {
       </form>
 
       {status === 'error' && (
-        <p className="font-mono text-xs text-signal text-center mt-2">
-          ERR: {message}
-        </p>
+        <p className="font-mono text-xs text-signal text-center mt-2">ERR: {message}</p>
       )}
 
       <p className="font-mono text-xs text-fog text-center mt-3">

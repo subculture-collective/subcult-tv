@@ -12,66 +12,66 @@
      ═══════════════════════════════════════════════════════════ */
 
   /* ── Background Scale (Deep purples → Catppuccin Mocha) ──── */
-  --color-void: #11111b;      /* crust - deepest */
-  --color-soot: #181825;      /* mantle */
-  --color-ash: #1e1e2e;       /* base */
-  --color-smoke: #313244;     /* surface0 */
-  --color-fog: #45475a;       /* surface1 */
-  --color-mist: #585b70;      /* surface2 */
+  --color-void: #11111b; /* crust - deepest */
+  --color-soot: #181825; /* mantle */
+  --color-ash: #1e1e2e; /* base */
+  --color-smoke: #313244; /* surface0 */
+  --color-fog: #45475a; /* surface1 */
+  --color-mist: #585b70; /* surface2 */
 
   /* ── Text Scale ─────────────────────────────────────────── */
-  --color-dust: #6c7086;      /* overlay0 - muted */
-  --color-stone: #7f849c;     /* overlay1 */
-  --color-bone: #bac2de;      /* subtext1 */
-  --color-chalk: #cdd6f4;     /* text */
-  --color-glow: #f5e0dc;      /* rosewater - warmest white */
+  --color-dust: #6c7086; /* overlay0 - muted */
+  --color-stone: #7f849c; /* overlay1 */
+  --color-bone: #bac2de; /* subtext1 */
+  --color-chalk: #cdd6f4; /* text */
+  --color-glow: #f5e0dc; /* rosewater - warmest white */
 
   /* ── Primary: Green (Dracula-bright) ────────────────────── */
-  --color-static: #50fa7b;    /* dracula green - BRIGHT */
+  --color-static: #50fa7b; /* dracula green - BRIGHT */
   --color-static-dim: #a6e3a1; /* catppuccin green - soft */
   --color-static-deep: #40c463; /* darker green */
 
   /* ── Primary: Purple (Catppuccin Mauve) ─────────────────── */
-  --color-scan: #cba6f7;      /* catppuccin mauve */
-  --color-scan-dim: #bd93f9;  /* dracula purple */
+  --color-scan: #cba6f7; /* catppuccin mauve */
+  --color-scan-dim: #bd93f9; /* dracula purple */
   --color-scan-deep: #9d7cd8; /* deeper purple */
 
   /* ── Accent: Pink (Dracula × Catppuccin) ────────────────── */
-  --color-signal: #ff79c6;    /* dracula pink - HOT */
+  --color-signal: #ff79c6; /* dracula pink - HOT */
   --color-signal-dim: #f5c2e7; /* catppuccin pink - soft */
   --color-signal-deep: #eb6aae; /* deeper pink */
 
   /* ── Accent: Orange/Peach ───────────────────────────────── */
-  --color-flicker: #ffb86c;   /* dracula orange */
+  --color-flicker: #ffb86c; /* dracula orange */
   --color-flicker-dim: #fab387; /* catppuccin peach */
   --color-flicker-deep: #e89b5a; /* deeper orange */
 
   /* ── Supporting: Cyan/Sky ───────────────────────────────── */
-  --color-cyan: #8be9fd;      /* dracula cyan */
-  --color-cyan-dim: #89dceb;  /* catppuccin sky */
+  --color-cyan: #8be9fd; /* dracula cyan */
+  --color-cyan-dim: #89dceb; /* catppuccin sky */
   --color-cyan-deep: #74c7ec; /* catppuccin sapphire */
 
   /* ── Supporting: Yellow ─────────────────────────────────── */
-  --color-yellow: #f1fa8c;    /* dracula yellow - bright */
+  --color-yellow: #f1fa8c; /* dracula yellow - bright */
   --color-yellow-dim: #f9e2af; /* catppuccin yellow - warm */
   --color-yellow-deep: #e0c080; /* muted gold */
 
   /* ── Supporting: Red ────────────────────────────────────── */
-  --color-red: #ff5555;       /* dracula red */
-  --color-red-dim: #f38ba8;   /* catppuccin red/marmalade */
-  --color-red-deep: #e05f6f;  /* deeper red */
+  --color-red: #ff5555; /* dracula red */
+  --color-red-dim: #f38ba8; /* catppuccin red/marmalade */
+  --color-red-deep: #e05f6f; /* deeper red */
 
   /* ── Supporting: Blue/Lavender ──────────────────────────── */
-  --color-blue: #89b4fa;      /* catppuccin blue */
-  --color-lavender: #b4befe;  /* catppuccin lavender */
-  --color-sapphire: #74c7ec;  /* catppuccin sapphire */
+  --color-blue: #89b4fa; /* catppuccin blue */
+  --color-lavender: #b4befe; /* catppuccin lavender */
+  --color-sapphire: #74c7ec; /* catppuccin sapphire */
 
   /* ── Supporting: Teal/Mint ──────────────────────────────── */
-  --color-teal: #94e2d5;      /* catppuccin teal */
-  --color-mint: #a6e3a1;      /* catppuccin green (minty) */
+  --color-teal: #94e2d5; /* catppuccin teal */
+  --color-mint: #a6e3a1; /* catppuccin green (minty) */
 
   /* ── Supporting: Warm Pinks ─────────────────────────────── */
-  --color-flamingo: #f2cdcd;  /* catppuccin flamingo */
+  --color-flamingo: #f2cdcd; /* catppuccin flamingo */
   --color-rosewater: #f5e0dc; /* catppuccin rosewater */
   --color-marmalade: #eba0ac; /* catppuccin marmalade */
 
