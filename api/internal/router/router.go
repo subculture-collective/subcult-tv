@@ -44,7 +44,7 @@ func New(cfg *config.Config, h *handlers.Handler) *chi.Mux {
 	// ── Health ───────────────────────────────────────────────
 	r.Get("/healthz", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte(`{"status":"ok","service":"subcvlt-api"}`))
+		w.Write([]byte(`{"status":"ok","service":"subcult-api"}`))
 	})
 
 	// ── API v1 ───────────────────────────────────────────────

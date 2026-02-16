@@ -1,5 +1,5 @@
 # ═══════════════════════════════════════════════════════════
-# SUBCVLT — subcult.tv
+# SUBCULT — subcult.tv
 # ═══════════════════════════════════════════════════════════
 
 .PHONY: help dev dev-api dev-frontend build build-api build-frontend \
@@ -77,7 +77,7 @@ test: ## Run tests (Go backend)
 # ── Database ──────────────────────────────────────────────
 
 db-shell: ## Open psql shell to the database
-	docker compose exec postgres psql -U subcvlt -d subcvlt_db
+	docker compose exec postgres psql -U subcult -d subcult_db
 
 db-reset: ## Drop and recreate the database (data loss!)
 	docker compose down -v

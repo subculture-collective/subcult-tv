@@ -48,13 +48,13 @@ export default function Home() {
                   effectLevel !== 'clean' ? 'chromatic' : ''
                 }`}
               >
-                SUBCVLT
+                SUBCULT
               </h1>
 
               {/* Tagline */}
               <p className="text-lg md:text-xl text-bone leading-relaxed mb-8 max-w-2xl animate-fade-in-up animation-delay-200">
-                We build tools, media, and infrastructure for the counterculture.
-                Open source. DIY. No masters.
+                We build tools, media, and infrastructure for the counterculture. Open source. DIY.
+                No masters.
               </p>
 
               {/* CTAs */}
@@ -80,7 +80,14 @@ export default function Home() {
           <div className="absolute top-0 right-0 w-1/3 h-full opacity-5 pointer-events-none hidden lg:block">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="hero-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <pattern
+                  id="hero-grid"
+                  x="0"
+                  y="0"
+                  width="40"
+                  height="40"
+                  patternUnits="userSpaceOnUse"
+                >
                   <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
                 </pattern>
               </defs>
@@ -97,18 +104,17 @@ export default function Home() {
       <section className="bg-soot torn-edge-bottom">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="mb-6">What Is SUBCVLT?</h2>
+            <h2 className="mb-6">What Is SUBCULT?</h2>
             <p className="text-bone leading-relaxed mb-4">
-              We are not a company. We are a signal embedded in the noise of the attention
-              economy — a collective of builders, breakers, and broadcasters who refuse
-              to be optimized.
+              We are not a company. We are a signal embedded in the noise of the attention economy —
+              a collective of builders, breakers, and broadcasters who refuse to be optimized.
             </p>
             <p className="text-bone leading-relaxed mb-6">
               Every project starts with a question:{' '}
-              <em className="text-signal">"Does this need to exist?"</em> If the answer is yes,
-              we ship it.
+              <em className="text-signal">"Does this need to exist?"</em> If the answer is yes, we
+              ship it.
             </p>
-            <TerminalPanel title="subcvlt.status" className="text-left max-w-md mx-auto">
+            <TerminalPanel title="subcult.status" className="text-left max-w-md mx-auto">
               <div>
                 <span className="text-chalk">status: </span>
                 <span className="text-static">BROADCASTING</span>
@@ -178,9 +184,8 @@ export default function Home() {
           <p className="font-mono text-xs text-dust mb-4">&gt; SIGNAL BOOST REQUESTED</p>
           <h2 className="mb-6">Fund the Signal</h2>
           <p className="text-bone max-w-2xl mx-auto mb-8 leading-relaxed">
-            SUBCVLT is funded by the people who use what we build.
-            No venture capital. No ads. No exit strategy.
-            Your support keeps the servers running and the code shipping.
+            SUBCULT is funded by the people who use what we build. No venture capital. No ads. No
+            exit strategy. Your support keeps the servers running and the code shipping.
           </p>
           <Button
             as="a"

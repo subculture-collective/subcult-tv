@@ -1,6 +1,6 @@
 # subcult.tv
 
-> **SUBCVLT — Subculture Collective**
+> **SUBCULT — Subculture Collective**
 > We build tools, media, and infrastructure for the counterculture.
 
 [![Build](https://img.shields.io/badge/build-passing-00ff88)](https://subcult.tv)
@@ -82,10 +82,10 @@ make clean           # Remove build artifacts
 
 ```bash
 # Database
-POSTGRES_USER=subcvlt
+POSTGRES_USER=subcult
 POSTGRES_PASSWORD=your_secure_password
-POSTGRES_DB=subcvlt_db
-DATABASE_URL=postgres://subcvlt:your_secure_password@localhost:5432/subcvlt_db?sslmode=disable
+POSTGRES_DB=subcult_db
+DATABASE_URL=postgres://subcult:your_secure_password@localhost:5432/subcult_db?sslmode=disable
 
 # API
 JWT_SECRET=your_jwt_secret_here_min_32_chars
@@ -95,7 +95,7 @@ CORS_ORIGINS=http://localhost:5173,https://subcult.tv
 PORT=8080
 
 # Umami Analytics
-UMAMI_DATABASE_URL=postgresql://subcvlt:your_secure_password@postgres:5432/umami
+UMAMI_DATABASE_URL=postgresql://subcult:your_secure_password@postgres:5432/umami
 
 # Frontend (optional)
 VITE_GITHUB_TOKEN=ghp_your_token_here      # GitHub API (higher rate limits)
@@ -184,7 +184,7 @@ subcult_tv/
 │   └── go.sum
 ├── content/
 │   ├── posts/                    # MDX blog posts
-│   │   ├── subcvlt-manifesto.mdx
+│   │   ├── subcult-manifesto.mdx
 │   │   ├── release-log-field-notes.mdx
 │   │   └── how-we-build.mdx
 │   └── projects.json             # Local project overrides

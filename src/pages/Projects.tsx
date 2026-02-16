@@ -37,20 +37,18 @@ export default function Projects() {
     <>
       <SEOHead
         title="Projects"
-        description="Open source tools, media projects, and infrastructure built by SUBCVLT."
+        description="Open source tools, media projects, and infrastructure built by SUBCULT."
         path="/projects"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         {/* Header */}
         <div className="mb-12">
-          <p className="font-mono text-xs text-dust mb-3">
-            &gt; ls -la /projects/
-          </p>
+          <p className="font-mono text-xs text-dust mb-3">&gt; ls -la /projects/</p>
           <h1 className="mb-4">Projects</h1>
           <p className="text-bone max-w-2xl">
-            Everything we build is open source. Tools, media, infrastructure —
-            every repo ships with intent.
+            Everything we build is open source. Tools, media, infrastructure — every repo ships with
+            intent.
           </p>
         </div>
 
@@ -108,7 +106,8 @@ export default function Projects() {
         {filtered.length === 0 && !loading && (
           <div className="text-center py-16">
             <p className="font-mono text-dust">
-              &gt; no projects match current filters<br />
+              &gt; no projects match current filters
+              <br />
               &gt; try adjusting parameters
             </p>
           </div>

@@ -34,20 +34,14 @@ export default function AdminLogin() {
             <span className="w-2.5 h-2.5 rounded-full bg-signal" />
             <span className="w-2.5 h-2.5 rounded-full bg-flicker" />
             <span className="w-2.5 h-2.5 rounded-full bg-static" />
-            <span className="flex-1 text-center font-mono text-xs text-dust">
-              subcvlt://auth
-            </span>
+            <span className="flex-1 text-center font-mono text-xs text-dust">subcult://auth</span>
           </div>
 
           <div className="p-6">
             {/* Header */}
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-display text-signal tracking-widest mb-2">
-                SUBCVLT
-              </h1>
-              <p className="font-mono text-xs text-dust">
-                &gt; CONTROL PANEL ACCESS
-              </p>
+              <h1 className="text-3xl font-display text-signal tracking-widest mb-2">SUBCULT</h1>
+              <p className="font-mono text-xs text-dust">&gt; CONTROL PANEL ACCESS</p>
             </div>
 
             {/* Error */}
@@ -100,10 +94,7 @@ export default function AdminLogin() {
 
             {/* Bottom text */}
             <div className="mt-6 text-center">
-              <a
-                href="/"
-                className="font-mono text-xs text-dust hover:text-bone transition-colors"
-              >
+              <a href="/" className="font-mono text-xs text-dust hover:text-bone transition-colors">
                 ← return to subcult.tv
               </a>
             </div>

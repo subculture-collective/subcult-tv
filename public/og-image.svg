@@ -10,7 +10,7 @@
   <!-- Border -->
   <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#3a3a3a" stroke-width="1"/>
   <!-- Title -->
-  <text x="600" y="280" text-anchor="middle" font-family="monospace" font-weight="bold" font-size="80" fill="#f0ece4" letter-spacing="0.2em">SUBCVLT</text>
+  <text x="600" y="280" text-anchor="middle" font-family="monospace" font-weight="bold" font-size="80" fill="#f0ece4" letter-spacing="0.2em">SUBCULT</text>
   <!-- Tagline -->
   <text x="600" y="340" text-anchor="middle" font-family="serif" font-size="24" fill="#c4b9a7">We build tools, media, and infrastructure for the counterculture.</text>
   <!-- URL -->

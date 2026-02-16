@@ -4,12 +4,12 @@ import type { Post } from '@/types';
 export const posts: Post[] = [
   {
     slug: 'subcvlt-manifesto',
-    title: 'SUBCVLT Manifesto',
+    title: 'SUBCULT Manifesto',
     date: '2026-01-15',
     excerpt:
       'We are the signal in the noise. A declaration of intent, operational parameters, and the refusal to be optimized.',
     tags: ['manifesto', 'mission', 'founding'],
-    author: 'SUBCVLT',
+    author: 'SUBCULT',
   },
   {
     slug: 'release-log-field-notes',
@@ -18,7 +18,7 @@ export const posts: Post[] = [
     excerpt:
       'Changelog fragments from the workshop. What shipped, what broke, what we learned in the static.',
     tags: ['releases', 'changelog', 'dev'],
-    author: 'SUBCVLT',
+    author: 'SUBCULT',
   },
   {
     slug: 'how-we-build',
@@ -27,7 +27,7 @@ export const posts: Post[] = [
     excerpt:
       'Our stack is a séance. Linux boxes, terminal multiplexers, self-hosted everything. This is how we work.',
     tags: ['process', 'tools', 'infrastructure'],
-    author: 'SUBCVLT',
+    author: 'SUBCULT',
   },
 ];
 

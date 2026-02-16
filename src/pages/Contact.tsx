@@ -19,7 +19,7 @@ const SOCIAL_LINKS = [
   {
     name: 'Mastodon',
     url: '#',
-    handle: '@subcvlt@mastodon.social',
+    handle: '@subcult@mastodon.social',
   },
   {
     name: 'Email',
@@ -59,7 +59,9 @@ export default function Contact() {
         `From: ${formData.name} (${formData.email})\n\n${formData.message}`,
       )}`;
       window.open(mailtoUrl, '_blank');
-      setError(err instanceof Error ? err.message : 'API unavailable — opened email client instead');
+      setError(
+        err instanceof Error ? err.message : 'API unavailable — opened email client instead',
+      );
       setSubmitted(true);
     } finally {
       setSubmitting(false);
@@ -79,8 +81,8 @@ export default function Contact() {
           <p className="font-mono text-xs text-dust mb-3">&gt; ping subcult.tv</p>
           <h1 className="mb-4">Contact</h1>
           <p className="text-bone max-w-2xl">
-            Have a question, a collaboration idea, or a bug to report?
-            Open a channel. We respond to genuine signals.
+            Have a question, a collaboration idea, or a bug to report? Open a channel. We respond to
+            genuine signals.
           </p>
         </div>
 
@@ -126,9 +128,7 @@ export default function Contact() {
                     id="name"
                     required
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full bg-soot border border-fog text-chalk font-mono text-sm px-4 py-2.5 focus:border-signal focus:outline-none transition-colors"
                     placeholder="your name"
                   />
@@ -146,9 +146,7 @@ export default function Contact() {
                     id="email"
                     required
                     value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full bg-soot border border-fog text-chalk font-mono text-sm px-4 py-2.5 focus:border-signal focus:outline-none transition-colors"
                     placeholder="you@example.com"
                   />
@@ -165,9 +163,7 @@ export default function Contact() {
                     type="text"
                     id="subject"
                     value={formData.subject}
-                    onChange={(e) =>
-                      setFormData({ ...formData, subject: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     className="w-full bg-soot border border-fog text-chalk font-mono text-sm px-4 py-2.5 focus:border-signal focus:outline-none transition-colors"
                     placeholder="what's this about?"
                   />
@@ -185,9 +181,7 @@ export default function Contact() {
                     required
                     rows={6}
                     value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-soot border border-fog text-chalk font-mono text-sm px-4 py-2.5 focus:border-signal focus:outline-none transition-colors resize-y"
                     placeholder="your message..."
                   />
@@ -223,22 +217,16 @@ export default function Contact() {
                   key={link.name}
                   href={link.url}
                   target={link.url.startsWith('mailto:') ? undefined : '_blank'}
-                  rel={
-                    link.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'
-                  }
+                  rel={link.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
                   className="flex items-center justify-between p-4 bg-ash border border-fog hover:border-signal transition-colors no-underline group"
                 >
                   <div>
                     <span className="font-mono text-sm text-glow group-hover:text-signal transition-colors">
                       {link.name}
                     </span>
-                    <span className="block font-mono text-xs text-dust mt-0.5">
-                      {link.handle}
-                    </span>
+                    <span className="block font-mono text-xs text-dust mt-0.5">{link.handle}</span>
                   </div>
-                  <span className="text-dust group-hover:text-signal transition-colors">
-                    ↗
-                  </span>
+                  <span className="text-dust group-hover:text-signal transition-colors">↗</span>
                 </a>
               ))}
             </div>
@@ -258,7 +246,8 @@ export default function Contact() {
                 <br />
                 <span className="text-chalk">tracking: </span>
                 <span className="text-static">zero</span>
-                <br /><br />
+                <br />
+                <br />
                 <span className="text-dust"># genuine signals only.</span>
                 <br />
                 <span className="text-dust"># spam gets /dev/null'd.</span>

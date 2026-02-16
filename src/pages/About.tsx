@@ -16,8 +16,8 @@ export default function About() {
           <p className="font-mono text-xs text-dust mb-3">&gt; cat /about/README.md</p>
           <h1 className="mb-6">About // Studio</h1>
           <p className="text-bone max-w-3xl text-lg leading-relaxed">
-            Subculture Collective (SUBCVLT) is an independent studio building open source
-            tools, media projects, and infrastructure for people who refuse to be products.
+            Subculture Collective (SUBCULT) is an independent studio building open source tools,
+            media projects, and infrastructure for people who refuse to be products.
           </p>
         </div>
 
@@ -30,17 +30,20 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-bone leading-relaxed">
               <p>
-                We exist because the tools we needed didn't exist, and the ones that did were
-                locked behind paywalls, surveillance stacks, and terms of service written by
-                people who've never touched a terminal.
+                We exist because the tools we needed didn't exist, and the ones that did were locked
+                behind paywalls, surveillance stacks, and terms of service written by people who've
+                never touched a terminal.
               </p>
               <p>
-                Our mission is simple: <span className="text-signal font-bold">build what's needed,
-                ship it open source, and fund it through the people who use it.</span>
+                Our mission is simple:{' '}
+                <span className="text-signal font-bold">
+                  build what's needed, ship it open source, and fund it through the people who use
+                  it.
+                </span>
               </p>
               <p>
-                No venture capital. No growth hacking. No engagement metrics.
-                Just code that works and documentation that doesn't lie.
+                No venture capital. No growth hacking. No engagement metrics. Just code that works
+                and documentation that doesn't lie.
               </p>
             </div>
           </div>
@@ -53,11 +56,20 @@ export default function About() {
             </h2>
             <ul className="space-y-4">
               {[
-                { label: 'Privacy by default', detail: 'If it phones home, we don\'t ship it.' },
-                { label: 'Open source as baseline', detail: 'Not a marketing strategy. A principle.' },
+                { label: 'Privacy by default', detail: "If it phones home, we don't ship it." },
+                {
+                  label: 'Open source as baseline',
+                  detail: 'Not a marketing strategy. A principle.',
+                },
                 { label: 'Ship over polish', detail: 'v0.1 beats a pitch deck. Always.' },
-                { label: 'Self-hosting as independence', detail: 'Your data lives on your hardware.' },
-                { label: 'Documentation is a feature', detail: 'If it\'s not documented, it doesn\'t exist.' },
+                {
+                  label: 'Self-hosting as independence',
+                  detail: 'Your data lives on your hardware.',
+                },
+                {
+                  label: 'Documentation is a feature',
+                  detail: "If it's not documented, it doesn't exist.",
+                },
                 { label: 'Ugly-beautiful design', detail: 'Communicates first. Decorates second.' },
               ].map((v) => (
                 <li key={v.label} className="border-l-2 border-signal pl-4">
@@ -109,10 +121,11 @@ export default function About() {
             DIY Operations
           </h2>
 
-          <TerminalPanel title="subcvlt.toolchain" className="max-w-2xl">
+          <TerminalPanel title="subcult.toolchain" className="max-w-2xl">
             <div>
               <span className="text-dust"># the stack is a stance, not a choice</span>
-              <br /><br />
+              <br />
+              <br />
               <span className="text-chalk">os: </span>
               <span className="text-static">Linux</span>
               <br />
@@ -139,7 +152,8 @@ export default function About() {
               <br />
               <span className="text-chalk">networking: </span>
               <span className="text-static">Tailscale + WireGuard</span>
-              <br /><br />
+              <br />
+              <br />
               <span className="text-dust"># no kubernetes. no terraform.</span>
               <br />
               <span className="text-dust"># just ssh and a dream.</span>
@@ -150,8 +164,8 @@ export default function About() {
         {/* Philosophy */}
         <div className="mt-16 py-12 border-t border-fog text-center">
           <blockquote className="text-lg text-bone italic max-w-2xl mx-auto">
-            "The best software is software that lets you forget it exists.
-            It does its job, respects your time, and gets out of the way."
+            "The best software is software that lets you forget it exists. It does its job, respects
+            your time, and gets out of the way."
           </blockquote>
           <p className="font-mono text-xs text-dust mt-4">— Subculture Collective</p>
         </div>

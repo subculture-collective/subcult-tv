@@ -15,9 +15,7 @@ export default function AdminLayout() {
   if (loading) {
     return (
       <div className="min-h-screen bg-void flex items-center justify-center">
-        <div className="font-mono text-signal animate-pulse">
-          LOADING CONTROL PANEL...
-        </div>
+        <div className="font-mono text-signal animate-pulse">LOADING CONTROL PANEL...</div>
       </div>
     );
   }
@@ -31,9 +29,7 @@ export default function AdminLayout() {
       {/* ── Sidebar ──────────────────────────────────────────── */}
       <aside className="w-64 bg-soot border-r border-fog flex flex-col shrink-0">
         <div className="p-4 border-b border-fog">
-          <div className="font-display text-xl text-signal tracking-wider">
-            SUBCVLT
-          </div>
+          <div className="font-display text-xl text-signal tracking-wider">SUBCULT</div>
           <div className="font-mono text-xs text-dust mt-1">// CONTROL PANEL</div>
         </div>
 
@@ -58,9 +54,7 @@ export default function AdminLayout() {
         </nav>
 
         <div className="p-4 border-t border-fog">
-          <div className="font-mono text-xs text-dust mb-2">
-            &gt; {user?.username}@subcvlt
-          </div>
+          <div className="font-mono text-xs text-dust mb-2">&gt; {user?.username}@subcult</div>
           <button
             onClick={logout}
             className="w-full px-3 py-1.5 bg-ash border border-fog text-dust font-mono text-xs hover:border-signal hover:text-signal transition-colors cursor-pointer"

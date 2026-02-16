@@ -10,6 +10,11 @@ import PostPage from '@/pages/PostPage';
 import Contact from '@/pages/Contact';
 import PressKit from '@/pages/PressKit';
 import NotFound from '@/pages/NotFound';
+import Memo from '@/pages/Memo';
+import Invest from '@/pages/Invest';
+import Metrics from '@/pages/Metrics';
+import Links from '@/pages/Links';
+import Papers from '@/pages/Papers';
 
 // Admin pages
 import AdminLogin from '@/pages/admin/AdminLogin';
@@ -34,6 +39,11 @@ export default function App() {
         <Route path="zine/:slug" element={<PostPage />} />
         <Route path="contact" element={<Contact />} />
         <Route path="press" element={<PressKit />} />
+        <Route path="memo" element={<Memo />} />
+        <Route path="invest" element={<Invest />} />
+        <Route path="metrics" element={<Metrics />} />
+        <Route path="links" element={<Links />} />
+        <Route path="papers" element={<Papers />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

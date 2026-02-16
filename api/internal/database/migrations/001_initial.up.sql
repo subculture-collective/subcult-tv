@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════
--- SUBCVLT Database Schema
+-- SUBCULT Database Schema
 -- ═══════════════════════════════════════════════════════════
 
 -- Enable UUID generation

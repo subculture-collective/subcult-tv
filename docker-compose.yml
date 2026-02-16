@@ -11,12 +11,12 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-subcult_dev}
       POSTGRES_DB: ${POSTGRES_DB:-subcult}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - '${POSTGRES_PORT:-5432}:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-subcult}"]
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-subcult}']
       interval: 5s
       timeout: 5s
       retries: 5
@@ -28,10 +28,10 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-subcult}:${POSTGRES_PASSWORD:-subcult_dev}@postgres:5432/umami
-      TRACKER_SCRIPT_NAME: ${UMAMI_SCRIPT_NAME:-subcvlt}
+      TRACKER_SCRIPT_NAME: ${UMAMI_SCRIPT_NAME:-subcult}
       DISABLE_TELEMETRY: 1
     ports:
-      - "${UMAMI_PORT:-3000}:3000"
+      - '${UMAMI_PORT:-3000}:3000'
     depends_on:
       postgres:
         condition: service_healthy
@@ -50,7 +50,7 @@ services:
       PORT: 8080
       UMAMI_URL: http://umami:3000
     ports:
-      - "${API_PORT:-8080}:8080"
+      - '${API_PORT:-8080}:8080'
     depends_on:
       postgres:
         condition: service_healthy

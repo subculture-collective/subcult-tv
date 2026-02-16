@@ -5,8 +5,8 @@ import TerminalPanel from '@/components/effects/TerminalPanel';
 
 const TIERS = [
   {
-    name: 'Signal Listener',
-    price: '$3/mo',
+    name: 'Supporter',
+    price: '$5/mo',
     color: 'border-fog',
     perks: [
       'Early access to release notes',
@@ -15,37 +15,56 @@ const TIERS = [
     ],
   },
   {
-    name: 'Frequency Rider',
-    price: '$8/mo',
+    name: 'Insider',
+    price: '$15/mo',
     color: 'border-signal',
     highlight: true,
     perks: [
-      'Everything in Signal Listener',
-      'Vote on next project priorities',
+      'Everything in Supporter',
+      'Full monthly Infrastructure Memo',
       'Behind-the-scenes build logs',
-      'Monthly "state of the signal" report',
+      'Vote on project priorities',
     ],
   },
   {
-    name: 'Carrier Wave',
-    price: '$20/mo',
+    name: 'Sponsor',
+    price: '$50/mo',
     color: 'border-static',
     perks: [
-      'Everything in Frequency Rider',
+      'Everything in Insider',
+      'Your name in the source code',
       'Direct line to the collective',
-      'Your name etched in the source',
       'Early beta access to all projects',
+    ],
+  },
+  {
+    name: 'Partner',
+    price: '$250/mo',
+    color: 'border-cyan',
+    perks: [
+      'Everything in Sponsor',
+      'Quarterly feedback sessions',
+      'Roadmap voting rights',
       'Custom zine page / shoutout',
+      'Logo placement on site',
     ],
   },
 ];
 
 const WHAT_SUPPORT_FUNDS = [
-  { icon: '⚡', label: 'Server costs & infrastructure', detail: 'Self-hosted everything. That costs money.' },
+  {
+    icon: '⚡',
+    label: 'Server costs & infrastructure',
+    detail: 'Self-hosted everything. That costs money.',
+  },
   { icon: '🛠', label: 'Development time', detail: 'Full-time code. No day job safety net.' },
   { icon: '📼', label: 'Media production', detail: 'Hardware, software, hosting for audio/video.' },
-  { icon: '🌐', label: 'Domain & DNS', detail: 'subcult.tv doesn\'t renew itself.' },
-  { icon: '📦', label: 'Open source maintenance', detail: 'Bug fixes, reviews, docs — the unglamorous work.' },
+  { icon: '🌐', label: 'Domain & DNS', detail: "subcult.tv doesn't renew itself." },
+  {
+    icon: '📦',
+    label: 'Open source maintenance',
+    detail: 'Bug fixes, reviews, docs — the unglamorous work.',
+  },
 ];
 
 export default function Patreon() {
@@ -53,7 +72,7 @@ export default function Patreon() {
     <>
       <SEOHead
         title="Support"
-        description="Fund the SUBCVLT signal. Your support keeps the servers running and the code shipping."
+        description="Fund the SUBCULT signal. Your support keeps the servers running and the code shipping."
         path="/support"
       />
 
@@ -63,20 +82,17 @@ export default function Patreon() {
           <p className="font-mono text-xs text-dust mb-3">&gt; SIGNAL_BOOST.request()</p>
           <h1 className="mb-6">Fund the Signal</h1>
           <p className="text-bone max-w-2xl mx-auto text-lg leading-relaxed">
-            SUBCVLT is funded by the people who use what we build.
-            No venture capital. No ads. No exit strategy.
-            Just builders and the people who believe in what we're building.
+            SUBCULT is funded by the people who use what we build. No venture capital. No ads. No
+            exit strategy. Just builders and the people who believe in what we're building.
           </p>
         </div>
 
         {/* Tiers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {TIERS.map((tier) => (
             <Card
               key={tier.name}
-              className={`p-6 ${tier.color} ${
-                tier.highlight ? 'border-2 relative' : ''
-              }`}
+              className={`p-6 ${tier.color} ${tier.highlight ? 'border-2 relative' : ''}`}
             >
               {tier.highlight && (
                 <div className="absolute -top-3 left-4 bg-signal text-void font-mono text-xs px-2 py-0.5 uppercase">
@@ -115,10 +131,7 @@ export default function Patreon() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {WHAT_SUPPORT_FUNDS.map((item) => (
-              <div
-                key={item.label}
-                className="bg-ash border border-fog p-4"
-              >
+              <div key={item.label} className="bg-ash border border-fog p-4">
                 <span className="text-2xl mb-2 block">{item.icon}</span>
                 <h4 className="font-mono text-sm text-glow mb-1">{item.label}</h4>
                 <p className="text-xs text-bone">{item.detail}</p>
@@ -155,8 +168,8 @@ export default function Patreon() {
         <div className="text-center py-12 border-t border-fog">
           <h2 className="mb-4">Ready to Boost the Signal?</h2>
           <p className="text-bone max-w-xl mx-auto mb-8">
-            Every contribution keeps the infrastructure running and the code flowing.
-            Join the collective.
+            Every contribution keeps the infrastructure running and the code flowing. Join the
+            collective.
           </p>
           <Button
             as="a"

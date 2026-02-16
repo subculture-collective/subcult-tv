@@ -1,12 +1,12 @@
 # How We Build: Tools, Servers, Rituals
 
-> *Our stack is not a choice. It's a stance.*
+> _Our stack is not a choice. It's a stance._
 
 ---
 
 ## The Workstation
 
-Every SUBCVLT project starts in a terminal. Not a browser. Not a Figma file. Not a Jira board. A terminal.
+Every SUBCULT project starts in a terminal. Not a browser. Not a Figma file. Not a Jira board. A terminal.
 
 ```
 $ neofetch
@@ -47,7 +47,7 @@ We run our own:
 Our deployment ritual:
 
 ```bash
-# The SUBCVLT deployment protocol
+# The SUBCULT deployment protocol
 $ git push origin main        # push to main, no PRs for solo work
 $ ssh box "cd /srv/app && git pull && make deploy"
 $ curl -s https://subcult.tv | head -1  # smoke test
@@ -62,14 +62,14 @@ Every project gets:
 
 - A `README.md` that actually explains what the thing does
 - A `CONTRIBUTING.md` if we want contributors
-- Inline comments that explain *why*, not *what*
+- Inline comments that explain _why_, not _what_
 - A `CHANGELOG.md` written for humans
 
 ## The Rituals
 
 ### Naming Conventions
 
-Projects are named like bands, not products. We don't do `SuperTool Pro v2.0`. We do *Dead Letter Drop*, *Signal // Noise*, *Blackout Radio*.
+Projects are named like bands, not products. We don't do `SuperTool Pro v2.0`. We do _Dead Letter Drop_, _Signal // Noise_, _Blackout Radio_.
 
 ### Code Review
 
@@ -94,6 +94,6 @@ The machines don't stop. Neither do we.
 
 ---
 
-*This post will be updated as our rituals evolve. The stack changes. The principles don't.*
+_This post will be updated as our rituals evolve. The stack changes. The principles don't._
 
 `> carrier_wave.persist()`

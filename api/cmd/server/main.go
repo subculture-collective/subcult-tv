@@ -25,7 +25,7 @@ func main() {
 	_ = godotenv.Load("../.env")
 	_ = godotenv.Load(".env")
 
-	slog.Info("starting subcvlt api server")
+	slog.Info("starting subcult api server")
 
 	cfg, err := config.Load()
 	if err != nil {

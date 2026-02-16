@@ -6,10 +6,11 @@ import type { EffectLevel } from '@/types';
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/projects', label: 'Projects' },
-  { to: '/zine', label: 'Zine' },
+  { to: '/papers', label: 'Papers' },
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/memo', label: 'Memo' },
+  { to: '/invest', label: 'Invest' },
 ];
 
 const EFFECT_LABELS: Record<EffectLevel, string> = {
@@ -43,7 +44,7 @@ export default function Nav() {
             to="/"
             className="font-display text-xl font-bold tracking-[0.2em] text-glow hover:text-signal transition-colors no-underline"
           >
-            SUBCVLT
+            SUBCULT
           </Link>
 
           {/* Desktop nav */}

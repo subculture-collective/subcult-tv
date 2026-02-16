@@ -37,7 +37,9 @@ export default function PostPage() {
           }
         });
     }
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [slug, post]);
 
   // No slug or no matching post — show 404 immediately (no effect needed)
@@ -102,9 +104,7 @@ export default function PostPage() {
         <header className="mb-10">
           <div className="flex items-center gap-4 mb-4">
             <span className="font-mono text-xs text-dust">{post.date}</span>
-            {post.author && (
-              <span className="font-mono text-xs text-dust">by {post.author}</span>
-            )}
+            {post.author && <span className="font-mono text-xs text-dust">by {post.author}</span>}
           </div>
           <div className="flex flex-wrap gap-2 mt-4">
             {post.tags.map((tag) => (
@@ -115,11 +115,7 @@ export default function PostPage() {
 
         {/* MDX Content */}
         <div className="mdx-content">
-          <Suspense
-            fallback={
-              <p className="font-mono text-dust">&gt; rendering content...</p>
-            }
-          >
+          <Suspense fallback={<p className="font-mono text-dust">&gt; rendering content...</p>}>
             <MDXContent />
           </Suspense>
         </div>
@@ -141,7 +137,7 @@ export default function PostPage() {
               variant="ghost"
               size="sm"
             >
-              Support SUBCVLT ↗
+              Support SUBCULT ↗
             </Button>
           </div>
         </footer>
