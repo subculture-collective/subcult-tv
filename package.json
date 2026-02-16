@@ -6,12 +6,13 @@
   "description": "subcult.tv — business + portfolio hub for Subculture Collective / SUBCVLT",
   "scripts": {
     "dev": "vite --port 5175",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && npm run generate-rss && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md,mdx}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css,md,mdx}\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate-rss": "tsx scripts/generate-rss.ts"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
@@ -40,6 +41,7 @@
     "globals": "^16.5.0",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.1.18",
+    "tsx": "^4.19.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
     "vite": "^7.3.1"
