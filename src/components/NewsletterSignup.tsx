@@ -22,7 +22,7 @@ export default function NewsletterSignup() {
 
   if (status === 'success') {
     return (
-      <div className="bg-ash border border-static p-6 text-center">
+      <div className="bg-ash border border-scan p-6 text-center">
         <div className="font-mono text-sm text-static mb-1">✓ SUBSCRIBED</div>
         <p className="font-mono text-xs text-dust">{message}</p>
       </div>
@@ -47,13 +47,13 @@ export default function NewsletterSignup() {
           required
           placeholder="you@signal.freq"
           className="flex-1 bg-void border border-fog text-chalk font-mono text-sm px-3 py-2
-                     focus:border-signal focus:outline-none transition-colors"
+                     focus:border-scan focus:outline-none transition-colors"
         />
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="px-4 py-2 bg-signal text-void font-mono text-sm font-bold shrink-0
-                     hover:bg-signal-dim transition-colors cursor-pointer disabled:opacity-50"
+          className="px-4 py-2 bg-scan text-void font-mono text-sm font-bold shrink-0
+                     hover:bg-scan-dim transition-colors cursor-pointer disabled:opacity-50"
         >
           {status === 'loading' ? '...' : 'SUBSCRIBE'}
         </button>

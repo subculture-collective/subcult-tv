@@ -10,7 +10,7 @@ export default function Card({ children, className = '', hoverable = false }: Ca
       className={`
         bg-ash border border-fog
         transition-all duration-200
-        ${hoverable ? 'hover:border-signal hover:shadow-glow cursor-pointer' : ''}
+        ${hoverable ? 'hover:border-scan hover:shadow-scan cursor-pointer' : ''}
         ${className}
       `.trim()}
     >

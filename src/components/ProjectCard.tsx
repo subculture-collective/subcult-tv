@@ -23,7 +23,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       to={`/projects/${project.slug}`}
-      className="group block bg-ash border border-fog hover:border-signal transition-all duration-200 hover:shadow-glow no-underline"
+      className="group block bg-ash border border-fog hover:border-scan transition-all duration-200 hover:shadow-scan no-underline"
     >
       {/* Cover art */}
       <CoverArt
@@ -36,7 +36,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       {/* Content */}
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="font-display text-lg uppercase tracking-wider text-glow group-hover:text-signal transition-colors">
+          <h3 className="font-display text-lg uppercase tracking-wider text-glow group-hover:text-scan transition-colors">
             {project.name}
           </h3>
           <span className={`font-mono text-xs ${statusColors[project.status]}`}>

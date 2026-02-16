@@ -67,7 +67,7 @@ export default function Invest() {
             <ul className="space-y-3">
               {WHAT_WE_BUILD.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-bone">
-                  <span className="text-static font-mono">›</span>
+                  <span className="text-scan font-mono">›</span>
                   <span>{item}</span>
                 </li>
               ))}

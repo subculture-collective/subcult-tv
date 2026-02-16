@@ -36,7 +36,7 @@ export default function Footer() {
           <div>
             <Link
               to="/"
-              className="font-display text-2xl font-bold tracking-[0.2em] text-glow hover:text-signal transition-colors no-underline"
+              className="font-display text-2xl font-bold tracking-[0.2em] text-glow hover:text-scan transition-colors no-underline"
             >
               SUBCULT
             </Link>
@@ -60,7 +60,7 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="font-mono text-sm text-bone hover:text-signal transition-colors no-underline"
+                    className="font-mono text-sm text-bone hover:text-scan transition-colors no-underline"
                   >
                     {link.label}
                   </Link>

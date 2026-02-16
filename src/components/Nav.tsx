@@ -42,7 +42,7 @@ export default function Nav() {
           {/* Logo */}
           <Link
             to="/"
-            className="font-display text-xl font-bold tracking-[0.2em] text-glow hover:text-signal transition-colors no-underline"
+            className="font-display text-xl font-bold tracking-[0.2em] text-glow hover:text-scan transition-colors no-underline"
           >
             SUBCULT
           </Link>
@@ -55,7 +55,7 @@ export default function Nav() {
                 to={link.to}
                 className={({ isActive }) =>
                   `font-mono text-xs uppercase tracking-wider transition-colors no-underline ${
-                    isActive ? 'text-signal' : 'text-bone hover:text-glow'
+                    isActive ? 'text-scan' : 'text-bone hover:text-scan'
                   }`
                 }
                 end={link.to === '/'}
@@ -67,7 +67,7 @@ export default function Nav() {
             {/* Effect toggle */}
             <button
               onClick={cycleEffects}
-              className="font-mono text-xs px-2 py-1 border border-fog text-dust hover:text-static hover:border-static transition-colors cursor-pointer"
+              className="font-mono text-xs px-2 py-1 border border-fog text-dust hover:text-signal hover:border-signal transition-colors cursor-pointer"
               aria-label={`Visual effects: ${EFFECT_LABELS[effectLevel]}. Click to cycle.`}
               title={`Effects: ${EFFECT_LABELS[effectLevel]}`}
             >
@@ -88,7 +88,7 @@ export default function Nav() {
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden font-mono text-sm text-bone hover:text-signal p-2 cursor-pointer"
+            className="md:hidden font-mono text-sm text-bone hover:text-scan p-2 cursor-pointer"
             aria-expanded={mobileOpen}
             aria-label="Toggle navigation menu"
           >
@@ -108,7 +108,7 @@ export default function Nav() {
                 onClick={() => setMobileOpen(false)}
                 className={({ isActive }) =>
                   `block font-mono text-sm uppercase tracking-wider no-underline ${
-                    isActive ? 'text-signal' : 'text-bone hover:text-glow'
+                    isActive ? 'text-scan' : 'text-bone hover:text-scan'
                   }`
                 }
                 end={link.to === '/'}

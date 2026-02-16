@@ -20,15 +20,15 @@ export default function TerminalPanel({
       {/* Title bar */}
       <div className="flex items-center gap-2 px-4 py-2 bg-smoke border-b border-fog">
         <div className="flex gap-1.5">
-          <span className="w-3 h-3 rounded-full bg-signal opacity-80" />
-          <span className="w-3 h-3 rounded-full bg-flicker opacity-80" />
           <span className="w-3 h-3 rounded-full bg-static opacity-80" />
+          <span className="w-3 h-3 rounded-full bg-flicker opacity-80" />
+          <span className="w-3 h-3 rounded-full bg-signal opacity-80" />
         </div>
         <span className="font-mono text-xs text-dust ml-2">{title}</span>
       </div>
 
       {/* Content */}
-      <div className="p-4 font-mono text-sm text-static leading-relaxed">
+      <div className="p-4 font-mono text-sm text-signal leading-relaxed">
         <span className="text-dust select-none">{prompt}</span>
         {children}
       </div>

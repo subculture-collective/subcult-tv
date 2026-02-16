@@ -10,16 +10,16 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <Link
       to={`/zine/${post.slug}`}
-      className="group block bg-ash border border-fog hover:border-signal transition-all duration-200 p-5 no-underline"
+      className="group block bg-ash border border-fog hover:border-scan transition-all duration-200 p-5 no-underline"
     >
       <div className="flex items-start justify-between mb-2">
         <span className="font-mono text-xs text-dust">{post.date}</span>
-        <span className="font-mono text-xs text-signal opacity-0 group-hover:opacity-100 transition-opacity">
+        <span className="font-mono text-xs text-scan opacity-0 group-hover:opacity-100 transition-opacity">
           READ →
         </span>
       </div>
 
-      <h3 className="font-display text-xl uppercase tracking-wider text-glow group-hover:text-signal transition-colors mb-2">
+      <h3 className="font-display text-xl uppercase tracking-wider text-glow group-hover:text-scan transition-colors mb-2">
         {post.title}
       </h3>
 

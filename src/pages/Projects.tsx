@@ -79,7 +79,7 @@ export default function Projects() {
                 onClick={() => setStatusFilter(s)}
                 className={`font-mono text-xs px-2 py-1 border transition-colors cursor-pointer ${
                   statusFilter === s
-                    ? 'border-static text-static'
+                    ? 'border-scan text-scan'
                     : 'border-fog text-dust hover:text-bone'
                 }`}
               >

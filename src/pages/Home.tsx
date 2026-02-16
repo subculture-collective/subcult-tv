@@ -97,7 +97,7 @@ export default function Home() {
         </GlitchFrame>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-signal to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-scan to-transparent" />
       </section>
 
       {/* ═══════ MANIFESTO BLOCK ═══════ */}
@@ -111,13 +111,13 @@ export default function Home() {
             </p>
             <p className="text-bone leading-relaxed mb-6">
               Every project starts with a question:{' '}
-              <em className="text-signal">"Does this need to exist?"</em> If the answer is yes, we
+              <em className="text-scan">'Does this need to exist?'</em> If the answer is yes, we
               ship it.
             </p>
             <TerminalPanel title="subcult.status" className="text-left max-w-md mx-auto">
               <div>
                 <span className="text-chalk">status: </span>
-                <span className="text-static">BROADCASTING</span>
+                <span className="text-scan">BROADCASTING</span>
                 <br />
                 <span className="text-chalk">signal: </span>
                 <span className="text-flicker">STRONG</span>
@@ -140,7 +140,7 @@ export default function Home() {
             </h2>
             <Link
               to="/projects"
-              className="font-mono text-sm text-bone hover:text-signal transition-colors"
+              className="font-mono text-sm text-bone hover:text-scan transition-colors"
             >
               View all →
             </Link>
@@ -164,7 +164,7 @@ export default function Home() {
             </h2>
             <Link
               to="/zine"
-              className="font-mono text-sm text-bone hover:text-signal transition-colors"
+              className="font-mono text-sm text-bone hover:text-scan transition-colors"
             >
               Read the zine →
             </Link>

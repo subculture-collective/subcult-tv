@@ -33,7 +33,7 @@ export default function Papers() {
         </div>
 
         {/* Start Here Box */}
-        <div className="bg-ash border border-static p-6 mb-12 max-w-2xl mx-auto">
+        <div className="bg-ash border border-scan p-6 mb-12 max-w-2xl mx-auto">
           <h2 className="font-mono text-sm text-static mb-3">// START HERE</h2>
           <p className="text-bone mb-4">
             <strong className="text-glow">Subculture Collective</strong> is a studio building tools,

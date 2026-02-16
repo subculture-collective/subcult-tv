@@ -6,40 +6,97 @@
    ═══════════════════════════════════════════════════════════ */
 
 @theme {
-  --color-void: #0a0a0a;
-  --color-soot: #141414;
-  --color-ash: #1a1a1a;
-  --color-smoke: #2a2a2a;
-  --color-fog: #3a3a3a;
-  --color-dust: #6b6b6b;
-  --color-bone: #c4b9a7;
-  --color-chalk: #e8e0d0;
-  --color-glow: #f0ece4;
+  /* ═══════════════════════════════════════════════════════════
+     DRACULA × CATPPUCCIN MOCHA HYBRID
+     Green/Purple contrast with Pink/Orange accents
+     ═══════════════════════════════════════════════════════════ */
 
-  --color-signal: #ff3333;
-  --color-signal-dim: #cc2222;
-  --color-static: #00ff88;
-  --color-static-dim: #00cc66;
-  --color-flicker: #ffcc00;
-  --color-flicker-dim: #cc9900;
-  --color-scan: #6633ff;
-  --color-scan-dim: #4422cc;
-  --color-cyan: #00ccff;
-  --color-cyan-dim: #0099cc;
+  /* ── Background Scale (Deep purples → Catppuccin Mocha) ──── */
+  --color-void: #11111b;      /* crust - deepest */
+  --color-soot: #181825;      /* mantle */
+  --color-ash: #1e1e2e;       /* base */
+  --color-smoke: #313244;     /* surface0 */
+  --color-fog: #45475a;       /* surface1 */
+  --color-mist: #585b70;      /* surface2 */
 
-  --color-vhs-red: #ff1744;
-  --color-vhs-blue: #2979ff;
-  --color-vhs-magenta: #e040fb;
+  /* ── Text Scale ─────────────────────────────────────────── */
+  --color-dust: #6c7086;      /* overlay0 - muted */
+  --color-stone: #7f849c;     /* overlay1 */
+  --color-bone: #bac2de;      /* subtext1 */
+  --color-chalk: #cdd6f4;     /* text */
+  --color-glow: #f5e0dc;      /* rosewater - warmest white */
 
+  /* ── Primary: Green (Dracula-bright) ────────────────────── */
+  --color-static: #50fa7b;    /* dracula green - BRIGHT */
+  --color-static-dim: #a6e3a1; /* catppuccin green - soft */
+  --color-static-deep: #40c463; /* darker green */
+
+  /* ── Primary: Purple (Catppuccin Mauve) ─────────────────── */
+  --color-scan: #cba6f7;      /* catppuccin mauve */
+  --color-scan-dim: #bd93f9;  /* dracula purple */
+  --color-scan-deep: #9d7cd8; /* deeper purple */
+
+  /* ── Accent: Pink (Dracula × Catppuccin) ────────────────── */
+  --color-signal: #ff79c6;    /* dracula pink - HOT */
+  --color-signal-dim: #f5c2e7; /* catppuccin pink - soft */
+  --color-signal-deep: #eb6aae; /* deeper pink */
+
+  /* ── Accent: Orange/Peach ───────────────────────────────── */
+  --color-flicker: #ffb86c;   /* dracula orange */
+  --color-flicker-dim: #fab387; /* catppuccin peach */
+  --color-flicker-deep: #e89b5a; /* deeper orange */
+
+  /* ── Supporting: Cyan/Sky ───────────────────────────────── */
+  --color-cyan: #8be9fd;      /* dracula cyan */
+  --color-cyan-dim: #89dceb;  /* catppuccin sky */
+  --color-cyan-deep: #74c7ec; /* catppuccin sapphire */
+
+  /* ── Supporting: Yellow ─────────────────────────────────── */
+  --color-yellow: #f1fa8c;    /* dracula yellow - bright */
+  --color-yellow-dim: #f9e2af; /* catppuccin yellow - warm */
+  --color-yellow-deep: #e0c080; /* muted gold */
+
+  /* ── Supporting: Red ────────────────────────────────────── */
+  --color-red: #ff5555;       /* dracula red */
+  --color-red-dim: #f38ba8;   /* catppuccin red/marmalade */
+  --color-red-deep: #e05f6f;  /* deeper red */
+
+  /* ── Supporting: Blue/Lavender ──────────────────────────── */
+  --color-blue: #89b4fa;      /* catppuccin blue */
+  --color-lavender: #b4befe;  /* catppuccin lavender */
+  --color-sapphire: #74c7ec;  /* catppuccin sapphire */
+
+  /* ── Supporting: Teal/Mint ──────────────────────────────── */
+  --color-teal: #94e2d5;      /* catppuccin teal */
+  --color-mint: #a6e3a1;      /* catppuccin green (minty) */
+
+  /* ── Supporting: Warm Pinks ─────────────────────────────── */
+  --color-flamingo: #f2cdcd;  /* catppuccin flamingo */
+  --color-rosewater: #f5e0dc; /* catppuccin rosewater */
+  --color-marmalade: #eba0ac; /* catppuccin marmalade */
+
+  /* ── VHS/Glitch Colors ──────────────────────────────────── */
+  --color-vhs-red: #ff5555;
+  --color-vhs-blue: #89b4fa;
+  --color-vhs-magenta: #ff79c6;
+  --color-vhs-green: #50fa7b;
+  --color-vhs-purple: #bd93f9;
+
+  /* ── Typography ─────────────────────────────────────────── */
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
   --font-display: 'Oswald', 'Impact', sans-serif;
   --font-body: 'Libre Baskerville', 'Georgia', serif;
 
-  --shadow-glow: 0 0 20px rgba(255, 51, 51, 0.3);
-  --shadow-scan: 0 0 30px rgba(102, 51, 255, 0.2);
-  --shadow-static: 0 0 15px rgba(0, 255, 136, 0.2);
-  --shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.8);
-  --shadow-brutal: 6px 6px 0 #0a0a0a;
+  /* ── Shadows (updated for new palette) ──────────────────── */
+  --shadow-glow: 0 0 20px rgba(255, 121, 198, 0.3);
+  --shadow-scan: 0 0 30px rgba(203, 166, 247, 0.25);
+  --shadow-static: 0 0 15px rgba(80, 250, 123, 0.25);
+  --shadow-hard: 4px 4px 0 rgba(17, 17, 27, 0.9);
+  --shadow-brutal: 6px 6px 0 #11111b;
+  --shadow-pink: 0 0 20px rgba(255, 121, 198, 0.4);
+  --shadow-purple: 0 0 20px rgba(203, 166, 247, 0.4);
+  --shadow-green: 0 0 20px rgba(80, 250, 123, 0.4);
+  --shadow-orange: 0 0 20px rgba(255, 184, 108, 0.4);
 }
 
 /* ── Base Styles ──────────────────────────────────────────── */
@@ -132,6 +189,11 @@ pre,
   color: var(--color-void);
 }
 
+::-moz-selection {
+  background-color: var(--color-signal);
+  color: var(--color-void);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -140,9 +202,10 @@ pre,
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-fog);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-dust);
+  background: var(--color-scan);
 }
 
 /* ═══════════════ SCANLINE OVERLAY ═══════════════════════════ */
@@ -168,14 +231,20 @@ pre,
 /* ═══════════════ CHROMATIC ABERRATION ═══════════════════════ */
 .chromatic {
   text-shadow:
-    -2px 0 rgba(255, 23, 68, 0.5),
-    2px 0 rgba(41, 121, 255, 0.5);
+    -2px 0 rgba(255, 121, 198, 0.5),
+    2px 0 rgba(203, 166, 247, 0.5);
 }
 
 .chromatic-mild {
   text-shadow:
-    -1px 0 rgba(255, 23, 68, 0.3),
-    1px 0 rgba(41, 121, 255, 0.3);
+    -1px 0 rgba(255, 121, 198, 0.3),
+    1px 0 rgba(203, 166, 247, 0.3);
+}
+
+.chromatic-green {
+  text-shadow:
+    -2px 0 rgba(80, 250, 123, 0.5),
+    2px 0 rgba(203, 166, 247, 0.5);
 }
 
 /* ═══════════════ GLITCH TEXT ═══════════════════════════════ */
@@ -364,7 +433,7 @@ pre,
 
 /* ═══════════════ ZINE MARGINS ═══════════════════════════════= */
 .zine-margin {
-  border-left: 3px solid var(--color-signal);
+  border-left: 3px solid var(--color-scan);
   padding-left: 1rem;
   margin-left: 0.5rem;
   font-style: italic;
@@ -495,7 +564,7 @@ pre,
 
 /* ═══════════════ LINK STYLES ════════════════════════════════ */
 a {
-  color: var(--color-signal);
+  color: var(--color-scan);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition:
@@ -508,7 +577,7 @@ a:hover {
 }
 
 a:focus-visible {
-  outline: 2px solid var(--color-signal);
+  outline: 2px solid var(--color-scan);
   outline-offset: 2px;
 }
 
@@ -533,7 +602,7 @@ a:focus-visible {
 }
 
 .mdx-content blockquote {
-  border-left: 3px solid var(--color-signal);
+  border-left: 3px solid var(--color-scan);
   padding-left: 1rem;
   margin: 1.5rem 0;
   font-style: italic;

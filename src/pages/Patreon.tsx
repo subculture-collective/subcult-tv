@@ -29,7 +29,7 @@ const TIERS = [
   {
     name: 'Sponsor',
     price: '$50/mo',
-    color: 'border-static',
+    color: 'border-scan',
     perks: [
       'Everything in Insider',
       'Your name in the source code',

@@ -6,7 +6,7 @@ interface TagProps {
 
 const variantStyles = {
   default: 'border-fog text-bone',
-  status: 'border-static text-static',
+  status: 'border-signal text-signal',
   tech: 'border-scan text-scan',
 };
 

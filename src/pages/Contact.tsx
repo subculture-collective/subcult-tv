@@ -17,15 +17,15 @@ const SOCIAL_LINKS = [
   },
   // Placeholders — fill in Content Checklist
   {
-    name: 'Mastodon',
-    url: '#',
-    handle: '@subcult@mastodon.social',
+    name: 'Twitter',
+    url: 'https://twitter.com/subcult_tv',
+    handle: '@subcult_tv',
   },
   {
     name: 'Email',
-    url: 'mailto:hello@subcult.tv',
-    handle: 'hello@subcult.tv',
-  },
+    url: 'mailto:info@subcult.tv',
+    handle: 'info@subcult.tv',
+  }
 ];
 
 export default function Contact() {
