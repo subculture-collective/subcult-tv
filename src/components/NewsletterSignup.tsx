@@ -46,6 +46,7 @@ export default function NewsletterSignup() {
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="you@signal.freq"
+          aria-label="Email address"
           className="flex-1 bg-void border border-fog text-chalk font-mono text-sm px-3 py-2
                      focus:border-scan focus:outline-none transition-colors"
         />
@@ -53,14 +54,14 @@ export default function NewsletterSignup() {
           type="submit"
           disabled={status === 'loading'}
           className="px-4 py-2 bg-scan text-void font-mono text-sm font-bold shrink-0
-                     hover:bg-scan-dim transition-colors cursor-pointer disabled:opacity-50"
+                     hover:bg-scan-dim transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {status === 'loading' ? '...' : 'SUBSCRIBE'}
         </button>
       </form>
 
       {status === 'error' && (
-        <p className="font-mono text-xs text-signal text-center mt-2">ERR: {message}</p>
+        <p role="alert" className="font-mono text-xs text-signal text-center mt-2">ERR: {message}</p>
       )}
 
       <p className="font-mono text-xs text-fog text-center mt-3">

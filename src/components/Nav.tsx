@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffects } from '@/context/useEffects';
 import type { EffectLevel } from '@/types';
 
@@ -24,6 +24,12 @@ const EFFECT_CYCLE: EffectLevel[] = ['clean', 'mild', 'full'];
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { effectLevel, setEffectLevel, highContrast, toggleHighContrast } = useEffects();
+  const { pathname } = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   const cycleEffects = () => {
     const currentIndex = EFFECT_CYCLE.indexOf(effectLevel);

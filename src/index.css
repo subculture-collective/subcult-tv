@@ -563,7 +563,8 @@ pre,
 }
 
 /* ═══════════════ LINK STYLES ════════════════════════════════ */
-a {
+/* Only apply to plain links, not button-styled links */
+a:not([class*="bg-"]):not([class*="border-"]) {
   color: var(--color-scan);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -572,7 +573,7 @@ a {
     text-decoration-color 0.2s;
 }
 
-a:hover {
+a:not([class*="bg-"]):not([class*="border-"]):hover {
   color: var(--color-glow);
 }
 

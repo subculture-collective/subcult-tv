@@ -1,7 +1,10 @@
+import { useLocation } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import Button from '@/components/ui/Button';
 
 export default function NotFound() {
+  const { pathname } = useLocation();
+
   return (
     <>
       <SEOHead title="404 — Signal Lost" path="/404" />
@@ -14,7 +17,7 @@ export default function NotFound() {
           The signal was either never broadcast, or it's been swallowed by the static.
         </p>
         <div className="font-mono text-sm text-dust mb-8 space-y-1">
-          <p>&gt; attempted route: {window.location.pathname}</p>
+          <p>&gt; attempted route: {pathname}</p>
           <p>&gt; status: NOT_FOUND</p>
           <p>&gt; suggestion: return to base frequency</p>
         </div>

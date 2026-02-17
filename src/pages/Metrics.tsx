@@ -101,7 +101,7 @@ export default function Metrics() {
 
           <Card className="p-6 border-signal max-w-xl">
             <div className="flex items-center gap-4">
-              <div className="text-4xl">🎯</div>
+              <div className="font-mono text-3xl text-signal">◎</div>
               <div>
                 <p className="font-mono text-sm text-cyan">{METRICS.nextMilestone.date}</p>
                 <p className="text-lg text-glow">{METRICS.nextMilestone.description}</p>

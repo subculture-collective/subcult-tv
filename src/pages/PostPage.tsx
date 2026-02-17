@@ -102,11 +102,12 @@ export default function PostPage() {
 
         {/* Header */}
         <header className="mb-10">
+          <h1 className="mb-4">{post.title}</h1>
           <div className="flex items-center gap-4 mb-4">
             <span className="font-mono text-xs text-dust">{post.date}</span>
             {post.author && <span className="font-mono text-xs text-dust">by {post.author}</span>}
           </div>
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}

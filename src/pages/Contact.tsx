@@ -188,7 +188,7 @@ export default function Contact() {
                 </div>
 
                 {error && !submitted && (
-                  <div className="p-3 bg-signal/10 border border-signal text-signal font-mono text-xs">
+                  <div role="alert" className="p-3 bg-signal/10 border border-signal text-signal font-mono text-xs">
                     ⚠ {error}
                   </div>
                 )}

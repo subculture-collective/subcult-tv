@@ -97,7 +97,7 @@ export default function Home() {
         </GlitchFrame>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-scan to-transparent" />
+        <div className="h-px bg-linear-to-r from-transparent via-scan to-transparent" />
       </section>
 
       {/* ═══════ MANIFESTO BLOCK ═══════ */}

@@ -5,22 +5,22 @@ import Card from '@/components/ui/Card';
 
 const WHAT_YOU_GET = [
   {
-    icon: '📡',
+    icon: '»',
     label: 'Monthly Infrastructure Memo',
     detail: 'What shipped, what broke, what we learned. Unfiltered build logs.',
   },
   {
-    icon: '🚀',
+    icon: '»',
     label: 'Early Access Alerts',
     detail: 'Be first to know when new tools or projects drop.',
   },
   {
-    icon: '📼',
+    icon: '»',
     label: 'Behind-the-Scenes',
     detail: 'Process notes, experiments, and prototypes before they go public.',
   },
   {
-    icon: '🔮',
+    icon: '»',
     label: 'Roadmap Previews',
     detail: "See what's coming next. Sometimes vote on priorities.",
   },
@@ -61,7 +61,7 @@ export default function Memo() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {WHAT_YOU_GET.map((item) => (
               <Card key={item.label} className="p-4">
-                <span className="text-2xl mb-2 block">{item.icon}</span>
+                <span className="font-mono text-lg text-scan mb-2 block">{item.icon}</span>
                 <h4 className="font-mono text-sm text-glow mb-1">{item.label}</h4>
                 <p className="text-xs text-bone">{item.detail}</p>
               </Card>

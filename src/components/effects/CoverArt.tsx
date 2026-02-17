@@ -39,8 +39,8 @@ export default function CoverArt({ color, pattern, name, className = '' }: Cover
     <div
       className={`relative overflow-hidden ${className}`}
       style={{
-        background: `linear-gradient(135deg, ${color}15 0%, ${color}08 50%, ${color}20 100%)`,
-        backgroundImage: patternSVG(pattern, color),
+        backgroundColor: `${color}10`,
+        backgroundImage: `${patternSVG(pattern, color)}, linear-gradient(135deg, ${color}15 0%, ${color}08 50%, ${color}20 100%)`,
       }}
       aria-hidden="true"
     >

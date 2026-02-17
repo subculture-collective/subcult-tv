@@ -31,13 +31,13 @@ type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-scan text-glow hover:bg-scan-dim border-2 border-scan hover:border-scan-dim shadow-hard',
-  secondary: 'bg-transparent text-bone border-2 border-scan hover:bg-scan hover:text-glow',
+    'bg-scan text-white hover:bg-scan-dim border-2 border-scan hover:border-scan-dim shadow-hard',
+  secondary: 'bg-transparent text-scan border-2 border-scan hover:bg-scan hover:text-white',
   ghost: 'bg-transparent text-bone hover:text-glow border-2 border-transparent hover:border-fog',
-  signal: 'bg-transparent text-signal border-2 border-signal hover:bg-signal hover:text-void',
-  scan: 'bg-scan text-glow hover:bg-scan-dim border-2 border-scan hover:border-scan-dim shadow-hard',
+  signal: 'bg-transparent text-signal border-2 border-signal hover:bg-signal hover:text-white',
+  scan: 'bg-scan text-white hover:bg-scan-dim border-2 border-scan hover:border-scan-dim shadow-hard',
   static:
-    'bg-signal text-void hover:bg-signal-dim border-2 border-signal hover:border-signal-dim shadow-hard',
+    'bg-signal text-white hover:bg-signal-dim border-2 border-signal hover:border-signal-dim shadow-hard',
   flicker:
     'bg-flicker text-void hover:bg-flicker-dim border-2 border-flicker hover:border-flicker-dim shadow-hard',
 };
@@ -57,21 +57,18 @@ export default function Button(props: ButtonProps) {
     transition-all duration-200
     focus-visible:outline-2 focus-visible:outline-scan focus-visible:outline-offset-2
     cursor-pointer select-none
+    disabled:opacity-50 disabled:cursor-not-allowed
     ${variantStyles[variant]}
     ${sizeStyles[size]}
     ${className}
   `.trim();
 
   if (props.as === 'link') {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {
-      as: _as,
-      to,
-      ...linkRest
-    } = rest as Omit<LinkProps, keyof ButtonBaseProps> & {
+    const { as: _, to, ...linkRest } = rest as Omit<LinkProps, keyof ButtonBaseProps> & {
       as: 'link';
       to: string;
     };
+    void _;
     return (
       <Link to={to} className={baseStyles} {...linkRest}>
         {children}
@@ -80,15 +77,11 @@ export default function Button(props: ButtonProps) {
   }
 
   if (props.as === 'a') {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {
-      as: _as,
-      href,
-      ...anchorRest
-    } = rest as Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof ButtonBaseProps> & {
-      as: 'a';
-      href: string;
-    };
+    const { as: _, href, ...anchorRest } = rest as Omit<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      keyof ButtonBaseProps
+    > & { as: 'a'; href: string };
+    void _;
     return (
       <a href={href} className={baseStyles} {...anchorRest}>
         {children}
@@ -96,11 +89,11 @@ export default function Button(props: ButtonProps) {
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { as: _as, ...buttonRest } = rest as Omit<
+  const { as: _, ...buttonRest } = rest as Omit<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     keyof ButtonBaseProps
   > & { as?: 'button' };
+  void _;
   return (
     <button className={baseStyles} {...buttonRest}>
       {children}
