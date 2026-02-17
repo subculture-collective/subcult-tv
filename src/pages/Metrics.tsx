@@ -1,6 +1,7 @@
 import SEOHead from '@/components/SEOHead';
 import Card from '@/components/ui/Card';
 import TerminalPanel from '@/components/effects/TerminalPanel';
+import { Target } from 'lucide-react';
 
 // Baseline metrics - update these values manually or fetch from API
 const METRICS = {
@@ -101,7 +102,7 @@ export default function Metrics() {
 
           <Card className="p-6 border-signal max-w-xl">
             <div className="flex items-center gap-4">
-              <div className="text-4xl">🎯</div>
+              <Target className="w-10 h-10 text-signal" aria-hidden="true" />
               <div>
                 <p className="font-mono text-sm text-cyan">{METRICS.nextMilestone.date}</p>
                 <p className="text-lg text-glow">{METRICS.nextMilestone.description}</p>

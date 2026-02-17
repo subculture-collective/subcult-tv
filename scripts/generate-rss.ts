@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * RSS Feed Generator for SUBCVLT Zine
- * 
+ * RSS Feed Generator for SUBCULT Zine
+ *
  * Generates RSS 2.0 feed from the static post registry.
  * Run before build: npm run generate-rss
  */
 
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { posts } from '../src/lib/posts.js';
+import { getPublishedPosts } from '../src/lib/posts.js';
 
 interface Post {
   slug: string;
@@ -22,7 +22,7 @@ interface Post {
 
 // Site configuration
 const SITE_URL = 'https://subcult.tv';
-const SITE_TITLE = 'SUBCVLT Zine';
+const SITE_TITLE = 'SUBCULT Zine';
 const SITE_DESCRIPTION = 'Transmissions from the Subculture Collective';
 const FEED_URL = `${SITE_URL}/feed.xml`;
 
@@ -52,11 +52,12 @@ function escapeXml(unsafe: string): string {
 function generateRSS(posts: Post[]): string {
   // Sort posts by date (newest first)
   const sortedPosts = [...posts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
   // Get the latest post date for lastBuildDate
-  const latestDate = sortedPosts.length > 0 ? sortedPosts[0].date : new Date().toISOString().split('T')[0];
+  const latestDate =
+    sortedPosts.length > 0 ? sortedPosts[0].date : new Date().toISOString().split('T')[0];
 
   // Build RSS items
   const items = sortedPosts
@@ -70,8 +71,8 @@ function generateRSS(posts: Post[]): string {
       <guid isPermaLink="true">${postUrl}</guid>
       <pubDate>${pubDate}</pubDate>
       <description>${escapeXml(post.excerpt)}</description>
-      <author>noreply@subcult.tv (${escapeXml(post.author || 'SUBCVLT')})</author>
-      ${post.tags.map(tag => `<category>${escapeXml(tag)}</category>`).join('\n      ')}
+      <author>noreply@subcult.tv (${escapeXml(post.author || 'SUBCULT')})</author>
+      ${post.tags.map((tag) => `<category>${escapeXml(tag)}</category>`).join('\n      ')}
     </item>`;
     })
     .join('\n');
@@ -97,10 +98,11 @@ ${items}
  * Main execution
  */
 function main() {
-  console.log('🔧 Generating RSS feed for SUBCVLT Zine...');
+  console.log('🔧 Generating RSS feed for SUBCULT Zine...');
 
   // Generate RSS XML
-  const rssXml = generateRSS(posts);
+  const published = getPublishedPosts();
+  const rssXml = generateRSS(published);
 
   // Ensure public directory exists
   const publicDir = join(process.cwd(), 'public');
@@ -111,7 +113,7 @@ function main() {
   writeFileSync(feedPath, rssXml, 'utf-8');
 
   console.log(`✅ RSS feed generated: ${feedPath}`);
-  console.log(`📊 ${posts.length} posts included`);
+  console.log(`📊 ${published.length} posts included`);
   console.log(`🔗 Feed URL: ${FEED_URL}`);
 }
 

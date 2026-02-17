@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  listSubscribers,
-  type APISubscriber,
-  type PaginatedResponse,
-} from '@/lib/api';
+import { listSubscribers, type APISubscriber, type PaginatedResponse } from '@/lib/api';
 
 export default function AdminSubscribers() {
   const [data, setData] = useState<PaginatedResponse<APISubscriber> | null>(null);
@@ -49,10 +45,12 @@ export default function AdminSubscribers() {
           </thead>
           <tbody>
             {data?.data.map((s) => (
-              <tr key={s.id} className="border-b border-fog/50 hover:bg-ash transition-colors">
+              <tr key={s.id} className="border-b border-fog/50 hover:bg-ash transition-colors duration-200">
                 <td className="py-3 px-3 font-mono text-sm text-chalk">{s.email}</td>
                 <td className="py-3 px-3">
-                  <span className={`font-mono text-xs ${s.confirmed ? 'text-static' : 'text-dust'}`}>
+                  <span
+                    className={`font-mono text-xs ${s.confirmed ? 'text-static' : 'text-dust'}`}
+                  >
                     {s.confirmed ? 'YES' : 'NO'}
                   </span>
                 </td>
@@ -63,7 +61,7 @@ export default function AdminSubscribers() {
             ))}
             {data?.data.length === 0 && (
               <tr>
-                <td colSpan={3} className="py-8 text-center font-mono text-sm text-dust">
+                <td colSpan={3} className="py-8 text-center font-mono text-sm text-bone">
                   No subscribers yet. Spread the signal.
                 </td>
               </tr>
@@ -79,7 +77,7 @@ export default function AdminSubscribers() {
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page <= 1}
             className="px-3 py-1 bg-ash border border-fog font-mono text-xs text-chalk
-                       hover:border-signal transition-colors cursor-pointer disabled:opacity-30"
+                       hover:border-signal transition-colors duration-200 cursor-pointer disabled:opacity-30"
           >
             ← PREV
           </button>
@@ -90,7 +88,7 @@ export default function AdminSubscribers() {
             onClick={() => setPage((p) => Math.min(data.total_pages, p + 1))}
             disabled={page >= data.total_pages}
             className="px-3 py-1 bg-ash border border-fog font-mono text-xs text-chalk
-                       hover:border-signal transition-colors cursor-pointer disabled:opacity-30"
+                       hover:border-signal transition-colors duration-200 cursor-pointer disabled:opacity-30"
           >
             NEXT →
           </button>

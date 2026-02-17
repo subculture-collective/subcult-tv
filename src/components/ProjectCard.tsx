@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import type { Project } from '@/types';
 import Tag from '@/components/ui/Tag';
 import CoverArt from '@/components/effects/CoverArt';
+import { DEFAULT_COVER_COLOR } from '@/lib/tokens';
 
 interface ProjectCardProps {
   project: Project;
@@ -27,7 +28,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     >
       {/* Cover art */}
       <CoverArt
-        color={project.coverColor || '#ff3333'}
+        color={project.coverColor || DEFAULT_COVER_COLOR}
         pattern={project.coverPattern || 'circuit'}
         name={project.name}
         className="h-40 w-full"

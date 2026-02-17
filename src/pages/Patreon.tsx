@@ -2,6 +2,7 @@ import SEOHead from '@/components/SEOHead';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import TerminalPanel from '@/components/effects/TerminalPanel';
+import { Zap, Wrench, Film, Globe, Package } from 'lucide-react';
 
 const TIERS = [
   {
@@ -53,15 +54,15 @@ const TIERS = [
 
 const WHAT_SUPPORT_FUNDS = [
   {
-    icon: '⚡',
+    icon: Zap,
     label: 'Server costs & infrastructure',
     detail: 'Self-hosted everything. That costs money.',
   },
-  { icon: '🛠', label: 'Development time', detail: 'Full-time code. No day job safety net.' },
-  { icon: '📼', label: 'Media production', detail: 'Hardware, software, hosting for audio/video.' },
-  { icon: '🌐', label: 'Domain & DNS', detail: "subcult.tv doesn't renew itself." },
+  { icon: Wrench, label: 'Development time', detail: 'Full-time code. No day job safety net.' },
+  { icon: Film, label: 'Media production', detail: 'Hardware, software, hosting for audio/video.' },
+  { icon: Globe, label: 'Domain & DNS', detail: "subcult.tv doesn't renew itself." },
   {
-    icon: '📦',
+    icon: Package,
     label: 'Open source maintenance',
     detail: 'Bug fixes, reviews, docs — the unglamorous work.',
   },
@@ -132,7 +133,7 @@ export default function Patreon() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {WHAT_SUPPORT_FUNDS.map((item) => (
               <div key={item.label} className="bg-ash border border-fog p-4">
-                <span className="text-2xl mb-2 block">{item.icon}</span>
+                <item.icon className="w-6 h-6 text-signal mb-2" aria-hidden="true" />
                 <h4 className="font-mono text-sm text-glow mb-1">{item.label}</h4>
                 <p className="text-xs text-bone">{item.detail}</p>
               </div>

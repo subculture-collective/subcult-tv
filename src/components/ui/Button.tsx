@@ -32,12 +32,9 @@ type ButtonProps = ButtonAsButton | ButtonAsLink | ButtonAsAnchor;
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
     'bg-signal text-void hover:bg-signal-dim border-2 border-signal hover:border-signal-dim shadow-hard',
-  secondary:
-    'bg-transparent text-chalk border-2 border-chalk hover:bg-chalk hover:text-void',
-  ghost:
-    'bg-transparent text-bone hover:text-glow border-2 border-transparent hover:border-fog',
-  signal:
-    'bg-transparent text-signal border-2 border-signal hover:bg-signal hover:text-void',
+  secondary: 'bg-transparent text-chalk border-2 border-chalk hover:bg-chalk hover:text-void',
+  ghost: 'bg-transparent text-bone hover:text-glow border-2 border-transparent hover:border-fog',
+  signal: 'bg-transparent text-signal border-2 border-signal hover:bg-signal hover:text-void',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -47,13 +44,7 @@ const sizeStyles: Record<ButtonSize, string> = {
 };
 
 export default function Button(props: ButtonProps) {
-  const {
-    variant = 'primary',
-    size = 'md',
-    className = '',
-    children,
-    ...rest
-  } = props;
+  const { variant = 'primary', size = 'md', className = '', children, ...rest } = props;
 
   const baseStyles = `
     inline-flex items-center justify-center
@@ -68,7 +59,11 @@ export default function Button(props: ButtonProps) {
 
   if (props.as === 'link') {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { as: _as, to, ...linkRest } = rest as Omit<LinkProps, keyof ButtonBaseProps> & {
+    const {
+      as: _as,
+      to,
+      ...linkRest
+    } = rest as Omit<LinkProps, keyof ButtonBaseProps> & {
       as: 'link';
       to: string;
     };
@@ -81,10 +76,14 @@ export default function Button(props: ButtonProps) {
 
   if (props.as === 'a') {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { as: _as, href, ...anchorRest } = rest as Omit<
-      React.AnchorHTMLAttributes<HTMLAnchorElement>,
-      keyof ButtonBaseProps
-    > & { as: 'a'; href: string };
+    const {
+      as: _as,
+      href,
+      ...anchorRest
+    } = rest as Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof ButtonBaseProps> & {
+      as: 'a';
+      href: string;
+    };
     return (
       <a href={href} className={baseStyles} {...anchorRest}>
         {children}

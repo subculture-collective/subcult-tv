@@ -40,14 +40,16 @@ export default function NewsletterSignup() {
       </div>
 
       <form onSubmit={handleSubmit} className="flex gap-2 max-w-md mx-auto">
+        <label htmlFor="newsletter-email" className="sr-only">Email address</label>
         <input
           type="email"
+          id="newsletter-email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="you@signal.freq"
           className="flex-1 bg-void border border-fog text-chalk font-mono text-sm px-3 py-2
-                     focus:border-signal focus:outline-none transition-colors"
+                     focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 transition-colors duration-200"
         />
         <button
           type="submit"
@@ -60,9 +62,7 @@ export default function NewsletterSignup() {
       </form>
 
       {status === 'error' && (
-        <p className="font-mono text-xs text-signal text-center mt-2">
-          ERR: {message}
-        </p>
+        <p className="font-mono text-xs text-signal text-center mt-2">ERR: {message}</p>
       )}
 
       <p className="font-mono text-xs text-fog text-center mt-3">

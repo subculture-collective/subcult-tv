@@ -16,27 +16,27 @@
   --color-chalk: #e8e0d0;
   --color-glow: #f0ece4;
 
-  --color-signal: #ff3333;
-  --color-signal-dim: #cc2222;
+  --color-signal: #8b5cf6;
+  --color-signal-dim: #7c3aed;
   --color-static: #00ff88;
   --color-static-dim: #00cc66;
   --color-flicker: #ffcc00;
   --color-flicker-dim: #cc9900;
-  --color-scan: #6633ff;
-  --color-scan-dim: #4422cc;
+  --color-scan: #e040fb;
+  --color-scan-dim: #c026d3;
   --color-cyan: #00ccff;
   --color-cyan-dim: #0099cc;
 
-  --color-vhs-red: #ff1744;
-  --color-vhs-blue: #2979ff;
+  --color-vhs-purple: #8b5cf6;
+  --color-vhs-green: #00ff88;
   --color-vhs-magenta: #e040fb;
 
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
   --font-display: 'Oswald', 'Impact', sans-serif;
   --font-body: 'Libre Baskerville', 'Georgia', serif;
 
-  --shadow-glow: 0 0 20px rgba(255, 51, 51, 0.3);
-  --shadow-scan: 0 0 30px rgba(102, 51, 255, 0.2);
+  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.3);
+  --shadow-scan: 0 0 30px rgba(224, 64, 251, 0.2);
   --shadow-static: 0 0 15px rgba(0, 255, 136, 0.2);
   --shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.8);
   --shadow-brutal: 6px 6px 0 #0a0a0a;
@@ -168,14 +168,14 @@ pre,
 /* ═══════════════ CHROMATIC ABERRATION ═══════════════════════ */
 .chromatic {
   text-shadow:
-    -2px 0 rgba(255, 23, 68, 0.5),
-    2px 0 rgba(41, 121, 255, 0.5);
+    -2px 0 rgba(139, 92, 246, 0.5),
+    2px 0 rgba(0, 255, 136, 0.5);
 }
 
 .chromatic-mild {
   text-shadow:
-    -1px 0 rgba(255, 23, 68, 0.3),
-    1px 0 rgba(41, 121, 255, 0.3);
+    -1px 0 rgba(139, 92, 246, 0.3),
+    1px 0 rgba(0, 255, 136, 0.3);
 }
 
 /* ═══════════════ GLITCH TEXT ═══════════════════════════════ */
@@ -494,22 +494,24 @@ pre,
 }
 
 /* ═══════════════ LINK STYLES ════════════════════════════════ */
-a {
-  color: var(--color-signal);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition:
-    color 0.2s,
-    text-decoration-color 0.2s;
-}
+@layer base {
+  a {
+    color: var(--color-signal);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition:
+      color 0.2s,
+      text-decoration-color 0.2s;
+  }
 
-a:hover {
-  color: var(--color-glow);
-}
+  a:hover {
+    color: var(--color-glow);
+  }
 
-a:focus-visible {
-  outline: 2px solid var(--color-signal);
-  outline-offset: 2px;
+  a:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
 }
 
 /* ═══════════════ MDX CONTENT ════════════════════════════════ */

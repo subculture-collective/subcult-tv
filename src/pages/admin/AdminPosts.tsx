@@ -1,11 +1,5 @@
 import { useState, useEffect, type FormEvent } from 'react';
-import {
-  listPosts,
-  createPost,
-  updatePost,
-  deletePost,
-  type APIPost,
-} from '@/lib/api';
+import { listPosts, createPost, updatePost, deletePost, type APIPost } from '@/lib/api';
 
 type PostForm = Omit<APIPost, 'id' | 'created_at' | 'updated_at'>;
 
@@ -95,7 +89,7 @@ export default function AdminPosts() {
         <button
           onClick={openNew}
           className="px-4 py-2 bg-signal text-void font-mono text-sm font-bold tracking-wider
-                     hover:bg-signal-dim transition-colors cursor-pointer"
+                     hover:bg-signal-dim transition-colors duration-200 cursor-pointer"
         >
           + NEW POST
         </button>
@@ -110,64 +104,121 @@ export default function AdminPosts() {
       {/* ── Form ────────────────────────────────────────────── */}
       {showForm && (
         <div className="mb-6 bg-soot border border-fog p-6">
-          <h2 className="text-lg mb-4">
-            {editing ? 'Edit Post' : 'New Post'}
-          </h2>
+          <h2 className="text-lg mb-4">{editing ? 'Edit Post' : 'New Post'}</h2>
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
-                <label className="block font-mono text-xs text-dust uppercase mb-1">Slug</label>
-                <input type="text" value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} required
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none" />
+                <label htmlFor="post-slug" className="block font-mono text-xs text-bone uppercase mb-1">Slug</label>
+                <input
+                  type="text"
+                  id="post-slug"
+                  value={form.slug}
+                  onChange={(e) => setForm({ ...form, slug: e.target.value })}
+                  required
+                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
+                />
               </div>
               <div>
-                <label className="block font-mono text-xs text-dust uppercase mb-1">Title</label>
-                <input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none" />
+                <label htmlFor="post-title" className="block font-mono text-xs text-bone uppercase mb-1">Title</label>
+                <input
+                  type="text"
+                  id="post-title"
+                  value={form.title}
+                  onChange={(e) => setForm({ ...form, title: e.target.value })}
+                  required
+                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
+                />
               </div>
             </div>
             <div>
-              <label className="block font-mono text-xs text-dust uppercase mb-1">Excerpt</label>
-              <textarea value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} rows={2}
-                className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none resize-y" />
+              <label htmlFor="post-excerpt" className="block font-mono text-xs text-bone uppercase mb-1">Excerpt</label>
+              <textarea
+                id="post-excerpt"
+                value={form.excerpt}
+                onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
+                rows={2}
+                className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 resize-y"
+              />
             </div>
             <div>
-              <label className="block font-mono text-xs text-dust uppercase mb-1">Content (MDX)</label>
-              <textarea value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} rows={12}
-                className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none resize-y" />
+              <label htmlFor="post-content" className="block font-mono text-xs text-bone uppercase mb-1">
+                Content (MDX)
+              </label>
+              <textarea
+                id="post-content"
+                value={form.content}
+                onChange={(e) => setForm({ ...form, content: e.target.value })}
+                rows={12}
+                className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 resize-y"
+              />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
-                <label className="block font-mono text-xs text-dust uppercase mb-1">Date</label>
-                <input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })}
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none" />
+                <label htmlFor="post-date" className="block font-mono text-xs text-bone uppercase mb-1">Date</label>
+                <input
+                  type="date"
+                  id="post-date"
+                  value={form.date}
+                  onChange={(e) => setForm({ ...form, date: e.target.value })}
+                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
+                />
               </div>
               <div>
-                <label className="block font-mono text-xs text-dust uppercase mb-1">Tags (comma-separated)</label>
-                <input type="text" value={(form.tags || []).join(', ')}
-                  onChange={(e) => setForm({ ...form, tags: e.target.value.split(',').map((s) => s.trim()).filter(Boolean) })}
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none" />
+                <label htmlFor="post-tags" className="block font-mono text-xs text-bone uppercase mb-1">
+                  Tags (comma-separated)
+                </label>
+                <input
+                  type="text"
+                  id="post-tags"
+                  value={(form.tags || []).join(', ')}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      tags: e.target.value
+                        .split(',')
+                        .map((s) => s.trim())
+                        .filter(Boolean),
+                    })
+                  }
+                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
+                />
               </div>
               <div>
-                <label className="block font-mono text-xs text-dust uppercase mb-1">Author</label>
-                <input type="text" value={form.author || ''}
+                <label htmlFor="post-author" className="block font-mono text-xs text-bone uppercase mb-1">Author</label>
+                <input
+                  type="text"
+                  id="post-author"
+                  value={form.author || ''}
                   onChange={(e) => setForm({ ...form, author: e.target.value || undefined })}
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none" />
+                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
+                />
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <input type="checkbox" id="published" checked={form.published}
+              <input
+                type="checkbox"
+                id="published"
+                checked={form.published}
                 onChange={(e) => setForm({ ...form, published: e.target.checked })}
-                className="accent-signal" />
-              <label htmlFor="published" className="font-mono text-sm text-chalk">Published</label>
+                className="accent-signal"
+              />
+              <label htmlFor="published" className="font-mono text-sm text-chalk">
+                Published
+              </label>
             </div>
             <div className="flex gap-3 pt-2">
-              <button type="submit" disabled={saving}
-                className="px-4 py-2 bg-signal text-void font-mono text-sm font-bold hover:bg-signal-dim transition-colors cursor-pointer disabled:opacity-50">
+              <button
+                type="submit"
+                disabled={saving}
+                className="px-4 py-2 bg-signal text-void font-mono text-sm font-bold hover:bg-signal-dim transition-colors duration-200 cursor-pointer disabled:opacity-50"
+              >
                 {saving ? 'SAVING...' : 'SAVE'}
               </button>
-              <button type="button" onClick={() => setShowForm(false)}
-                className="px-4 py-2 bg-ash border border-fog text-chalk font-mono text-sm hover:border-dust transition-colors cursor-pointer">
+              <button
+                type="button"
+                onClick={() => setShowForm(false)}
+                className="px-4 py-2 bg-ash border border-fog text-chalk font-mono text-sm hover:border-dust transition-colors duration-200 cursor-pointer"
+              >
                 CANCEL
               </button>
             </div>
@@ -189,35 +240,49 @@ export default function AdminPosts() {
           </thead>
           <tbody>
             {posts.map((p) => (
-              <tr key={p.id} className="border-b border-fog/50 hover:bg-ash transition-colors">
+              <tr key={p.id} className="border-b border-fog/50 hover:bg-ash transition-colors duration-200">
                 <td className="py-3 px-3">
                   <div className="text-chalk font-medium">{p.title}</div>
                   <div className="font-mono text-xs text-dust">{p.slug}</div>
                 </td>
                 <td className="py-3 px-3 font-mono text-xs text-bone">{p.date}</td>
                 <td className="py-3 px-3">
-                  <span className={`font-mono text-xs ${p.published ? 'text-static' : 'text-dust'}`}>
+                  <span
+                    className={`font-mono text-xs ${p.published ? 'text-static' : 'text-dust'}`}
+                  >
                     {p.published ? 'LIVE' : 'DRAFT'}
                   </span>
                 </td>
                 <td className="py-3 px-3">
                   <div className="flex flex-wrap gap-1">
                     {(p.tags || []).map((t) => (
-                      <span key={t} className="px-1.5 py-0.5 bg-ash text-dust font-mono text-xs">{t}</span>
+                      <span key={t} className="px-1.5 py-0.5 bg-ash text-dust font-mono text-xs">
+                        {t}
+                      </span>
                     ))}
                   </div>
                 </td>
                 <td className="py-3 px-3">
                   <div className="flex gap-2">
-                    <button onClick={() => openEdit(p)} className="font-mono text-xs text-cyan hover:text-glow cursor-pointer">EDIT</button>
-                    <button onClick={() => handleDelete(p.id)} className="font-mono text-xs text-signal hover:text-glow cursor-pointer">DEL</button>
+                    <button
+                      onClick={() => openEdit(p)}
+                      className="font-mono text-xs text-cyan hover:text-glow cursor-pointer"
+                    >
+                      EDIT
+                    </button>
+                    <button
+                      onClick={() => handleDelete(p.id)}
+                      className="font-mono text-xs text-signal hover:text-glow cursor-pointer"
+                    >
+                      DEL
+                    </button>
                   </div>
                 </td>
               </tr>
             ))}
             {posts.length === 0 && (
               <tr>
-                <td colSpan={5} className="py-8 text-center font-mono text-sm text-dust">
+                <td colSpan={5} className="py-8 text-center font-mono text-sm text-bone">
                   No posts found. Write your first transmission.
                 </td>
               </tr>

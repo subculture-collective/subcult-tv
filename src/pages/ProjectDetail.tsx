@@ -6,6 +6,7 @@ import Tag from '@/components/ui/Tag';
 import CoverArt from '@/components/effects/CoverArt';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import { fetchGitHubRepos, mergeWithOverrides, FALLBACK_PROJECTS } from '@/lib/github';
+import { DEFAULT_COVER_COLOR } from '@/lib/tokens';
 import type { Project } from '@/types';
 
 const statusLabels: Record<Project['status'], string> = {
@@ -40,7 +41,7 @@ export default function ProjectDetail() {
   if (loading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <p className="font-mono text-dust">
+        <p className="font-mono text-bone">
           &gt; loading project data...
           <span className="cursor-blink" />
         </p>
@@ -86,7 +87,7 @@ export default function ProjectDetail() {
           <div className="lg:col-span-2">
             {/* Cover */}
             <CoverArt
-              color={project.coverColor || '#ff3333'}
+              color={project.coverColor || DEFAULT_COVER_COLOR}
               pattern={project.coverPattern || 'circuit'}
               name={project.name}
               className="h-56 w-full mb-8"
@@ -100,7 +101,7 @@ export default function ProjectDetail() {
 
             {project.whyItExists && (
               <div className="mb-8">
-                <h3 className="text-sm font-mono text-dust uppercase mb-3">// Why It Exists</h3>
+                <h3 className="text-sm font-mono text-bone uppercase mb-3">// Why It Exists</h3>
                 <blockquote className="border-l-3 border-signal pl-4 text-bone italic">
                   {project.whyItExists}
                 </blockquote>
@@ -110,28 +111,26 @@ export default function ProjectDetail() {
             {/* Terminal info block */}
             <TerminalPanel title={`${project.slug}.info`} className="mb-8">
               <div>
-                <span className="text-dust">name: </span>
+                <span className="text-bone">name: </span>
                 <span className="text-chalk">{project.name}</span>
                 <br />
-                <span className="text-dust">type: </span>
+                <span className="text-bone">type: </span>
                 <span className="text-cyan">{project.type}</span>
                 <br />
-                <span className="text-dust">status: </span>
-                <span className={statusColors[project.status]}>
-                  {statusLabels[project.status]}
-                </span>
+                <span className="text-bone">status: </span>
+                <span className={statusColors[project.status]}>{statusLabels[project.status]}</span>
                 <br />
-                <span className="text-dust">stack: </span>
+                <span className="text-bone">stack: </span>
                 <span className="text-flicker">{project.stack.join(', ')}</span>
                 <br />
-                <span className="text-dust">updated: </span>
-                <span className="text-bone">
+                <span className="text-bone">updated: </span>
+                <span className="text-chalk">
                   {new Date(project.lastUpdated).toLocaleDateString()}
                 </span>
                 {project.stars !== undefined && (
                   <>
                     <br />
-                    <span className="text-dust">stars: </span>
+                    <span className="text-bone">stars: </span>
                     <span className="text-flicker">{project.stars}</span>
                   </>
                 )}
@@ -143,7 +142,7 @@ export default function ProjectDetail() {
           <div className="space-y-6">
             {/* Actions */}
             <div className="bg-ash border border-fog p-6">
-              <h4 className="font-mono text-xs text-dust uppercase mb-4">// Actions</h4>
+              <h4 className="font-mono text-xs text-bone uppercase mb-4">// Actions</h4>
               <div className="space-y-3">
                 <Button
                   as="a"
@@ -182,7 +181,7 @@ export default function ProjectDetail() {
 
             {/* Stack */}
             <div className="bg-ash border border-fog p-6">
-              <h4 className="font-mono text-xs text-dust uppercase mb-4">// Stack</h4>
+              <h4 className="font-mono text-xs text-bone uppercase mb-4">// Stack</h4>
               <div className="flex flex-wrap gap-2">
                 {project.stack.map((tech) => (
                   <Tag key={tech} variant="tech">
@@ -195,7 +194,7 @@ export default function ProjectDetail() {
             {/* Topics */}
             {project.topics.length > 0 && (
               <div className="bg-ash border border-fog p-6">
-                <h4 className="font-mono text-xs text-dust uppercase mb-4">// Topics</h4>
+                <h4 className="font-mono text-xs text-bone uppercase mb-4">// Topics</h4>
                 <div className="flex flex-wrap gap-2">
                   {project.topics.map((topic) => (
                     <Tag key={topic}>{topic}</Tag>

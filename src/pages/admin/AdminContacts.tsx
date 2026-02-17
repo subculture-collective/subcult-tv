@@ -70,18 +70,12 @@ export default function AdminContacts() {
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-3 mb-2">
-                  {!c.read && (
-                    <span className="w-2 h-2 rounded-full bg-signal shrink-0" />
-                  )}
-                  <span className="font-mono text-sm text-chalk font-medium">
-                    {c.name}
-                  </span>
+                  {!c.read && <span className="w-2 h-2 rounded-full bg-signal shrink-0" />}
+                  <span className="font-mono text-sm text-chalk font-medium">{c.name}</span>
                   <span className="font-mono text-xs text-dust">{c.email}</span>
                 </div>
                 {c.subject && (
-                  <div className="font-mono text-xs text-bone mb-2">
-                    RE: {c.subject}
-                  </div>
+                  <div className="font-mono text-xs text-bone mb-2">RE: {c.subject}</div>
                 )}
                 <p className="text-sm text-chalk/80 whitespace-pre-wrap leading-relaxed">
                   {c.message}
@@ -115,7 +109,7 @@ export default function AdminContacts() {
         ))}
 
         {data?.data.length === 0 && (
-          <div className="py-12 text-center font-mono text-sm text-dust">
+          <div className="py-12 text-center font-mono text-sm text-bone">
             No incoming signals. Inbox zero.
           </div>
         )}
@@ -128,7 +122,7 @@ export default function AdminContacts() {
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page <= 1}
             className="px-3 py-1 bg-ash border border-fog font-mono text-xs text-chalk
-                       hover:border-signal transition-colors cursor-pointer disabled:opacity-30"
+                       hover:border-signal transition-colors duration-200 cursor-pointer disabled:opacity-30"
           >
             ← PREV
           </button>
@@ -139,7 +133,7 @@ export default function AdminContacts() {
             onClick={() => setPage((p) => Math.min(data.total_pages, p + 1))}
             disabled={page >= data.total_pages}
             className="px-3 py-1 bg-ash border border-fog font-mono text-xs text-chalk
-                       hover:border-signal transition-colors cursor-pointer disabled:opacity-30"
+                       hover:border-signal transition-colors duration-200 cursor-pointer disabled:opacity-30"
           >
             NEXT →
           </button>

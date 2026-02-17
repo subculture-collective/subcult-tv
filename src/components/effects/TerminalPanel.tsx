@@ -24,7 +24,7 @@ export default function TerminalPanel({
           <span className="w-3 h-3 rounded-full bg-flicker opacity-80" />
           <span className="w-3 h-3 rounded-full bg-static opacity-80" />
         </div>
-        <span className="font-mono text-xs text-dust ml-2">{title}</span>
+        <span className="font-mono text-xs text-bone ml-2">{title}</span>
       </div>
 
       {/* Content */}

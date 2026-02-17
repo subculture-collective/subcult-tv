@@ -53,10 +53,7 @@ export default function CoverArt({ color, pattern, name, className = '' }: Cover
       />
       {/* Project initial glyph */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <span
-          className="font-display text-6xl font-bold opacity-10 select-none"
-          style={{ color }}
-        >
+        <span className="font-display text-6xl font-bold opacity-10 select-none" style={{ color }}>
           {name.charAt(0).toUpperCase()}
         </span>
       </div>

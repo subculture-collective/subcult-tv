@@ -28,6 +28,12 @@ export interface Post {
   excerpt: string;
   tags: string[];
   author?: string;
+  mdx?: () => Promise<{ default: React.ComponentType }>;
+  series?: {
+    name: string;
+    week: number;
+    total: number;
+  };
 }
 
 export interface GitHubRepo {

@@ -1,5 +1,6 @@
 import type { GitHubRepo, Project } from '@/types';
 import projectOverrides from '@content/projects.json';
+import { COVER_COLOR_ROTATION } from '@/lib/tokens';
 
 const GITHUB_ORG = 'subculture-collective';
 const CACHE_KEY = 'subcult-github-repos';
@@ -63,16 +64,7 @@ const COVER_PATTERNS: Array<Project['coverPattern']> = [
   'sigil',
 ];
 
-const COVER_COLORS = [
-  '#ff3333',
-  '#6633ff',
-  '#00ff88',
-  '#ffcc00',
-  '#00ccff',
-  '#e040fb',
-  '#ff6600',
-  '#00cc99',
-];
+const COVER_COLORS = COVER_COLOR_ROTATION;
 
 function slugify(name: string): string {
   return name
@@ -141,7 +133,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     topics: ['website', 'portfolio', 'react'],
     repoUrl: 'https://github.com/subculture-collective/subcult-tv',
     lastUpdated: new Date().toISOString(),
-    coverColor: '#ff3333',
+    coverColor: COVER_COLOR_ROTATION[0],
     coverPattern: 'circuit',
     featured: true,
     order: 0,
@@ -157,7 +149,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     topics: ['audio', 'glitch', 'tool'],
     repoUrl: 'https://github.com/subculture-collective',
     lastUpdated: new Date().toISOString(),
-    coverColor: '#00ff88',
+    coverColor: COVER_COLOR_ROTATION[2],
     coverPattern: 'waves',
     featured: true,
     order: 1,
@@ -173,7 +165,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     topics: ['privacy', 'encryption', 'messaging'],
     repoUrl: 'https://github.com/subculture-collective',
     lastUpdated: new Date().toISOString(),
-    coverColor: '#6633ff',
+    coverColor: COVER_COLOR_ROTATION[1],
     coverPattern: 'sigil',
     featured: true,
     order: 2,
@@ -189,7 +181,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     topics: ['ui', 'retro', 'terminal', 'components'],
     repoUrl: 'https://github.com/subculture-collective',
     lastUpdated: new Date().toISOString(),
-    coverColor: '#ffcc00',
+    coverColor: COVER_COLOR_ROTATION[3],
     coverPattern: 'grid',
     featured: true,
     order: 3,
@@ -205,7 +197,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     topics: ['zine', 'publishing', 'pdf'],
     repoUrl: 'https://github.com/subculture-collective',
     lastUpdated: new Date().toISOString(),
-    coverColor: '#e040fb',
+    coverColor: COVER_COLOR_ROTATION[5],
     coverPattern: 'dots',
     featured: true,
     order: 4,
@@ -221,7 +213,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     topics: ['radio', 'streaming', 'self-hosted'],
     repoUrl: 'https://github.com/subculture-collective',
     lastUpdated: new Date().toISOString(),
-    coverColor: '#00ccff',
+    coverColor: COVER_COLOR_ROTATION[4],
     coverPattern: 'circuit',
     featured: false,
     order: 5,

@@ -54,30 +54,32 @@ export default function AdminLogin() {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block font-mono text-xs text-dust uppercase mb-1">
+                <label htmlFor="login-username" className="block font-mono text-xs text-bone uppercase mb-1">
                   &gt; IDENT
                 </label>
                 <input
                   type="text"
+                  id="login-username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
                   autoFocus
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none transition-colors"
+                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 transition-colors duration-200"
                   placeholder="username"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-xs text-dust uppercase mb-1">
+                <label htmlFor="login-password" className="block font-mono text-xs text-bone uppercase mb-1">
                   &gt; PASSKEY
                 </label>
                 <input
                   type="password"
+                  id="login-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none transition-colors"
+                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 transition-colors duration-200"
                   placeholder="••••••••"
                 />
               </div>
@@ -86,7 +88,7 @@ export default function AdminLogin() {
                 type="submit"
                 disabled={submitting}
                 className="w-full py-2.5 bg-signal text-void font-mono text-sm font-bold tracking-wider
-                           hover:bg-signal-dim transition-colors cursor-pointer disabled:opacity-50"
+                           hover:bg-signal-dim transition-colors duration-200 cursor-pointer disabled:opacity-50"
               >
                 {submitting ? 'AUTHENTICATING...' : 'AUTHENTICATE'}
               </button>
@@ -94,7 +96,7 @@ export default function AdminLogin() {
 
             {/* Bottom text */}
             <div className="mt-6 text-center">
-              <a href="/" className="font-mono text-xs text-dust hover:text-bone transition-colors">
+              <a href="/" className="font-mono text-xs text-dust hover:text-bone transition-colors duration-200">
                 ← return to subcult.tv
               </a>
             </div>

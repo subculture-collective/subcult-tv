@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+const SITE_URL = 'https://subcult.tv';
+
 interface SEOHeadProps {
   title: string;
   description?: string;
@@ -18,36 +20,41 @@ export default function SEOHead({
   image = '/og-image.png',
 }: SEOHeadProps) {
   const fullTitle = title === 'Home' ? 'SUBCULT — Subculture Collective' : `${title} — SUBCULT`;
-  const url = `https://subcult.tv${path}`;
+  const url = `${SITE_URL}${path}`;
+  const absoluteImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
 
   useEffect(() => {
     document.title = fullTitle;
 
-    const setMeta = (name: string, content: string) => {
-      let el =
-        document.querySelector(`meta[name="${name}"]`) ||
-        document.querySelector(`meta[property="${name}"]`);
+    const setMeta = (attr: 'name' | 'property', key: string, content: string) => {
+      let el = document.querySelector(`meta[${attr}="${key}"]`);
       if (!el) {
         el = document.createElement('meta');
-        if (name.startsWith('og:') || name.startsWith('twitter:')) {
-          el.setAttribute('property', name);
-        } else {
-          el.setAttribute('name', name);
-        }
+        el.setAttribute(attr, key);
         document.head.appendChild(el);
       }
       el.setAttribute('content', content);
     };
 
-    setMeta('description', description);
-    setMeta('og:title', fullTitle);
-    setMeta('og:description', description);
-    setMeta('og:url', url);
-    setMeta('og:image', image);
-    setMeta('twitter:title', fullTitle);
-    setMeta('twitter:description', description);
-    setMeta('twitter:image', image);
-  }, [fullTitle, description, url, image]);
+    setMeta('name', 'description', description);
+
+    // OpenGraph
+    setMeta('property', 'og:title', fullTitle);
+    setMeta('property', 'og:description', description);
+    setMeta('property', 'og:url', url);
+    setMeta('property', 'og:image', absoluteImage);
+    setMeta('property', 'og:image:width', '1200');
+    setMeta('property', 'og:image:height', '630');
+    setMeta('property', 'og:site_name', 'SUBCULT');
+    setMeta('property', 'og:type', 'website');
+
+    // Twitter
+    setMeta('name', 'twitter:card', 'summary_large_image');
+    setMeta('name', 'twitter:site', '@subcult_tv');
+    setMeta('name', 'twitter:title', fullTitle);
+    setMeta('name', 'twitter:description', description);
+    setMeta('name', 'twitter:image', absoluteImage);
+  }, [fullTitle, description, url, absoluteImage]);
 
   return null;
 }

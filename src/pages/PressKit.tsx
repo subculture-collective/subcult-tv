@@ -10,10 +10,10 @@ const BRAND_COLORS = [
   { name: 'Fog', hex: '#3a3a3a', usage: 'Borders, dividers' },
   { name: 'Bone', hex: '#c4b9a7', usage: 'Body text' },
   { name: 'Chalk', hex: '#e8e0d0', usage: 'Primary text' },
-  { name: 'Signal', hex: '#ff3333', usage: 'Primary accent, CTAs' },
+  { name: 'Signal', hex: '#8b5cf6', usage: 'Primary accent, CTAs' },
   { name: 'Static', hex: '#00ff88', usage: 'Success, terminal green' },
   { name: 'Flicker', hex: '#ffcc00', usage: 'Warning, highlights' },
-  { name: 'Scan', hex: '#6633ff', usage: 'Secondary accent' },
+  { name: 'Scan', hex: '#e040fb', usage: 'Secondary accent' },
   { name: 'Cyan', hex: '#00ccff', usage: 'Info, links' },
 ];
 
@@ -137,7 +137,7 @@ export default function PressKit() {
               <br />
               <span className="text-chalk"> → Maintain dark backgrounds with light text</span>
               <br />
-              <span className="text-chalk"> → Use Signal Red (#ff3333) as primary accent</span>
+              <span className="text-chalk"> → Use Signal Purple (#8b5cf6) as primary accent</span>
               <br />
               <span className="text-chalk"> → Keep monospace for technical/system text</span>
               <br />

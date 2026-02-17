@@ -3,7 +3,7 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 
 const FOOTER_LINKS = [
   { to: '/projects', label: 'Projects' },
-  { to: '/papers', label: 'Papers' },
+  { to: '/zine', label: 'Zine' },
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
   { to: '/contact', label: 'Contact' },
@@ -36,11 +36,11 @@ export default function Footer() {
           <div>
             <Link
               to="/"
-              className="font-display text-2xl font-bold tracking-[0.2em] text-glow hover:text-signal transition-colors no-underline"
+              className="font-display text-2xl font-bold tracking-[0.2em] text-glow hover:text-signal transition-colors duration-200 no-underline"
             >
               SUBCULT
             </Link>
-            <p className="font-mono text-xs text-dust mt-3 leading-relaxed">
+            <p className="font-mono text-xs text-bone mt-3 leading-relaxed">
               Subculture Collective
               <br />
               Tools, media, and infrastructure
@@ -52,7 +52,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="font-mono text-xs text-dust uppercase tracking-wider mb-4">
+            <h4 className="font-mono text-xs text-bone uppercase tracking-wider mb-4">
               // Navigation
             </h4>
             <ul className="space-y-2">
@@ -60,7 +60,7 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="font-mono text-sm text-bone hover:text-signal transition-colors no-underline"
+                    className="font-mono text-sm text-bone hover:text-signal transition-colors duration-200 no-underline"
                   >
                     {link.label}
                   </Link>
@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* Social + Contact */}
           <div>
-            <h4 className="font-mono text-xs text-dust uppercase tracking-wider mb-4">
+            <h4 className="font-mono text-xs text-bone uppercase tracking-wider mb-4">
               // Connect
             </h4>
             <ul className="space-y-2">
@@ -83,7 +83,7 @@ export default function Footer() {
                       target: '_blank',
                       rel: 'noopener noreferrer',
                     })}
-                    className="font-mono text-sm text-bone hover:text-signal transition-colors"
+                    className="font-mono text-sm text-bone hover:text-signal transition-colors duration-200"
                   >
                     {link.label} {link.external && '↗'}
                   </a>

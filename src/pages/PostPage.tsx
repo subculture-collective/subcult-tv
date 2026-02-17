@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import Tag from '@/components/ui/Tag';
 import Button from '@/components/ui/Button';
-import { getPostBySlug, getPostMDX } from '@/lib/posts';
+import { getPostBySlug, getPostMDX, getNextInSeries } from '@/lib/posts';
 import type { Post } from '@/types';
 
 export default function PostPage() {
@@ -13,8 +13,9 @@ export default function PostPage() {
     return getPostBySlug(slug) || null;
   }, [slug]);
 
+  const nextPost = useMemo(() => (slug ? getNextInSeries(slug) : undefined), [slug]);
+
   const [MDXContent, setMDXContent] = useState<React.ComponentType | null>(null);
-  // 'idle' = haven't tried loading yet; 'loaded' = done; MDX loading happens in effect callbacks
   const [mdxStatus, setMdxStatus] = useState<'idle' | 'loaded'>('idle');
 
   useEffect(() => {
@@ -42,7 +43,6 @@ export default function PostPage() {
     };
   }, [slug, post]);
 
-  // No slug or no matching post — show 404 immediately (no effect needed)
   if (!slug || !post) {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -58,7 +58,6 @@ export default function PostPage() {
     );
   }
 
-  // Still loading MDX
   if (mdxStatus === 'idle') {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -70,7 +69,6 @@ export default function PostPage() {
     );
   }
 
-  // Loaded but MDX failed
   if (!MDXContent) {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -120,26 +118,31 @@ export default function PostPage() {
           </Suspense>
         </div>
 
-        {/* Footer */}
-        <footer className="mt-12 pt-8 border-t border-fog">
-          <div className="flex items-center justify-between">
-            <Link
-              to="/zine"
-              className="font-mono text-sm text-bone hover:text-signal transition-colors"
-            >
-              ← Back to the Zine
-            </Link>
-            <Button
-              as="a"
-              href="https://www.patreon.com/cw/subcult"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="ghost"
-              size="sm"
-            >
-              Support SUBCULT ↗
-            </Button>
-          </div>
+        {/* End-of-Post */}
+        <footer className="mt-16 pt-8 border-t border-fog">
+          {post.series && (
+            <p className="font-mono text-xs text-dust mb-6">
+              {post.series.name} Series — Week {post.series.week} of {post.series.total}
+            </p>
+          )}
+
+          {nextPost && (
+            <div className="mb-8">
+              <p className="font-mono text-sm text-bone mb-1">
+                Next: <span className="text-glow">{nextPost.title}</span>
+              </p>
+              <p className="text-sm text-dust">{nextPost.excerpt}</p>
+            </div>
+          )}
+
+          <a
+            href="https://x.com/subcult_tv"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-sm text-bone hover:text-signal transition-colors"
+          >
+            Join the conversation →
+          </a>
         </footer>
       </article>
     </>

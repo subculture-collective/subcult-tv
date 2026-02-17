@@ -2,25 +2,26 @@ import SEOHead from '@/components/SEOHead';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import Card from '@/components/ui/Card';
+import { Radio, Rocket, Film, Sparkles } from 'lucide-react';
 
 const WHAT_YOU_GET = [
   {
-    icon: '📡',
+    icon: Radio,
     label: 'Monthly Infrastructure Memo',
     detail: 'What shipped, what broke, what we learned. Unfiltered build logs.',
   },
   {
-    icon: '🚀',
+    icon: Rocket,
     label: 'Early Access Alerts',
     detail: 'Be first to know when new tools or projects drop.',
   },
   {
-    icon: '📼',
+    icon: Film,
     label: 'Behind-the-Scenes',
     detail: 'Process notes, experiments, and prototypes before they go public.',
   },
   {
-    icon: '🔮',
+    icon: Sparkles,
     label: 'Roadmap Previews',
     detail: "See what's coming next. Sometimes vote on priorities.",
   },
@@ -61,7 +62,7 @@ export default function Memo() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {WHAT_YOU_GET.map((item) => (
               <Card key={item.label} className="p-4">
-                <span className="text-2xl mb-2 block">{item.icon}</span>
+                <item.icon className="w-6 h-6 text-signal mb-2" aria-hidden="true" />
                 <h4 className="font-mono text-sm text-glow mb-1">{item.label}</h4>
                 <p className="text-xs text-bone">{item.detail}</p>
               </Card>

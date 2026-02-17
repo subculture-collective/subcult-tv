@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, useId, type FormEvent } from 'react';
 import {
   listProjects,
   createProject,
@@ -7,10 +7,7 @@ import {
   type APIProject,
 } from '@/lib/api';
 
-type ProjectForm = Omit<
-  APIProject,
-  'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'
->;
+type ProjectForm = Omit<APIProject, 'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'>;
 
 const emptyForm: ProjectForm = {
   slug: '',
@@ -108,7 +105,7 @@ export default function AdminProjects() {
         <button
           onClick={openNew}
           className="px-4 py-2 bg-signal text-void font-mono text-sm font-bold tracking-wider
-                     hover:bg-signal-dim transition-colors cursor-pointer"
+                     hover:bg-signal-dim transition-colors duration-200 cursor-pointer"
         >
           + NEW PROJECT
         </button>
@@ -123,33 +120,111 @@ export default function AdminProjects() {
       {/* ── Form Modal ──────────────────────────────────────── */}
       {showForm && (
         <div className="mb-6 bg-soot border border-fog p-6">
-          <h2 className="text-lg mb-4">
-            {editing ? 'Edit Project' : 'New Project'}
-          </h2>
+          <h2 className="text-lg mb-4">{editing ? 'Edit Project' : 'New Project'}</h2>
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <Field label="Slug" value={form.slug} onChange={(v) => setForm({ ...form, slug: v })} required />
-              <Field label="Name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
+              <Field
+                label="Slug"
+                value={form.slug}
+                onChange={(v) => setForm({ ...form, slug: v })}
+                required
+              />
+              <Field
+                label="Name"
+                value={form.name}
+                onChange={(v) => setForm({ ...form, name: v })}
+                required
+              />
             </div>
-            <Field label="Description" value={form.description} onChange={(v) => setForm({ ...form, description: v })} textarea />
-            <Field label="Long Description" value={form.long_description || ''} onChange={(v) => setForm({ ...form, long_description: v || undefined })} textarea />
-            <Field label="Why It Exists" value={form.why_it_exists || ''} onChange={(v) => setForm({ ...form, why_it_exists: v || undefined })} textarea />
+            <Field
+              label="Description"
+              value={form.description}
+              onChange={(v) => setForm({ ...form, description: v })}
+              textarea
+            />
+            <Field
+              label="Long Description"
+              value={form.long_description || ''}
+              onChange={(v) => setForm({ ...form, long_description: v || undefined })}
+              textarea
+            />
+            <Field
+              label="Why It Exists"
+              value={form.why_it_exists || ''}
+              onChange={(v) => setForm({ ...form, why_it_exists: v || undefined })}
+              textarea
+            />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <Select label="Type" value={form.type} onChange={(v) => setForm({ ...form, type: v })} options={['software', 'media', 'tools']} />
-              <Select label="Status" value={form.status} onChange={(v) => setForm({ ...form, status: v })} options={['active', 'incubating', 'archived']} />
-              <Select label="Cover Pattern" value={form.cover_pattern} onChange={(v) => setForm({ ...form, cover_pattern: v })} options={['circuit', 'grid', 'waves', 'dots', 'sigil']} />
+              <Select
+                label="Type"
+                value={form.type}
+                onChange={(v) => setForm({ ...form, type: v })}
+                options={['software', 'media', 'tools']}
+              />
+              <Select
+                label="Status"
+                value={form.status}
+                onChange={(v) => setForm({ ...form, status: v })}
+                options={['active', 'incubating', 'archived']}
+              />
+              <Select
+                label="Cover Pattern"
+                value={form.cover_pattern}
+                onChange={(v) => setForm({ ...form, cover_pattern: v })}
+                options={['circuit', 'grid', 'waves', 'dots', 'sigil']}
+              />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <Field label="Stack (comma-separated)" value={(form.stack || []).join(', ')} onChange={(v) => setForm({ ...form, stack: v.split(',').map((s) => s.trim()).filter(Boolean) })} />
-              <Field label="Topics (comma-separated)" value={(form.topics || []).join(', ')} onChange={(v) => setForm({ ...form, topics: v.split(',').map((s) => s.trim()).filter(Boolean) })} />
+              <Field
+                label="Stack (comma-separated)"
+                value={(form.stack || []).join(', ')}
+                onChange={(v) =>
+                  setForm({
+                    ...form,
+                    stack: v
+                      .split(',')
+                      .map((s) => s.trim())
+                      .filter(Boolean),
+                  })
+                }
+              />
+              <Field
+                label="Topics (comma-separated)"
+                value={(form.topics || []).join(', ')}
+                onChange={(v) =>
+                  setForm({
+                    ...form,
+                    topics: v
+                      .split(',')
+                      .map((s) => s.trim())
+                      .filter(Boolean),
+                  })
+                }
+              />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <Field label="Repo URL" value={form.repo_url || ''} onChange={(v) => setForm({ ...form, repo_url: v || undefined })} />
-              <Field label="Homepage" value={form.homepage || ''} onChange={(v) => setForm({ ...form, homepage: v || undefined })} />
+              <Field
+                label="Repo URL"
+                value={form.repo_url || ''}
+                onChange={(v) => setForm({ ...form, repo_url: v || undefined })}
+              />
+              <Field
+                label="Homepage"
+                value={form.homepage || ''}
+                onChange={(v) => setForm({ ...form, homepage: v || undefined })}
+              />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <Field label="Sort Order" value={String(form.sort_order)} onChange={(v) => setForm({ ...form, sort_order: parseInt(v) || 0 })} />
-              <Field label="Cover Color" value={form.cover_color || ''} onChange={(v) => setForm({ ...form, cover_color: v || undefined })} />
+              <Field
+                label="Sort Order"
+                value={String(form.sort_order)}
+                onChange={(v) => setForm({ ...form, sort_order: parseInt(v) || 0 })}
+              />
+              <Field
+                label="Cover Color"
+                value={form.cover_color || ''}
+                onChange={(v) => setForm({ ...form, cover_color: v || undefined })}
+              />
               <div className="flex items-center gap-2 pt-6">
                 <input
                   type="checkbox"
@@ -158,21 +233,23 @@ export default function AdminProjects() {
                   onChange={(e) => setForm({ ...form, featured: e.target.checked })}
                   className="accent-signal"
                 />
-                <label htmlFor="featured" className="font-mono text-sm text-chalk">Featured</label>
+                <label htmlFor="featured" className="font-mono text-sm text-chalk">
+                  Featured
+                </label>
               </div>
             </div>
             <div className="flex gap-3 pt-2">
               <button
                 type="submit"
                 disabled={saving}
-                className="px-4 py-2 bg-signal text-void font-mono text-sm font-bold hover:bg-signal-dim transition-colors cursor-pointer disabled:opacity-50"
+                className="px-4 py-2 bg-signal text-void font-mono text-sm font-bold hover:bg-signal-dim transition-colors duration-200 cursor-pointer disabled:opacity-50"
               >
                 {saving ? 'SAVING...' : 'SAVE'}
               </button>
               <button
                 type="button"
                 onClick={() => setShowForm(false)}
-                className="px-4 py-2 bg-ash border border-fog text-chalk font-mono text-sm hover:border-dust transition-colors cursor-pointer"
+                className="px-4 py-2 bg-ash border border-fog text-chalk font-mono text-sm hover:border-dust transition-colors duration-200 cursor-pointer"
               >
                 CANCEL
               </button>
@@ -196,7 +273,7 @@ export default function AdminProjects() {
           </thead>
           <tbody>
             {projects.map((p) => (
-              <tr key={p.id} className="border-b border-fog/50 hover:bg-ash transition-colors">
+              <tr key={p.id} className="border-b border-fog/50 hover:bg-ash transition-colors duration-200">
                 <td className="py-3 px-3">
                   <div className="text-chalk font-medium">{p.name}</div>
                   <div className="font-mono text-xs text-dust">{p.slug}</div>
@@ -209,15 +286,25 @@ export default function AdminProjects() {
                 <td className="py-3 px-3 font-mono text-xs text-dust">{p.sort_order}</td>
                 <td className="py-3 px-3">
                   <div className="flex gap-2">
-                    <button onClick={() => openEdit(p)} className="font-mono text-xs text-cyan hover:text-glow cursor-pointer">EDIT</button>
-                    <button onClick={() => handleDelete(p.id)} className="font-mono text-xs text-signal hover:text-glow cursor-pointer">DEL</button>
+                    <button
+                      onClick={() => openEdit(p)}
+                      className="font-mono text-xs text-cyan hover:text-glow cursor-pointer"
+                    >
+                      EDIT
+                    </button>
+                    <button
+                      onClick={() => handleDelete(p.id)}
+                      className="font-mono text-xs text-signal hover:text-glow cursor-pointer"
+                    >
+                      DEL
+                    </button>
                   </div>
                 </td>
               </tr>
             ))}
             {projects.length === 0 && (
               <tr>
-                <td colSpan={6} className="py-8 text-center font-mono text-sm text-dust">
+                <td colSpan={6} className="py-8 text-center font-mono text-sm text-bone">
                   No projects found. Create one to get started.
                 </td>
               </tr>
@@ -244,13 +331,15 @@ function Field({
   required?: boolean;
   textarea?: boolean;
 }) {
+  const id = useId();
   const cls =
-    'w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none transition-colors';
+    'w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 transition-colors duration-200';
   return (
     <div>
-      <label className="block font-mono text-xs text-dust uppercase mb-1">{label}</label>
+      <label htmlFor={id} className="block font-mono text-xs text-bone uppercase mb-1">{label}</label>
       {textarea ? (
         <textarea
+          id={id}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           required={required}
@@ -259,6 +348,7 @@ function Field({
         />
       ) : (
         <input
+          id={id}
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -281,13 +371,15 @@ function Select({
   onChange: (v: string) => void;
   options: string[];
 }) {
+  const id = useId();
   return (
     <div>
-      <label className="block font-mono text-xs text-dust uppercase mb-1">{label}</label>
+      <label htmlFor={id} className="block font-mono text-xs text-bone uppercase mb-1">{label}</label>
       <select
+        id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal focus:outline-none transition-colors"
+        className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 transition-colors duration-200"
       >
         {options.map((o) => (
           <option key={o} value={o}>

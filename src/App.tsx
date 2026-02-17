@@ -14,7 +14,6 @@ import Memo from '@/pages/Memo';
 import Invest from '@/pages/Invest';
 import Metrics from '@/pages/Metrics';
 import Links from '@/pages/Links';
-import Papers from '@/pages/Papers';
 
 // Admin pages
 import AdminLogin from '@/pages/admin/AdminLogin';
@@ -43,7 +42,6 @@ export default function App() {
         <Route path="invest" element={<Invest />} />
         <Route path="metrics" element={<Metrics />} />
         <Route path="links" element={<Links />} />
-        <Route path="papers" element={<Papers />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

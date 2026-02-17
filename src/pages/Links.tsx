@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const PRIMARY_LINKS = [
   {
-    to: '/papers',
-    label: 'Subcult Papers',
+    to: '/zine',
+    label: 'The Zine',
     description: 'Season 0 — Read the founding documents',
     external: false,
   },
@@ -47,7 +47,7 @@ export default function Links() {
     <>
       <SEOHead
         title="Links"
-        description="All SUBCULT links in one place. Papers, newsletter, support, and social profiles."
+        description="All SUBCULT links in one place. Zine, newsletter, support, and social profiles."
         path="/links"
       />
 

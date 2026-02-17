@@ -6,7 +6,7 @@ import type { EffectLevel } from '@/types';
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/projects', label: 'Projects' },
-  { to: '/papers', label: 'Papers' },
+  { to: '/zine', label: 'Zine' },
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
   { to: '/memo', label: 'Memo' },
@@ -67,7 +67,7 @@ export default function Nav() {
             {/* Effect toggle */}
             <button
               onClick={cycleEffects}
-              className="font-mono text-xs px-2 py-1 border border-fog text-dust hover:text-static hover:border-static transition-colors cursor-pointer"
+              className="font-mono text-xs px-2 py-1 border border-fog text-dust hover:text-static hover:border-static transition-colors duration-200 cursor-pointer"
               aria-label={`Visual effects: ${EFFECT_LABELS[effectLevel]}. Click to cycle.`}
               title={`Effects: ${EFFECT_LABELS[effectLevel]}`}
             >
@@ -77,7 +77,7 @@ export default function Nav() {
             {/* Contrast toggle */}
             <button
               onClick={toggleHighContrast}
-              className="font-mono text-xs px-2 py-1 border border-fog text-dust hover:text-flicker hover:border-flicker transition-colors cursor-pointer"
+              className="font-mono text-xs px-2 py-1 border border-fog text-dust hover:text-flicker hover:border-flicker transition-colors duration-200 cursor-pointer"
               aria-label={`High contrast: ${highContrast ? 'on' : 'off'}`}
               title={`Contrast: ${highContrast ? 'HIGH' : 'NORMAL'}`}
             >
@@ -120,12 +120,14 @@ export default function Nav() {
               <button
                 onClick={cycleEffects}
                 className="font-mono text-xs px-2 py-1 border border-fog text-dust cursor-pointer"
+                aria-label={`Visual effects: ${EFFECT_LABELS[effectLevel]}. Click to cycle.`}
               >
                 FX:{EFFECT_LABELS[effectLevel]}
               </button>
               <button
                 onClick={toggleHighContrast}
                 className="font-mono text-xs px-2 py-1 border border-fog text-dust cursor-pointer"
+                aria-label={`High contrast: ${highContrast ? 'on' : 'off'}`}
               >
                 {highContrast ? 'HC:ON' : 'HC:OFF'}
               </button>

@@ -30,7 +30,7 @@ const WHY_NOW = [
 ];
 
 const WHATS_NEXT = [
-  { milestone: 'Q1 2026', item: 'Public launch + Papers series release' },
+  { milestone: 'Q1 2026', item: 'Public launch + Zine series release' },
   { milestone: 'Q2 2026', item: 'First commercial tool beta + paid tiers' },
   { milestone: 'Q3 2026', item: 'Media production suite v1 launch' },
   { milestone: 'Q4 2026', item: 'Platform expansion + partnership pilots' },
