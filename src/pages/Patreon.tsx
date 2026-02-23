@@ -7,42 +7,72 @@ import { Zap, Wrench, Film, Globe, Package, Coins } from 'lucide-react';
 import { getPatreonCampaign } from '@/lib/api';
 import type { APIPatreonTier } from '@/lib/api';
 
+// Map a border color token to button classes (bg + border + hover).
+const BADGE_BUTTON_STYLES: Record<string, string> = {
+  'border-signal': 'bg-signal border-signal hover:bg-signal-dim hover:border-signal-dim',
+  'border-static': 'bg-static border-static hover:bg-static-dim hover:border-static-dim',
+  'border-cyan': 'bg-cyan border-cyan hover:bg-cyan-dim hover:border-cyan-dim',
+  'border-flicker': 'bg-flicker border-flicker hover:bg-flicker-dim hover:border-flicker-dim',
+  'border-scan': 'bg-scan border-scan hover:bg-scan-dim hover:border-scan-dim',
+};
+
 interface DisplayTier {
   name: string;
   price: string;
   color: string;
   highlight?: boolean;
+  badge?: string;
   patronCount?: number;
   perks: string[];
 }
 
 const FALLBACK_TIERS: DisplayTier[] = [
   {
+    name: 'Free',
+    price: '$0/mo',
+    color: 'border-fog',
+    perks: ['Free tier with access to the product and public roadmap.'],
+  },
+  {
     name: 'Supporter',
     price: '$5/mo',
-    color: 'border-fog',
+    color: 'border-signal',
+    highlight: true,
+    badge: 'Popular',
     perks: ['Help sustain independent, open work. No expectations — just solidarity.'],
   },
   {
-    name: 'Contributor',
+    name: 'Backer',
     price: '$10/mo',
-    color: 'border-signal',
-    highlight: true,
+    color: 'border-fog',
     perks: ['Get closer to the process: early access, updates, and a voice in direction.'],
   },
   {
-    name: 'Collaborator',
+    name: 'Sponsor',
     price: '$15/mo',
-    color: 'border-static',
+    color: 'border-fog',
     perks: [
       'Participate more directly through private channels, feedback, and collaboration opportunities.',
     ],
   },
   {
-    name: 'Solidarity Backer',
+    name: 'Patron',
     price: '$25/mo',
-    color: 'border-cyan',
+    color: 'border-static',
+    badge: 'Suggested',
     perks: ['Material support for long-term sustainability and experimentation.'],
+  },
+  {
+    name: 'Underwriter',
+    price: '$50/mo',
+    color: 'border-fog',
+    perks: ['Support at the highest reasonable level.'],
+  },
+  {
+    name: 'Rent',
+    price: '$1425/mo',
+    color: 'border-fog',
+    perks: ['Pay my rent. Literally.'],
   },
 ];
 
@@ -62,31 +92,18 @@ const WHAT_SUPPORT_FUNDS = [
   },
   {
     icon: Coins,
-    label: 'Token allocation & rewards',
-    detail: 'Funding on-chain attribution, contributor tokens, and future incentive structures.',
+    label: 'LLM API costs',
+    detail: 'SUBCULT relies on language models, which are not free to run at scale.',
   },
 ];
 
-// Strip HTML tags from Patreon descriptions.
-function stripHTML(html: string): string {
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent || '';
-}
-
-// Map an API tier to the display format used by the cards.
-function apiTierToDisplay(tier: APIPatreonTier, index: number): DisplayTier {
-  const colors = ['border-fog', 'border-signal', 'border-static', 'border-cyan'];
-  const dollars = (tier.amount_cents / 100).toFixed(0);
-  const raw = tier.description ? stripHTML(tier.description) : '';
-  const perks = raw ? raw.split(/\n+/).filter((l) => l.trim()) : [`${tier.title} tier`];
-  return {
-    name: tier.title,
-    price: `$${dollars}/mo`,
-    color: colors[index % colors.length],
-    highlight: index === 1,
-    patronCount: tier.patron_count,
-    perks,
-  };
+// Merge live patron counts from the API into the hardcoded tiers.
+function mergeLiveCounts(base: DisplayTier[], apiTiers: APIPatreonTier[]): DisplayTier[] {
+  const countByName = new Map(apiTiers.map((t) => [t.title, t.patron_count]));
+  return base.map((tier) => ({
+    ...tier,
+    patronCount: countByName.get(tier.name) ?? tier.patronCount,
+  }));
 }
 
 export default function Patreon() {
@@ -96,7 +113,7 @@ export default function Patreon() {
     getPatreonCampaign()
       .then((data) => {
         if (data.tiers && data.tiers.length > 0) {
-          setTiers(data.tiers.map(apiTierToDisplay));
+          setTiers(mergeLiveCounts(FALLBACK_TIERS, data.tiers));
         }
       })
       .catch(() => {
@@ -128,11 +145,13 @@ export default function Patreon() {
           {tiers.map((tier) => (
             <Card
               key={tier.name}
-              className={`p-6 h-full flex flex-col ${tier.color} ${tier.highlight ? 'border-2 relative' : ''}`}
+              className={`p-6 h-full flex flex-col ${tier.color} ${tier.highlight ? 'border-2' : ''} ${tier.badge ? 'relative' : ''}`}
             >
-              {tier.highlight && (
-                <div className="absolute -top-3 left-4 bg-signal text-void font-mono text-xs px-2 py-0.5 uppercase">
-                  Popular
+              {tier.badge && (
+                <div
+                  className={`absolute -top-3 left-4 ${tier.color.replace('border-', 'bg-')} text-void font-mono text-xs px-2 py-0.5 uppercase`}
+                >
+                  {tier.badge}
                 </div>
               )}
               <h3 className="font-display text-xl uppercase mb-1">{tier.name}</h3>
@@ -155,8 +174,8 @@ export default function Patreon() {
                 href="https://www.patreon.com/subcult"
                 target="_blank"
                 rel="noopener noreferrer"
-                variant={tier.highlight ? 'primary' : 'secondary'}
-                className="w-full mt-auto"
+                variant={tier.badge ? 'primary' : 'secondary'}
+                className={`w-full mt-auto ${tier.badge ? BADGE_BUTTON_STYLES[tier.color] || '' : ''}`}
               >
                 Join Tier ↗
               </Button>
