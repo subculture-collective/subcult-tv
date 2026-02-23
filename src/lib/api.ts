@@ -148,6 +148,32 @@ export interface DashboardStats {
   total_subscribers: number;
 }
 
+// ── Patreon ──────────────────────────────────────────────────
+
+export interface APIPatreonCampaign {
+  patron_count: number;
+  creation_name: string;
+  url: string;
+}
+
+export interface APIPatreonTier {
+  title: string;
+  amount_cents: number;
+  patron_count: number;
+  description: string;
+  published: boolean;
+}
+
+export interface APIPatreonData {
+  campaign: APIPatreonCampaign | null;
+  tiers: APIPatreonTier[];
+  cached_at: string | null;
+}
+
+export async function getPatreonCampaign() {
+  return apiFetch<APIPatreonData>('/api/v1/patreon/campaign');
+}
+
 // ── Auth ─────────────────────────────────────────────────────
 
 export async function login(username: string, password: string) {

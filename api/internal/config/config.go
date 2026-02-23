@@ -8,11 +8,13 @@ import (
 
 // Config holds all application configuration.
 type Config struct {
-	Port         string
-	DatabaseURL  string
-	JWTSecret    string
-	CORSOrigins  []string
-	UmamiURL     string
+	Port              string
+	DatabaseURL       string
+	JWTSecret         string
+	CORSOrigins       []string
+	UmamiURL          string
+	PatreonToken      string
+	PatreonCampaignID string
 }
 
 // Load reads configuration from environment variables.
@@ -44,10 +46,12 @@ func Load() (*Config, error) {
 	}
 
 	return &Config{
-		Port:        port,
-		DatabaseURL: dbURL,
-		JWTSecret:   jwtSecret,
-		CORSOrigins: origins,
-		UmamiURL:    os.Getenv("UMAMI_URL"),
+		Port:              port,
+		DatabaseURL:       dbURL,
+		JWTSecret:         jwtSecret,
+		CORSOrigins:       origins,
+		UmamiURL:          os.Getenv("UMAMI_URL"),
+		PatreonToken:      os.Getenv("PATREON_TOKEN"),
+		PatreonCampaignID: os.Getenv("PATREON_CAMPAIGN_ID"),
 	}, nil
 }

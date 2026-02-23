@@ -64,7 +64,7 @@ export default function Home() {
                 </Button>
                 <Button
                   as="a"
-                  href="https://www.patreon.com/cw/subcult"
+                  href="https://www.patreon.com/subcult"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="signal"
@@ -189,7 +189,7 @@ export default function Home() {
           </p>
           <Button
             as="a"
-            href="https://www.patreon.com/cw/subcult"
+            href="https://www.patreon.com/subcult"
             target="_blank"
             rel="noopener noreferrer"
             size="lg"

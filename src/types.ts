@@ -17,6 +17,7 @@ export interface Project {
   stars?: number;
   coverColor?: string;
   coverPattern?: 'circuit' | 'grid' | 'waves' | 'dots' | 'sigil';
+  screenshot?: string;
   featured?: boolean;
   order?: number;
 }

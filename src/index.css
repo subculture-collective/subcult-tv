@@ -567,3 +567,131 @@ pre,
   border-top: 1px dashed var(--color-fog);
   margin: 2rem 0;
 }
+
+/* ═══════════════ PRINT STYLES ═══════════════════════════════ */
+@page {
+  margin: 0.5in;
+  size: letter;
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #000 !important;
+  }
+
+  /* Strip all visual effects */
+  .scanlines::after,
+  .noise-overlay::before,
+  .vhs-tracking::before {
+    display: none !important;
+  }
+
+  .chromatic,
+  .chromatic-mild {
+    text-shadow: none !important;
+  }
+
+  .glitch-text {
+    animation: none !important;
+  }
+
+  .terminal-flicker {
+    animation: none !important;
+  }
+
+  .halftone {
+    background-image: none !important;
+  }
+
+  .torn-edge-top,
+  .torn-edge-bottom {
+    clip-path: none !important;
+  }
+
+  /* Hide nav + footer */
+  nav,
+  footer,
+  .skip-link,
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  /* Remove dark backgrounds, shadows, decorative borders */
+  .bg-void, .bg-soot, .bg-ash, .bg-smoke {
+    background: #fff !important;
+  }
+
+  .border-fog, .border-signal {
+    border-color: #ccc !important;
+  }
+
+  .shadow-glow, .shadow-scan, .shadow-static, .shadow-hard, .shadow-brutal {
+    box-shadow: none !important;
+  }
+
+  /* Text colors for print */
+  .text-chalk, .text-glow, .text-bone {
+    color: #000 !important;
+  }
+
+  .text-dust {
+    color: #666 !important;
+  }
+
+  .text-signal, .text-static, .text-flicker, .text-scan, .text-cyan {
+    color: #333 !important;
+  }
+
+  /* Pitch deck slide page breaks */
+  .deck-slide {
+    page-break-after: always;
+    page-break-inside: avoid;
+    min-height: 0;
+    padding: 0.5in 0;
+  }
+
+  .deck-slide:last-child {
+    page-break-after: auto;
+  }
+
+  /* One-pager: fit on single page */
+  .onepager-content {
+    page-break-inside: avoid;
+    font-size: 9pt !important;
+  }
+
+  .onepager-content h1 {
+    font-size: 18pt !important;
+  }
+
+  .onepager-content h2 {
+    font-size: 12pt !important;
+  }
+
+  .onepager-content h3 {
+    font-size: 10pt !important;
+  }
+
+  /* Ensure links show URLs in print */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* Brand variants: strip decorative SVGs */
+  .zine-margin {
+    border-left-color: #999 !important;
+  }
+
+  .zine-margin::before {
+    color: #999 !important;
+  }
+}

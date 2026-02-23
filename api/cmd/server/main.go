@@ -17,6 +17,7 @@ import (
 	"github.com/subculture-collective/subcult-tv/api/internal/config"
 	"github.com/subculture-collective/subcult-tv/api/internal/database"
 	"github.com/subculture-collective/subcult-tv/api/internal/handlers"
+	"github.com/subculture-collective/subcult-tv/api/internal/patreon"
 	"github.com/subculture-collective/subcult-tv/api/internal/router"
 )
 
@@ -55,8 +56,17 @@ func main() {
 		slog.Warn("seed admin", "error", err)
 	}
 
+	// ── Patreon client ──────────────────────────────────────
+	var patreonClient *patreon.Client
+	if cfg.PatreonToken != "" && cfg.PatreonCampaignID != "" {
+		patreonClient = patreon.New(cfg.PatreonToken, cfg.PatreonCampaignID, 10*time.Minute)
+		slog.Info("patreon client initialized", "campaign_id", cfg.PatreonCampaignID)
+	} else {
+		slog.Warn("patreon credentials not set, campaign endpoint will return empty data")
+	}
+
 	// ── Router ───────────────────────────────────────────────
-	h := handlers.New(pool, cfg.JWTSecret)
+	h := handlers.New(pool, cfg.JWTSecret, patreonClient)
 	r := router.New(cfg, h)
 
 	srv := &http.Server{

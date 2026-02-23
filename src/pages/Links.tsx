@@ -39,7 +39,7 @@ const SITE_LINKS = [
 
 const SOCIAL_LINKS = [
   { href: 'https://github.com/subculture-collective', label: 'GitHub' },
-  { href: 'https://www.patreon.com/cw/subcult', label: 'Patreon' },
+  { href: 'https://www.patreon.com/subcult', label: 'Patreon' },
 ];
 
 export default function Links() {

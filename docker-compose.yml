@@ -37,6 +37,8 @@ services:
       ADMIN_USER: ${ADMIN_USER:-admin}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
       ADMIN_EMAIL: ${ADMIN_EMAIL:-info@subcult.tv}
+      PATREON_TOKEN: ${PATREON_TOKEN:-}
+      PATREON_CAMPAIGN_ID: ${PATREON_CAMPAIGN_ID:-}
     networks:
       - web
       - internal
@@ -67,8 +69,8 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VITE_API_URL: ${VITE_API_URL:-https://subcult.tv/api}
-        VITE_UMAMI_URL: ${VITE_UMAMI_URL:-https://subcult.tv/umami}
+        VITE_API_URL: ${VITE_API_URL-}
+        VITE_UMAMI_URL: ${VITE_UMAMI_URL-}
         VITE_UMAMI_WEBSITE_ID: ${VITE_UMAMI_WEBSITE_ID:-}
     container_name: subcult-tv-frontend
     restart: unless-stopped

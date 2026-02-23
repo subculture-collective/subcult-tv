@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
 import Card from '@/components/ui/Card';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import { Target } from 'lucide-react';
+import { getPatreonCampaign } from '@/lib/api';
 
 // Baseline metrics - update these values manually or fetch from API
 const METRICS = {
@@ -43,6 +45,24 @@ const METRICS = {
 };
 
 export default function Metrics() {
+  const [patronCount, setPatronCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    getPatreonCampaign()
+      .then((data) => {
+        if (data.campaign) {
+          setPatronCount(data.campaign.patron_count);
+        }
+      })
+      .catch(() => {
+        // Silent fallback — keep default value
+      });
+  }, []);
+
+  const stats = METRICS.stats.map((s) =>
+    s.key === 'supporters' && patronCount !== null ? { ...s, value: patronCount } : s,
+  );
+
   return (
     <>
       <SEOHead
@@ -70,7 +90,7 @@ export default function Metrics() {
 
         {/* Main Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {METRICS.stats.map((stat) => (
+          {stats.map((stat) => (
             <Card key={stat.key} className="p-6 text-center">
               <p className="font-mono text-xs text-dust uppercase tracking-wider mb-2">
                 {stat.label}

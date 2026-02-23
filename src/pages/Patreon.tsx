@@ -1,54 +1,48 @@
+import { useState, useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import { Zap, Wrench, Film, Globe, Package } from 'lucide-react';
+import { getPatreonCampaign } from '@/lib/api';
+import type { APIPatreonTier } from '@/lib/api';
 
-const TIERS = [
+interface DisplayTier {
+  name: string;
+  price: string;
+  color: string;
+  highlight?: boolean;
+  patronCount?: number;
+  perks: string[];
+}
+
+const FALLBACK_TIERS: DisplayTier[] = [
   {
     name: 'Supporter',
     price: '$5/mo',
     color: 'border-fog',
-    perks: [
-      'Early access to release notes',
-      'Name in the credits roll',
-      'Access to private Discord channel',
-    ],
+    perks: ['Help sustain independent, open work. No expectations — just solidarity.'],
   },
   {
-    name: 'Insider',
-    price: '$15/mo',
+    name: 'Contributor',
+    price: '$10/mo',
     color: 'border-signal',
     highlight: true,
-    perks: [
-      'Everything in Supporter',
-      'Full monthly Infrastructure Memo',
-      'Behind-the-scenes build logs',
-      'Vote on project priorities',
-    ],
+    perks: ['Get closer to the process: early access, updates, and a voice in direction.'],
   },
   {
-    name: 'Sponsor',
-    price: '$50/mo',
+    name: 'Collaborator',
+    price: '$15/mo',
     color: 'border-static',
     perks: [
-      'Everything in Insider',
-      'Your name in the source code',
-      'Direct line to the collective',
-      'Early beta access to all projects',
+      'Participate more directly through private channels, feedback, and collaboration opportunities.',
     ],
   },
   {
-    name: 'Partner',
-    price: '$250/mo',
+    name: 'Solidarity Backer',
+    price: '$25/mo',
     color: 'border-cyan',
-    perks: [
-      'Everything in Sponsor',
-      'Quarterly feedback sessions',
-      'Roadmap voting rights',
-      'Custom zine page / shoutout',
-      'Logo placement on site',
-    ],
+    perks: ['Material support for long-term sustainability and experimentation.'],
   },
 ];
 
@@ -68,7 +62,45 @@ const WHAT_SUPPORT_FUNDS = [
   },
 ];
 
+// Strip HTML tags from Patreon descriptions.
+function stripHTML(html: string): string {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || '';
+}
+
+// Map an API tier to the display format used by the cards.
+function apiTierToDisplay(tier: APIPatreonTier, index: number): DisplayTier {
+  const colors = ['border-fog', 'border-signal', 'border-static', 'border-cyan'];
+  const dollars = (tier.amount_cents / 100).toFixed(0);
+  const raw = tier.description ? stripHTML(tier.description) : '';
+  const perks = raw
+    ? raw.split(/\n+/).filter((l) => l.trim())
+    : [`${tier.title} tier`];
+  return {
+    name: tier.title,
+    price: `$${dollars}/mo`,
+    color: colors[index % colors.length],
+    highlight: index === 1,
+    patronCount: tier.patron_count,
+    perks,
+  };
+}
+
 export default function Patreon() {
+  const [tiers, setTiers] = useState(FALLBACK_TIERS);
+
+  useEffect(() => {
+    getPatreonCampaign()
+      .then((data) => {
+        if (data.tiers && data.tiers.length > 0) {
+          setTiers(data.tiers.map(apiTierToDisplay));
+        }
+      })
+      .catch(() => {
+        // Silent fallback — keep FALLBACK_TIERS
+      });
+  }, []);
+
   return (
     <>
       <SEOHead
@@ -90,7 +122,7 @@ export default function Patreon() {
 
         {/* Tiers */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {TIERS.map((tier) => (
+          {tiers.map((tier) => (
             <Card
               key={tier.name}
               className={`p-6 ${tier.color} ${tier.highlight ? 'border-2 relative' : ''}`}
@@ -102,6 +134,11 @@ export default function Patreon() {
               )}
               <h3 className="font-display text-xl uppercase mb-1">{tier.name}</h3>
               <p className="font-mono text-2xl text-signal font-bold mb-4">{tier.price}</p>
+              {tier.patronCount != null && tier.patronCount > 0 && (
+                <p className="font-mono text-xs text-dust -mt-3 mb-4">
+                  {tier.patronCount} patron{tier.patronCount !== 1 ? 's' : ''}
+                </p>
+              )}
               <ul className="space-y-2 mb-6">
                 {tier.perks.map((perk) => (
                   <li key={perk} className="flex items-start gap-2 text-sm text-bone">
@@ -112,7 +149,7 @@ export default function Patreon() {
               </ul>
               <Button
                 as="a"
-                href="https://www.patreon.com/cw/subcult"
+                href="https://www.patreon.com/subcult"
                 target="_blank"
                 rel="noopener noreferrer"
                 variant={tier.highlight ? 'primary' : 'secondary'}
@@ -174,7 +211,7 @@ export default function Patreon() {
           </p>
           <Button
             as="a"
-            href="https://www.patreon.com/cw/subcult"
+            href="https://www.patreon.com/subcult"
             target="_blank"
             rel="noopener noreferrer"
             size="lg"

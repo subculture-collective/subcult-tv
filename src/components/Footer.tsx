@@ -16,7 +16,7 @@ const FOOTER_LINKS = [
 
 const SOCIAL_LINKS = [
   { href: 'https://github.com/subculture-collective', label: 'GitHub', external: true },
-  { href: 'https://www.patreon.com/cw/subcult', label: 'Patreon', external: true },
+  { href: 'https://www.patreon.com/subcult', label: 'Patreon', external: true },
   { href: '/feed.xml', label: 'RSS Feed', external: false },
 ];
 

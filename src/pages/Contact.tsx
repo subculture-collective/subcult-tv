@@ -12,7 +12,7 @@ const SOCIAL_LINKS = [
   },
   {
     name: 'Patreon',
-    url: 'https://www.patreon.com/cw/subcult',
+    url: 'https://www.patreon.com/subcult',
     handle: 'subcult',
   },
   // Placeholders — fill in Content Checklist

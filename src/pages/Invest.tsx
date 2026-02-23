@@ -119,39 +119,101 @@ export default function Invest() {
             Investor Materials
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl">
             <Card className="p-5 border-signal">
-              <h4 className="font-mono text-sm text-glow mb-2">Pitch Deck</h4>
+              <h4 className="font-mono text-sm text-glow mb-1">Pitch Deck</h4>
+              <p className="text-[10px] text-dust font-mono mb-2">STANDARD</p>
               <p className="text-xs text-bone mb-4">
-                Full overview: vision, market, product, team, financials.
+                Full overview: vision, market, product, traction, and the ask. Clean, professional format.
               </p>
-              <Button
-                as="a"
-                href="/press-kit/subcult-deck.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="primary"
-                size="sm"
-                className="w-full"
-              >
-                View Deck (PDF) ↗
-              </Button>
+              <div className="flex gap-2">
+                <Button as="link" to="/deck" variant="primary" size="sm" className="flex-1">
+                  View
+                </Button>
+                <Button
+                  as="a"
+                  href="/press-kit/subcult-deck.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="ghost"
+                  size="sm"
+                  className="flex-1"
+                >
+                  PDF ↗
+                </Button>
+              </div>
             </Card>
 
             <Card className="p-5">
-              <h4 className="font-mono text-sm text-glow mb-2">One-Pager</h4>
-              <p className="text-xs text-bone mb-4">Executive summary. Quick read for sharing.</p>
-              <Button
-                as="a"
-                href="/press-kit/subcult-onepager.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="secondary"
-                size="sm"
-                className="w-full"
-              >
-                View One-Pager (PDF) ↗
-              </Button>
+              <h4 className="font-mono text-sm text-glow mb-1">Pitch Deck</h4>
+              <p className="text-[10px] text-dust font-mono mb-2">BRAND EDITION</p>
+              <p className="text-xs text-bone mb-4">
+                Same content, full SUBCULT aesthetic. Glitch effects, terminal panels, zine margins.
+              </p>
+              <div className="flex gap-2">
+                <Button as="link" to="/deck/brand" variant="signal" size="sm" className="flex-1">
+                  View
+                </Button>
+                <Button
+                  as="a"
+                  href="/press-kit/subcult-deck-brand.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="ghost"
+                  size="sm"
+                  className="flex-1"
+                >
+                  PDF ↗
+                </Button>
+              </div>
+            </Card>
+
+            <Card className="p-5 border-signal">
+              <h4 className="font-mono text-sm text-glow mb-1">One-Pager</h4>
+              <p className="text-[10px] text-dust font-mono mb-2">STANDARD</p>
+              <p className="text-xs text-bone mb-4">
+                Executive summary. Compact single-page overview for quick sharing.
+              </p>
+              <div className="flex gap-2">
+                <Button as="link" to="/onepager" variant="primary" size="sm" className="flex-1">
+                  View
+                </Button>
+                <Button
+                  as="a"
+                  href="/press-kit/subcult-onepager.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="ghost"
+                  size="sm"
+                  className="flex-1"
+                >
+                  PDF ↗
+                </Button>
+              </div>
+            </Card>
+
+            <Card className="p-5">
+              <h4 className="font-mono text-sm text-glow mb-1">One-Pager</h4>
+              <p className="text-[10px] text-dust font-mono mb-2">BRAND EDITION</p>
+              <p className="text-xs text-bone mb-4">
+                Zine-style executive summary with full SUBCULT visual treatment.
+              </p>
+              <div className="flex gap-2">
+                <Button as="link" to="/onepager/brand" variant="signal" size="sm" className="flex-1">
+                  View
+                </Button>
+                <Button
+                  as="a"
+                  href="/press-kit/subcult-onepager-brand.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="ghost"
+                  size="sm"
+                  className="flex-1"
+                >
+                  PDF ↗
+                </Button>
+              </div>
             </Card>
           </div>
         </div>

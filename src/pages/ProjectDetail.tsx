@@ -86,12 +86,20 @@ export default function ProjectDetail() {
           {/* Main content */}
           <div className="lg:col-span-2">
             {/* Cover */}
-            <CoverArt
-              color={project.coverColor || DEFAULT_COVER_COLOR}
-              pattern={project.coverPattern || 'circuit'}
-              name={project.name}
-              className="h-56 w-full mb-8"
-            />
+            {project.screenshot ? (
+              <img
+                src={project.screenshot}
+                alt={`${project.name} screenshot`}
+                className="h-56 w-full object-cover object-top border border-fog mb-8"
+              />
+            ) : (
+              <CoverArt
+                color={project.coverColor || DEFAULT_COVER_COLOR}
+                pattern={project.coverPattern || 'circuit'}
+                name={project.name}
+                className="h-56 w-full mb-8"
+              />
+            )}
 
             <h1 className="mb-4">{project.name}</h1>
 
@@ -168,7 +176,7 @@ export default function ProjectDetail() {
                 )}
                 <Button
                   as="a"
-                  href="https://www.patreon.com/cw/subcult"
+                  href="https://www.patreon.com/subcult"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="signal"

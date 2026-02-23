@@ -61,6 +61,8 @@ func New(cfg *config.Config, h *handlers.Handler) *chi.Mux {
 
 		api.With(middleware.RateLimit(publicFormLimiter)).Post("/contacts", h.SubmitContact)
 
+		api.Get("/patreon/campaign", h.GetPatreonCampaign)
+
 		api.With(middleware.RateLimit(publicFormLimiter)).Post("/newsletter/subscribe", h.Subscribe)
 		api.With(middleware.RateLimit(publicFormLimiter)).Post("/newsletter/unsubscribe", h.Unsubscribe)
 

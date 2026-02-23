@@ -12,7 +12,8 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md,mdx}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css,md,mdx}\"",
     "typecheck": "tsc --noEmit",
-    "generate-rss": "tsx scripts/generate-rss.ts"
+    "generate-rss": "tsx scripts/generate-rss.ts",
+    "generate-pdfs": "tsx scripts/generate-pdfs.ts"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
@@ -45,6 +46,7 @@
     "tsx": "^4.19.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
+    "puppeteer": "^24.6.1",
     "vite": "^7.3.1"
   }
 }

@@ -7,17 +7,20 @@ import (
 	"strconv"
 
 	"github.com/jackc/pgx/v5/pgxpool"
+
+	"github.com/subculture-collective/subcult-tv/api/internal/patreon"
 )
 
 // Handler bundles dependencies for all HTTP handlers.
 type Handler struct {
-	DB        *pgxpool.Pool
+	DB       *pgxpool.Pool
 	JWTSecret string
+	Patreon  *patreon.Client
 }
 
 // New creates a new Handler.
-func New(db *pgxpool.Pool, jwtSecret string) *Handler {
-	return &Handler{DB: db, JWTSecret: jwtSecret}
+func New(db *pgxpool.Pool, jwtSecret string, patreonClient *patreon.Client) *Handler {
+	return &Handler{DB: db, JWTSecret: jwtSecret, Patreon: patreonClient}
 }
 
 // ── Helpers ──────────────────────────────────────────────────
