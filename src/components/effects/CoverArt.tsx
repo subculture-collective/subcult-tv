@@ -1,6 +1,8 @@
+import type { CoverPattern } from '@/types';
+
 interface CoverArtProps {
   color: string;
-  pattern: 'circuit' | 'grid' | 'waves' | 'dots' | 'sigil';
+  pattern: CoverPattern;
   name: string;
   className?: string;
 }

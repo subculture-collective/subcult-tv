@@ -119,6 +119,46 @@ func (c *Client) GetCampaign(ctx context.Context) (*CampaignData, error) {
 	return data, nil
 }
 
+func parseCampaign(raw json.RawMessage) (*CampaignInfo, error) {
+	var ca campaignAttrs
+	if err := json.Unmarshal(raw, &ca); err != nil {
+		return nil, fmt.Errorf("decode campaign attrs: %w", err)
+	}
+	return &CampaignInfo{
+		PatronCount:  ca.PatronCount,
+		CreationName: ca.CreationName,
+		URL:          ca.URL,
+	}, nil
+}
+
+func parseTiers(included []jsonAPIResource) []TierInfo {
+	var tiers []TierInfo
+	for _, inc := range included {
+		if inc.Type != "tier" {
+			continue
+		}
+		var ta tierAttrs
+		if err := json.Unmarshal(inc.Attributes, &ta); err != nil {
+			slog.Warn("skipping malformed tier", "id", inc.ID, "error", err)
+			continue
+		}
+		if !ta.Published {
+			continue
+		}
+		tiers = append(tiers, TierInfo{
+			Title:       ta.Title,
+			AmountCents: ta.AmountCents,
+			PatronCount: ta.PatronCount,
+			Description: ta.Description,
+			Published:   ta.Published,
+		})
+	}
+	sort.Slice(tiers, func(i, j int) bool {
+		return tiers[i].AmountCents < tiers[j].AmountCents
+	})
+	return tiers
+}
+
 func (c *Client) fetch(ctx context.Context) (*CampaignData, error) {
 	url := fmt.Sprintf(
 		"%s/campaigns/%s?include=tiers&fields[campaign]=patron_count,creation_name,url&fields[tier]=title,amount_cents,patron_count,description,published",
@@ -147,45 +187,13 @@ func (c *Client) fetch(ctx context.Context) (*CampaignData, error) {
 		return nil, fmt.Errorf("decode response: %w", err)
 	}
 
-	// Parse campaign attributes
-	var ca campaignAttrs
-	if err := json.Unmarshal(envelope.Data.Attributes, &ca); err != nil {
-		return nil, fmt.Errorf("decode campaign attrs: %w", err)
+	campaign, err := parseCampaign(envelope.Data.Attributes)
+	if err != nil {
+		return nil, err
 	}
-
-	// Parse included tiers
-	var tiers []TierInfo
-	for _, inc := range envelope.Included {
-		if inc.Type != "tier" {
-			continue
-		}
-		var ta tierAttrs
-		if err := json.Unmarshal(inc.Attributes, &ta); err != nil {
-			slog.Warn("skipping malformed tier", "id", inc.ID, "error", err)
-			continue
-		}
-		if !ta.Published {
-			continue
-		}
-		tiers = append(tiers, TierInfo{
-			Title:       ta.Title,
-			AmountCents: ta.AmountCents,
-			PatronCount: ta.PatronCount,
-			Description: ta.Description,
-			Published:   ta.Published,
-		})
-	}
-
-	sort.Slice(tiers, func(i, j int) bool {
-		return tiers[i].AmountCents < tiers[j].AmountCents
-	})
 
 	return &CampaignData{
-		Campaign: &CampaignInfo{
-			PatronCount:  ca.PatronCount,
-			CreationName: ca.CreationName,
-			URL:          ca.URL,
-		},
-		Tiers: tiers,
+		Campaign: campaign,
+		Tiers:    parseTiers(envelope.Included),
 	}, nil
 }

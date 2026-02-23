@@ -1,5 +1,8 @@
 export type EffectLevel = 'clean' | 'mild' | 'full';
 
+export const COVER_PATTERNS = ['circuit', 'grid', 'waves', 'dots', 'sigil'] as const;
+export type CoverPattern = (typeof COVER_PATTERNS)[number];
+
 export interface Project {
   slug: string;
   name: string;
@@ -16,7 +19,7 @@ export interface Project {
   lastUpdated: string;
   stars?: number;
   coverColor?: string;
-  coverPattern?: 'circuit' | 'grid' | 'waves' | 'dots' | 'sigil';
+  coverPattern?: CoverPattern;
   screenshot?: string;
   featured?: boolean;
   order?: number;

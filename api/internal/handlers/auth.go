@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/subculture-collective/subcult-tv/api/internal/middleware"
 	"github.com/subculture-collective/subcult-tv/api/internal/models"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -61,7 +62,7 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 
 // Me returns the currently authenticated user.
 func (h *Handler) Me(w http.ResponseWriter, r *http.Request) {
-	userID := r.Context().Value("user_id")
+	userID := r.Context().Value(middleware.UserIDKey)
 	if userID == nil {
 		writeError(w, http.StatusUnauthorized, "not authenticated")
 		return

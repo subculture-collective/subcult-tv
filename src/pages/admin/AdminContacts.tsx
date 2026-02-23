@@ -8,13 +8,13 @@ import {
 } from '@/lib/api';
 
 export default function AdminContacts() {
-  const [data, setData] = useState<PaginatedResponse<APIContact> | null>(null);
+  const [contactsPage, setContactsPage] = useState<PaginatedResponse<APIContact> | null>(null);
   const [page, setPage] = useState(1);
   const [error, setError] = useState('');
 
   const load = (p: number) => {
     listContacts({ page: p, perPage: 20 })
-      .then(setData)
+      .then(setContactsPage)
       .catch((err) => setError(err.message));
   };
 
@@ -46,9 +46,9 @@ export default function AdminContacts() {
       <div className="mb-6">
         <p className="font-mono text-xs text-dust mb-1">&gt; INCOMING SIGNALS</p>
         <h1 className="text-2xl">Contact Submissions</h1>
-        {data && (
+        {contactsPage && (
           <p className="font-mono text-xs text-dust mt-1">
-            {data.total} total · page {data.page}/{data.total_pages}
+            {contactsPage.total} total · page {contactsPage.page}/{contactsPage.total_pages}
           </p>
         )}
       </div>
@@ -60,7 +60,7 @@ export default function AdminContacts() {
       )}
 
       <div className="space-y-3">
-        {data?.data.map((c) => (
+        {contactsPage?.data.map((c) => (
           <div
             key={c.id}
             className={`bg-soot border p-4 transition-colors ${
@@ -108,7 +108,7 @@ export default function AdminContacts() {
           </div>
         ))}
 
-        {data?.data.length === 0 && (
+        {contactsPage?.data.length === 0 && (
           <div className="py-12 text-center font-mono text-sm text-bone">
             No incoming signals. Inbox zero.
           </div>
@@ -116,7 +116,7 @@ export default function AdminContacts() {
       </div>
 
       {/* Pagination */}
-      {data && data.total_pages > 1 && (
+      {contactsPage && contactsPage.total_pages > 1 && (
         <div className="flex justify-center gap-2 mt-6">
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
@@ -127,11 +127,11 @@ export default function AdminContacts() {
             ← PREV
           </button>
           <span className="px-3 py-1 font-mono text-xs text-dust">
-            {page} / {data.total_pages}
+            {page} / {contactsPage.total_pages}
           </span>
           <button
-            onClick={() => setPage((p) => Math.min(data.total_pages, p + 1))}
-            disabled={page >= data.total_pages}
+            onClick={() => setPage((p) => Math.min(contactsPage.total_pages, p + 1))}
+            disabled={page >= contactsPage.total_pages}
             className="px-3 py-1 bg-ash border border-fog font-mono text-xs text-chalk
                        hover:border-signal transition-colors duration-200 cursor-pointer disabled:opacity-30"
           >

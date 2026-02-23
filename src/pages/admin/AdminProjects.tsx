@@ -1,4 +1,4 @@
-import { useState, useEffect, useId, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import {
   listProjects,
   createProject,
@@ -6,6 +6,7 @@ import {
   deleteProject,
   type APIProject,
 } from '@/lib/api';
+import { Field, Select, StatusBadge } from '@/components/admin/FormFields';
 
 type ProjectForm = Omit<APIProject, 'id' | 'stars' | 'last_updated' | 'created_at' | 'updated_at'>;
 
@@ -318,97 +319,5 @@ export default function AdminProjects() {
         </table>
       </div>
     </div>
-  );
-}
-
-// ── Reusable form components ─────────────────────────────────
-
-function Field({
-  label,
-  value,
-  onChange,
-  required,
-  textarea,
-}: {
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  required?: boolean;
-  textarea?: boolean;
-}) {
-  const id = useId();
-  const cls =
-    'w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 transition-colors duration-200';
-  return (
-    <div>
-      <label htmlFor={id} className="block font-mono text-xs text-bone uppercase mb-1">
-        {label}
-      </label>
-      {textarea ? (
-        <textarea
-          id={id}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          required={required}
-          rows={3}
-          className={cls + ' resize-y'}
-        />
-      ) : (
-        <input
-          id={id}
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          required={required}
-          className={cls}
-        />
-      )}
-    </div>
-  );
-}
-
-function Select({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  options: string[];
-}) {
-  const id = useId();
-  return (
-    <div>
-      <label htmlFor={id} className="block font-mono text-xs text-bone uppercase mb-1">
-        {label}
-      </label>
-      <select
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 transition-colors duration-200"
-      >
-        {options.map((o) => (
-          <option key={o} value={o}>
-            {o}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
-function StatusBadge({ status }: { status: string }) {
-  const colors: Record<string, string> = {
-    active: 'text-static',
-    incubating: 'text-flicker',
-    archived: 'text-dust',
-  };
-  return (
-    <span className={`font-mono text-xs ${colors[status] || 'text-dust'}`}>
-      {status.toUpperCase()}
-    </span>
   );
 }

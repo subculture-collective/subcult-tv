@@ -3,22 +3,11 @@ import type { Project } from '@/types';
 import Tag from '@/components/ui/Tag';
 import CoverArt from '@/components/effects/CoverArt';
 import { DEFAULT_COVER_COLOR } from '@/lib/tokens';
+import { statusColors, statusLabels } from '@/lib/project-utils';
 
 interface ProjectCardProps {
   project: Project;
 }
-
-const statusColors: Record<Project['status'], string> = {
-  active: 'text-static',
-  incubating: 'text-flicker',
-  archived: 'text-dust',
-};
-
-const statusLabels: Record<Project['status'], string> = {
-  active: '● LIVE',
-  incubating: '◐ INCUBATING',
-  archived: '○ ARCHIVED',
-};
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const hasScreenshot = !!project.screenshot;

@@ -7,19 +7,8 @@ import CoverArt from '@/components/effects/CoverArt';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import { fetchGitHubRepos, mergeWithOverrides, FALLBACK_PROJECTS } from '@/lib/github';
 import { DEFAULT_COVER_COLOR } from '@/lib/tokens';
+import { statusColors, statusLabels } from '@/lib/project-utils';
 import type { Project } from '@/types';
-
-const statusLabels: Record<Project['status'], string> = {
-  active: '● LIVE',
-  incubating: '◐ INCUBATING',
-  archived: '○ ARCHIVED',
-};
-
-const statusColors: Record<Project['status'], string> = {
-  active: 'text-static',
-  incubating: 'text-flicker',
-  archived: 'text-dust',
-};
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();

@@ -6,6 +6,21 @@ import Button from '@/components/ui/Button';
 import { getPostBySlug, getPostMDX, getNextInSeries } from '@/lib/posts';
 import type { Post } from '@/types';
 
+function PostNotFound({ slug }: { slug?: string }) {
+  return (
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <SEOHead title="Post Not Found" path={`/zine/${slug ?? ''}`} />
+      <p className="font-mono text-signal mb-4">&gt; ERROR 404: transmission not found</p>
+      <p className="text-bone mb-6">
+        This signal was lost in the static. The post you're looking for doesn't exist.
+      </p>
+      <Button as="link" to="/zine" variant="secondary">
+        ← Back to the Zine
+      </Button>
+    </div>
+  );
+}
+
 export default function PostPage() {
   const { slug } = useParams<{ slug: string }>();
   const post = useMemo<Post | null>(() => {
@@ -44,18 +59,7 @@ export default function PostPage() {
   }, [slug, post]);
 
   if (!slug || !post) {
-    return (
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <SEOHead title="Post Not Found" path={`/zine/${slug ?? ''}`} />
-        <p className="font-mono text-signal mb-4">&gt; ERROR 404: transmission not found</p>
-        <p className="text-bone mb-6">
-          This signal was lost in the static. The post you're looking for doesn't exist.
-        </p>
-        <Button as="link" to="/zine" variant="secondary">
-          ← Back to the Zine
-        </Button>
-      </div>
-    );
+    return <PostNotFound slug={slug} />;
   }
 
   if (mdxStatus === 'idle') {
@@ -70,18 +74,7 @@ export default function PostPage() {
   }
 
   if (!MDXContent) {
-    return (
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <SEOHead title="Post Not Found" path={`/zine/${slug}`} />
-        <p className="font-mono text-signal mb-4">&gt; ERROR 404: transmission not found</p>
-        <p className="text-bone mb-6">
-          This signal was lost in the static. The post you're looking for doesn't exist.
-        </p>
-        <Button as="link" to="/zine" variant="secondary">
-          ← Back to the Zine
-        </Button>
-      </div>
-    );
+    return <PostNotFound slug={slug} />;
   }
 
   return (

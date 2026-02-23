@@ -1,5 +1,6 @@
 import { useState, useEffect, type FormEvent } from 'react';
 import { listPosts, createPost, updatePost, deletePost, type APIPost } from '@/lib/api';
+import { Field } from '@/components/admin/FormFields';
 
 type PostForm = Omit<APIPost, 'id' | 'created_at' | 'updated_at'>;
 
@@ -107,92 +108,58 @@ export default function AdminPosts() {
           <h2 className="text-lg mb-4">{editing ? 'Edit Post' : 'New Post'}</h2>
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div>
-                <label htmlFor="post-slug" className="block font-mono text-xs text-bone uppercase mb-1">Slug</label>
-                <input
-                  type="text"
-                  id="post-slug"
-                  value={form.slug}
-                  onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                  required
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="post-title" className="block font-mono text-xs text-bone uppercase mb-1">Title</label>
-                <input
-                  type="text"
-                  id="post-title"
-                  value={form.title}
-                  onChange={(e) => setForm({ ...form, title: e.target.value })}
-                  required
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="post-excerpt" className="block font-mono text-xs text-bone uppercase mb-1">Excerpt</label>
-              <textarea
-                id="post-excerpt"
-                value={form.excerpt}
-                onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
-                rows={2}
-                className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 resize-y"
+              <Field
+                label="Slug"
+                value={form.slug}
+                onChange={(v) => setForm({ ...form, slug: v })}
+                required
+              />
+              <Field
+                label="Title"
+                value={form.title}
+                onChange={(v) => setForm({ ...form, title: v })}
+                required
               />
             </div>
-            <div>
-              <label htmlFor="post-content" className="block font-mono text-xs text-bone uppercase mb-1">
-                Content (MDX)
-              </label>
-              <textarea
-                id="post-content"
-                value={form.content}
-                onChange={(e) => setForm({ ...form, content: e.target.value })}
-                rows={12}
-                className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 resize-y"
-              />
-            </div>
+            <Field
+              label="Excerpt"
+              value={form.excerpt}
+              onChange={(v) => setForm({ ...form, excerpt: v })}
+              textarea
+              rows={2}
+            />
+            <Field
+              label="Content (MDX)"
+              value={form.content}
+              onChange={(v) => setForm({ ...form, content: v })}
+              textarea
+              rows={12}
+            />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div>
-                <label htmlFor="post-date" className="block font-mono text-xs text-bone uppercase mb-1">Date</label>
-                <input
-                  type="date"
-                  id="post-date"
-                  value={form.date}
-                  onChange={(e) => setForm({ ...form, date: e.target.value })}
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="post-tags" className="block font-mono text-xs text-bone uppercase mb-1">
-                  Tags (comma-separated)
-                </label>
-                <input
-                  type="text"
-                  id="post-tags"
-                  value={(form.tags || []).join(', ')}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      tags: e.target.value
-                        .split(',')
-                        .map((s) => s.trim())
-                        .filter(Boolean),
-                    })
-                  }
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="post-author" className="block font-mono text-xs text-bone uppercase mb-1">Author</label>
-                <input
-                  type="text"
-                  id="post-author"
-                  value={form.author || ''}
-                  onChange={(e) => setForm({ ...form, author: e.target.value || undefined })}
-                  className="w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2"
-                />
-              </div>
+              <Field
+                label="Date"
+                value={form.date}
+                onChange={(v) => setForm({ ...form, date: v })}
+                type="date"
+              />
+              <Field
+                label="Tags (comma-separated)"
+                value={(form.tags || []).join(', ')}
+                onChange={(v) =>
+                  setForm({
+                    ...form,
+                    tags: v
+                      .split(',')
+                      .map((s) => s.trim())
+                      .filter(Boolean),
+                  })
+                }
+              />
+              <Field
+                label="Author"
+                value={form.author || ''}
+                onChange={(v) => setForm({ ...form, author: v || undefined })}
+              />
             </div>
             <div className="flex items-center gap-2">
               <input

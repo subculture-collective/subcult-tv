@@ -13,14 +13,22 @@ import (
 	"github.com/subculture-collective/subcult-tv/api/internal/middleware"
 )
 
+// Rate limit thresholds (requests per window).
+const (
+	GeneralRateLimit = 100
+	LoginRateLimit   = 5
+	FormRateLimit    = 10
+	RateLimitWindow  = time.Minute
+)
+
 // New creates a configured Chi router with all API routes.
 func New(cfg *config.Config, h *handlers.Handler) *chi.Mux {
 	r := chi.NewRouter()
 
 	// Rate limiters for different endpoint types
-	generalLimiter := middleware.NewRateLimiter(100, time.Minute)   // 100 req/min general
-	loginLimiter := middleware.NewRateLimiter(5, time.Minute)       // 5 req/min for login
-	publicFormLimiter := middleware.NewRateLimiter(10, time.Minute) // 10 req/min for forms
+	generalLimiter := middleware.NewRateLimiter(GeneralRateLimit, RateLimitWindow)
+	loginLimiter := middleware.NewRateLimiter(LoginRateLimit, RateLimitWindow)
+	publicFormLimiter := middleware.NewRateLimiter(FormRateLimit, RateLimitWindow)
 
 	// ── Global middleware ────────────────────────────────────
 	r.Use(chimw.RealIP)

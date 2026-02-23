@@ -9,6 +9,23 @@ import (
 	"github.com/subculture-collective/subcult-tv/api/internal/models"
 )
 
+// scanner is implemented by both *pgx.Row and *pgx.Rows.
+type scanner interface {
+	Scan(dest ...interface{}) error
+}
+
+// scanProject scans a full project row into a models.Project.
+func scanProject(s scanner) (models.Project, error) {
+	var p models.Project
+	err := s.Scan(
+		&p.ID, &p.Slug, &p.Name, &p.Description, &p.LongDescription, &p.WhyItExists,
+		&p.Type, &p.Status, &p.Stack, &p.Topics, &p.RepoURL, &p.Homepage,
+		&p.CoverPattern, &p.CoverColor, &p.Featured, &p.SortOrder, &p.Stars, &p.LastUpdated,
+		&p.CreatedAt, &p.UpdatedAt,
+	)
+	return p, err
+}
+
 // ListProjects returns all projects (public - sorted by sort_order, then name).
 func (h *Handler) ListProjects(w http.ResponseWriter, r *http.Request) {
 	statusFilter := r.URL.Query().Get("status")
@@ -45,13 +62,8 @@ func (h *Handler) ListProjects(w http.ResponseWriter, r *http.Request) {
 
 	var projects []models.Project
 	for rows.Next() {
-		var p models.Project
-		if err := rows.Scan(
-			&p.ID, &p.Slug, &p.Name, &p.Description, &p.LongDescription, &p.WhyItExists,
-			&p.Type, &p.Status, &p.Stack, &p.Topics, &p.RepoURL, &p.Homepage,
-			&p.CoverPattern, &p.CoverColor, &p.Featured, &p.SortOrder, &p.Stars, &p.LastUpdated,
-			&p.CreatedAt, &p.UpdatedAt,
-		); err != nil {
+		p, err := scanProject(rows)
+		if err != nil {
 			writeError(w, http.StatusInternalServerError, "failed to scan project")
 			return
 		}
@@ -69,18 +81,14 @@ func (h *Handler) GetProject(w http.ResponseWriter, r *http.Request) {
 	slug := chi.URLParam(r, "slug")
 
 	var p models.Project
-	err := h.DB.QueryRow(r.Context(),
+	row := h.DB.QueryRow(r.Context(),
 		`SELECT id, slug, name, description, long_description, why_it_exists,
 		 type, status, stack, topics, repo_url, homepage,
 		 cover_pattern, cover_color, featured, sort_order, stars, last_updated,
 		 created_at, updated_at
 		 FROM projects WHERE slug = $1`, slug,
-	).Scan(
-		&p.ID, &p.Slug, &p.Name, &p.Description, &p.LongDescription, &p.WhyItExists,
-		&p.Type, &p.Status, &p.Stack, &p.Topics, &p.RepoURL, &p.Homepage,
-		&p.CoverPattern, &p.CoverColor, &p.Featured, &p.SortOrder, &p.Stars, &p.LastUpdated,
-		&p.CreatedAt, &p.UpdatedAt,
 	)
+	p, err := scanProject(row)
 	if err != nil {
 		writeError(w, http.StatusNotFound, "project not found")
 		return
@@ -109,7 +117,7 @@ func (h *Handler) CreateProject(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var p models.Project
-	err := h.DB.QueryRow(r.Context(),
+	row := h.DB.QueryRow(r.Context(),
 		`INSERT INTO projects (slug, name, description, long_description, why_it_exists,
 		  type, status, stack, topics, repo_url, homepage,
 		  cover_pattern, cover_color, featured, sort_order)
@@ -121,12 +129,8 @@ func (h *Handler) CreateProject(w http.ResponseWriter, r *http.Request) {
 		req.Slug, req.Name, req.Description, req.LongDescription, req.WhyItExists,
 		req.Type, req.Status, req.Stack, req.Topics, req.RepoURL, req.Homepage,
 		req.CoverPattern, req.CoverColor, req.Featured, req.SortOrder,
-	).Scan(
-		&p.ID, &p.Slug, &p.Name, &p.Description, &p.LongDescription, &p.WhyItExists,
-		&p.Type, &p.Status, &p.Stack, &p.Topics, &p.RepoURL, &p.Homepage,
-		&p.CoverPattern, &p.CoverColor, &p.Featured, &p.SortOrder, &p.Stars, &p.LastUpdated,
-		&p.CreatedAt, &p.UpdatedAt,
 	)
+	p, err := scanProject(row)
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, "failed to create project: "+err.Error())
 		return
@@ -152,7 +156,7 @@ func (h *Handler) UpdateProject(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var p models.Project
-	err := h.DB.QueryRow(r.Context(),
+	row := h.DB.QueryRow(r.Context(),
 		`UPDATE projects SET
 		  slug=$1, name=$2, description=$3, long_description=$4, why_it_exists=$5,
 		  type=$6, status=$7, stack=$8, topics=$9, repo_url=$10, homepage=$11,
@@ -165,12 +169,8 @@ func (h *Handler) UpdateProject(w http.ResponseWriter, r *http.Request) {
 		req.Slug, req.Name, req.Description, req.LongDescription, req.WhyItExists,
 		req.Type, req.Status, req.Stack, req.Topics, req.RepoURL, req.Homepage,
 		req.CoverPattern, req.CoverColor, req.Featured, req.SortOrder, id,
-	).Scan(
-		&p.ID, &p.Slug, &p.Name, &p.Description, &p.LongDescription, &p.WhyItExists,
-		&p.Type, &p.Status, &p.Stack, &p.Topics, &p.RepoURL, &p.Homepage,
-		&p.CoverPattern, &p.CoverColor, &p.Featured, &p.SortOrder, &p.Stars, &p.LastUpdated,
-		&p.CreatedAt, &p.UpdatedAt,
 	)
+	p, err := scanProject(row)
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, "failed to update project: "+err.Error())
 		return

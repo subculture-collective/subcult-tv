@@ -1,13 +1,17 @@
 import type { GitHubRepo, Project } from '@/types';
+import { COVER_PATTERNS } from '@/types';
 import projectOverrides from '@content/projects.json';
 import { COVER_COLOR_ROTATION } from '@/lib/tokens';
 
 const GITHUB_ORG = 'subculture-collective';
 const CACHE_KEY = 'subcult-github-repos';
-const CACHE_TTL = 1000 * 60 * 60; // 1 hour
+const GITHUB_CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
 
 // Repos to exclude from display
 const EXCLUDED_REPOS = ['.github', 'subculture-collective.github.io', 'mandalay'];
+
+// Fixed date for fallback data (avoids misleading "just updated" timestamps).
+const FALLBACK_LAST_UPDATED = '2026-02-01T00:00:00Z';
 
 interface CachedData {
   timestamp: number;
@@ -20,7 +24,7 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
     const cached = localStorage.getItem(CACHE_KEY);
     if (cached) {
       const data: CachedData = JSON.parse(cached);
-      if (Date.now() - data.timestamp < CACHE_TTL) {
+      if (Date.now() - data.timestamp < GITHUB_CACHE_TTL_MS) {
         return data.repos;
       }
     }
@@ -58,14 +62,6 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
     return [];
   }
 }
-
-const COVER_PATTERNS: Array<Project['coverPattern']> = [
-  'circuit',
-  'grid',
-  'waves',
-  'dots',
-  'sigil',
-];
 
 const COVER_COLORS = COVER_COLOR_ROTATION;
 
@@ -141,7 +137,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     stack: ['TypeScript', 'React', 'Tailwind CSS', 'Vite'],
     topics: ['website', 'portfolio', 'react'],
     repoUrl: 'https://github.com/subculture-collective/subcult-tv',
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: FALLBACK_LAST_UPDATED,
     screenshot: '/screenshots/subcult.png',
     coverColor: '#ff3333',
     coverPattern: 'circuit',
@@ -158,7 +154,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     stack: ['TypeScript', 'React', 'Twitch API'],
     topics: ['twitch', 'clips', 'curation'],
     repoUrl: 'https://github.com/subculture-collective/clipper',
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: FALLBACK_LAST_UPDATED,
     screenshot: '/screenshots/clpr.png',
     coverColor: '#9146ff',
     coverPattern: 'grid',
@@ -175,7 +171,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     stack: ['TypeScript', 'Next.js', 'AI Agents'],
     topics: ['video', 'ai', 'pipeline'],
     repoUrl: 'https://github.com/subculture-collective/cutroom',
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: FALLBACK_LAST_UPDATED,
     screenshot: '/screenshots/cutroom.png',
     coverColor: '#ff6b35',
     coverPattern: 'waves',
@@ -192,7 +188,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     stack: ['Next.js', 'PostgreSQL', 'pgvector', 'OpenRouter'],
     topics: ['ai', 'agents', 'autonomous'],
     repoUrl: 'https://github.com/subculture-collective/subcult-corp',
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: FALLBACK_LAST_UPDATED,
     screenshot: '/screenshots/subcorp.png',
     coverColor: '#00ff88',
     coverPattern: 'sigil',
@@ -209,7 +205,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     stack: ['TypeScript'],
     topics: ['identity', 'verification', 'creators'],
     repoUrl: 'https://github.com/subculture-collective/internet-id',
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: FALLBACK_LAST_UPDATED,
     coverColor: COVER_COLOR_ROTATION[2],
     coverPattern: 'sigil',
     featured: false,
@@ -224,7 +220,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     stack: ['Python', 'PostgreSQL'],
     topics: ['audio', 'fingerprinting', 'matching'],
     repoUrl: 'https://github.com/subculture-collective/soundhash',
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: FALLBACK_LAST_UPDATED,
     coverColor: COVER_COLOR_ROTATION[3],
     coverPattern: 'waves',
     featured: false,

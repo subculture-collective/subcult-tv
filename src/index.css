@@ -432,8 +432,20 @@ pre,
   animation: none !important;
 }
 
+/* Mild mode: glitch-text uses transform jitter via a pseudo-element overlay
+   to avoid conflicting with parent animations (e.g. fade-in). */
 [data-effects='mild'] .glitch-text {
+  position: relative;
+}
+
+[data-effects='mild'] .glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
   animation: glitch-intense 0.3s infinite;
+  pointer-events: none;
+  opacity: 0.15;
+  color: var(--color-signal);
 }
 
 @keyframes glitch-intense {
@@ -464,7 +476,28 @@ pre,
   }
 }
 
+/* Mild mode: chromatic animated text-shadow — uses a separate animation name
+   composed alongside the fade-in so the element stays visible.
+   The key fix: we do NOT override `animation` on .chromatic directly.
+   Instead we ramp up the static text-shadow intensity. */
 [data-effects='mild'] .chromatic {
+  text-shadow:
+    -3px 0 rgba(255, 0, 0, 0.6),
+    3px 0 rgba(0, 255, 255, 0.6);
+}
+
+/* After fade-in completes, add the jitter animation.
+   We use animation-composition so the fade-in delay/fill classes still work. */
+[data-effects='mild'] .chromatic.animate-fade-in-up {
+  animation-name: fadeInUp, chromatic-glitch;
+  animation-duration: 0.6s, 0.15s;
+  animation-timing-function: ease-out, linear;
+  animation-fill-mode: forwards, none;
+  animation-iteration-count: 1, infinite;
+}
+
+/* Standalone .chromatic without fade-in still gets the animation */
+[data-effects='mild'] .chromatic:not(.animate-fade-in-up) {
   animation: chromatic-glitch 0.15s infinite;
 }
 

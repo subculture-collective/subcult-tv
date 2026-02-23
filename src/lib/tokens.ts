@@ -16,6 +16,7 @@ export const COLORS = {
 /**
  * Rotation of cover colors for auto-assigning to projects.
  * All values must be from the design system palette.
+ * Note: scan and vhs-magenta are the same value — only one is included.
  */
 export const COVER_COLOR_ROTATION = [
   COLORS.signal,
@@ -23,7 +24,6 @@ export const COVER_COLOR_ROTATION = [
   COLORS.static,
   COLORS.flicker,
   COLORS.cyan,
-  COLORS['vhs-magenta'],
 ] as const;
 
 export const DEFAULT_COVER_COLOR = COLORS.signal;

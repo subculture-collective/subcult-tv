@@ -18,6 +18,12 @@ type Handler struct {
 	Patreon  *patreon.Client
 }
 
+// Pagination defaults.
+const (
+	DefaultPerPage = 20
+	MaxPerPage     = 100
+)
+
 // New creates a new Handler.
 func New(db *pgxpool.Pool, jwtSecret string, patreonClient *patreon.Client) *Handler {
 	return &Handler{DB: db, JWTSecret: jwtSecret, Patreon: patreonClient}
@@ -44,8 +50,8 @@ func pagination(r *http.Request) (page, perPage int, offset int) {
 		page = 1
 	}
 	perPage, _ = strconv.Atoi(r.URL.Query().Get("per_page"))
-	if perPage < 1 || perPage > 100 {
-		perPage = 20
+	if perPage < 1 || perPage > MaxPerPage {
+		perPage = DefaultPerPage
 	}
 	offset = (page - 1) * perPage
 	return

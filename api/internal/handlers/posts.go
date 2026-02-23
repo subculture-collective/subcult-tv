@@ -2,12 +2,23 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/subculture-collective/subcult-tv/api/internal/models"
 )
+
+// scanPost scans a full post row into a models.Post.
+func scanPost(s scanner) (models.Post, error) {
+	var p models.Post
+	err := s.Scan(
+		&p.ID, &p.Slug, &p.Title, &p.Excerpt, &p.Content,
+		&p.Tags, &p.Author, &p.Published, &p.Date,
+		&p.CreatedAt, &p.UpdatedAt,
+	)
+	return p, err
+}
 
 // ListPosts returns published posts (public) or all posts (admin).
 func (h *Handler) ListPosts(w http.ResponseWriter, r *http.Request) {
@@ -32,7 +43,7 @@ func (h *Handler) ListPosts(w http.ResponseWriter, r *http.Request) {
 	if onlyPublished {
 		query += ` WHERE published = true`
 	}
-	query += ` ORDER BY date DESC LIMIT $` + strconv.Itoa(argN) + ` OFFSET $` + strconv.Itoa(argN+1)
+	query += fmt.Sprintf(` ORDER BY date DESC LIMIT $%d OFFSET $%d`, argN, argN+1)
 	args = append(args, perPage, offset)
 
 	rows, err := h.DB.Query(r.Context(), query, args...)
@@ -44,12 +55,8 @@ func (h *Handler) ListPosts(w http.ResponseWriter, r *http.Request) {
 
 	var posts []models.Post
 	for rows.Next() {
-		var p models.Post
-		if err := rows.Scan(
-			&p.ID, &p.Slug, &p.Title, &p.Excerpt, &p.Content,
-			&p.Tags, &p.Author, &p.Published, &p.Date,
-			&p.CreatedAt, &p.UpdatedAt,
-		); err != nil {
+		p, err := scanPost(rows)
+		if err != nil {
 			writeError(w, http.StatusInternalServerError, "failed to scan post")
 			return
 		}
@@ -74,14 +81,11 @@ func (h *Handler) GetPost(w http.ResponseWriter, r *http.Request) {
 	slug := chi.URLParam(r, "slug")
 
 	var p models.Post
-	err := h.DB.QueryRow(r.Context(),
+	row := h.DB.QueryRow(r.Context(),
 		`SELECT id, slug, title, excerpt, content, tags, author, published, date,
 		 created_at, updated_at FROM posts WHERE slug = $1`, slug,
-	).Scan(
-		&p.ID, &p.Slug, &p.Title, &p.Excerpt, &p.Content,
-		&p.Tags, &p.Author, &p.Published, &p.Date,
-		&p.CreatedAt, &p.UpdatedAt,
 	)
+	p, err := scanPost(row)
 	if err != nil {
 		writeError(w, http.StatusNotFound, "post not found")
 		return
@@ -107,18 +111,15 @@ func (h *Handler) CreatePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var p models.Post
-	err := h.DB.QueryRow(r.Context(),
+	row := h.DB.QueryRow(r.Context(),
 		`INSERT INTO posts (slug, title, excerpt, content, tags, author, published, date)
 		 VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
 		 RETURNING id, slug, title, excerpt, content, tags, author, published, date,
 		  created_at, updated_at`,
 		req.Slug, req.Title, req.Excerpt, req.Content, req.Tags,
 		req.Author, req.Published, req.Date,
-	).Scan(
-		&p.ID, &p.Slug, &p.Title, &p.Excerpt, &p.Content,
-		&p.Tags, &p.Author, &p.Published, &p.Date,
-		&p.CreatedAt, &p.UpdatedAt,
 	)
+	p, err := scanPost(row)
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, "failed to create post: "+err.Error())
 		return
@@ -141,7 +142,7 @@ func (h *Handler) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var p models.Post
-	err := h.DB.QueryRow(r.Context(),
+	row := h.DB.QueryRow(r.Context(),
 		`UPDATE posts SET
 		  slug=$1, title=$2, excerpt=$3, content=$4, tags=$5,
 		  author=$6, published=$7, date=$8, updated_at=NOW()
@@ -150,11 +151,8 @@ func (h *Handler) UpdatePost(w http.ResponseWriter, r *http.Request) {
 		  created_at, updated_at`,
 		req.Slug, req.Title, req.Excerpt, req.Content, req.Tags,
 		req.Author, req.Published, req.Date, id,
-	).Scan(
-		&p.ID, &p.Slug, &p.Title, &p.Excerpt, &p.Content,
-		&p.Tags, &p.Author, &p.Published, &p.Date,
-		&p.CreatedAt, &p.UpdatedAt,
 	)
+	p, err := scanPost(row)
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, "failed to update post: "+err.Error())
 		return
