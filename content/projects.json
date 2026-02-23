@@ -9,7 +9,7 @@
     "stack": ["TypeScript", "React", "Tailwind CSS", "Vite"],
     "url": "https://subcult.tv",
     "screenshot": "/screenshots/subcult.png",
-    "featured": true,
+    "featured": false,
     "order": 0,
     "coverColor": "#ff3333",
     "coverPattern": "circuit"

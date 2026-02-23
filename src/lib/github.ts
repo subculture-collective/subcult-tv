@@ -6,6 +6,9 @@ const GITHUB_ORG = 'subculture-collective';
 const CACHE_KEY = 'subcult-github-repos';
 const CACHE_TTL = 1000 * 60 * 60; // 1 hour
 
+// Repos to exclude from display
+const EXCLUDED_REPOS = ['.github', 'subculturecollective.github.io', 'mandalay'];
+
 interface CachedData {
   timestamp: number;
   repos: GitHubRepo[];
@@ -40,7 +43,7 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
     }
 
     const repos: GitHubRepo[] = await res.json();
-    const filtered = repos.filter((r) => !r.fork);
+    const filtered = repos.filter((r) => !r.fork && !EXCLUDED_REPOS.includes(r.name));
 
     // Cache the results
     try {
@@ -143,7 +146,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'clipper',
     name: 'clpr',
-    description: 'A modern Twitch clip curation platform. Discover, organize, and share your favorite clips.',
+    description:
+      'A modern Twitch clip curation platform. Discover, organize, and share your favorite clips.',
     status: 'active',
     type: 'software',
     stack: ['TypeScript', 'React', 'Twitch API'],
@@ -159,7 +163,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'cutroom',
     name: 'Cutroom',
-    description: 'Collaborative AI video production pipeline. Multi-agent content creation with attribution tracking.',
+    description:
+      'Collaborative AI video production pipeline. Multi-agent content creation with attribution tracking.',
     status: 'active',
     type: 'media',
     stack: ['TypeScript', 'Next.js', 'AI Agents'],
@@ -175,7 +180,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'subcult-corp',
     name: 'SUBCULT OPS',
-    description: 'Self-sustaining collective of six AI agents running autonomous workflows — proposals, debates, missions, and memory.',
+    description:
+      'Self-sustaining collective of six AI agents running autonomous workflows — proposals, debates, missions, and memory.',
     status: 'active',
     type: 'software',
     stack: ['Next.js', 'PostgreSQL', 'pgvector', 'OpenRouter'],
@@ -191,7 +197,8 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     slug: 'internet-id',
     name: 'Internet ID',
-    description: 'Prove "this is really mine" on the internet — without uploading originals or trusting a gatekeeper.',
+    description:
+      'Prove "this is really mine" on the internet — without uploading originals or trusting a gatekeeper.',
     status: 'active',
     type: 'tools',
     stack: ['TypeScript'],
