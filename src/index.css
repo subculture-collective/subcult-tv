@@ -275,6 +275,16 @@ pre,
   background-image: radial-gradient(circle, var(--color-fog) 1px, transparent 1px);
   background-size: 8px 8px;
 }
+.halftone-offset-1 {
+  background-image: radial-gradient(circle, var(--color-fog) 1px, transparent 1px);
+  background-size: 8px 8px;
+  background-position: 3px 2px;
+}
+.halftone-offset-2 {
+  background-image: radial-gradient(circle, var(--color-fog) 1px, transparent 1px);
+  background-size: 8px 8px;
+  background-position: 5px 4px;
+}
 
 /* ═══════════════ TORN EDGES ═══════════════════════════════════ */
 .torn-edge-top {
@@ -423,15 +433,83 @@ pre,
 }
 
 [data-effects='mild'] .glitch-text {
-  animation-duration: 8s;
+  animation: glitch-intense 0.3s infinite;
+}
+
+@keyframes glitch-intense {
+  0%,
+  100% {
+    transform: translate(0) skewX(0deg);
+  }
+  5% {
+    transform: translate(-3px, 0) skewX(-2deg);
+  }
+  10% {
+    transform: translate(3px, 0) skewX(1deg);
+  }
+  15% {
+    transform: translate(0, 2px) skewX(-1deg);
+  }
+  20% {
+    transform: translate(-2px, -2px) skewX(0deg);
+  }
+  25% {
+    transform: translate(2px, 1px) skewX(2deg);
+  }
+  50% {
+    transform: translate(-1px, 0) skewX(-1deg);
+  }
+  55% {
+    transform: translate(0) skewX(0deg);
+  }
+}
+
+[data-effects='mild'] .chromatic {
+  animation: chromatic-glitch 0.15s infinite;
+}
+
+@keyframes chromatic-glitch {
+  0%,
+  100% {
+    text-shadow:
+      -2px 0 rgba(255, 0, 0, 0.7),
+      2px 0 rgba(0, 255, 255, 0.7);
+  }
+  25% {
+    text-shadow:
+      3px 0 rgba(255, 0, 0, 0.7),
+      -3px 0 rgba(0, 255, 255, 0.7);
+  }
+  50% {
+    text-shadow:
+      -4px 1px rgba(255, 0, 0, 0.9),
+      4px -1px rgba(0, 255, 255, 0.9);
+  }
+  75% {
+    text-shadow:
+      1px 2px rgba(255, 0, 0, 0.6),
+      -1px -2px rgba(0, 255, 255, 0.6);
+  }
 }
 
 [data-effects='mild'] .noise-overlay::before {
-  opacity: 0.015;
+  opacity: 0.04;
+  animation: static-noise 0.1s steps(5) infinite;
 }
 
 [data-effects='mild'] .scanlines::after {
-  opacity: 0.5;
+  opacity: 0.3;
+  animation: scanline-flicker 0.05s infinite;
+}
+
+@keyframes scanline-flicker {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.15;
+  }
 }
 
 /* ═══════════════ TERMINAL FLICKER ═══════════════════════════ */
@@ -582,7 +660,12 @@ pre,
     line-height: 1.4 !important;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: #000 !important;
   }
 
@@ -624,20 +707,30 @@ pre,
   }
 
   /* Remove dark backgrounds, shadows, decorative borders */
-  .bg-void, .bg-soot, .bg-ash, .bg-smoke {
+  .bg-void,
+  .bg-soot,
+  .bg-ash,
+  .bg-smoke {
     background: #fff !important;
   }
 
-  .border-fog, .border-signal {
+  .border-fog,
+  .border-signal {
     border-color: #ccc !important;
   }
 
-  .shadow-glow, .shadow-scan, .shadow-static, .shadow-hard, .shadow-brutal {
+  .shadow-glow,
+  .shadow-scan,
+  .shadow-static,
+  .shadow-hard,
+  .shadow-brutal {
     box-shadow: none !important;
   }
 
   /* Text colors for print */
-  .text-chalk, .text-glow, .text-bone {
+  .text-chalk,
+  .text-glow,
+  .text-bone {
     color: #000 !important;
   }
 
@@ -645,7 +738,11 @@ pre,
     color: #666 !important;
   }
 
-  .text-signal, .text-static, .text-flicker, .text-scan, .text-cyan {
+  .text-signal,
+  .text-static,
+  .text-flicker,
+  .text-scan,
+  .text-cyan {
     color: #333 !important;
   }
 
@@ -680,8 +777,8 @@ pre,
   }
 
   /* Ensure links show URLs in print */
-  a[href^="http"]::after {
-    content: " (" attr(href) ")";
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
     font-size: 0.8em;
     color: #666;
   }

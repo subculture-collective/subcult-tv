@@ -6,7 +6,6 @@ import ProjectCard from '@/components/ProjectCard';
 import PostCard from '@/components/PostCard';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import GlitchFrame from '@/components/effects/GlitchFrame';
-import NewsletterSignup from '@/components/NewsletterSignup';
 import { useEffects } from '@/context/useEffects';
 import { fetchGitHubRepos, mergeWithOverrides, FALLBACK_PROJECTS } from '@/lib/github';
 import { getLatestPosts } from '@/lib/posts';
@@ -146,9 +145,14 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin">
             {displayProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+              <div
+                key={project.slug}
+                className="min-w-[300px] max-w-[350px] flex-shrink-0 snap-start"
+              >
+                <ProjectCard project={project} />
+              </div>
             ))}
           </div>
         </div>
@@ -196,10 +200,6 @@ export default function Home() {
           >
             Support on Patreon ↗
           </Button>
-
-          <div className="mt-12 max-w-md mx-auto">
-            <NewsletterSignup />
-          </div>
         </div>
       </section>
     </>

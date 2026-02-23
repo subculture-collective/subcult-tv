@@ -93,17 +93,6 @@ export default function Memo() {
             </div>
           </TerminalPanel>
         </div>
-
-        {/* Secondary CTA */}
-        <div className="text-center py-12 border-t border-fog">
-          <h2 className="mb-4">Ready to Tune In?</h2>
-          <p className="text-bone max-w-xl mx-auto mb-8">
-            Join the frequency. Get the memo. Stay ahead of the noise.
-          </p>
-          <div className="max-w-md mx-auto">
-            <NewsletterSignup />
-          </div>
-        </div>
       </div>
     </>
   );

@@ -273,7 +273,10 @@ export default function AdminProjects() {
           </thead>
           <tbody>
             {projects.map((p) => (
-              <tr key={p.id} className="border-b border-fog/50 hover:bg-ash transition-colors duration-200">
+              <tr
+                key={p.id}
+                className="border-b border-fog/50 hover:bg-ash transition-colors duration-200"
+              >
                 <td className="py-3 px-3">
                   <div className="text-chalk font-medium">{p.name}</div>
                   <div className="font-mono text-xs text-dust">{p.slug}</div>
@@ -281,7 +284,9 @@ export default function AdminProjects() {
                 <td className="py-3 px-3">
                   <StatusBadge status={p.status} />
                 </td>
-                <td className="py-3 px-3 font-mono text-xs text-bone">{p.type}</td>
+                <td className="py-3 px-3 font-mono text-xs text-bone">
+                  {Array.isArray(p.type) ? p.type.join(', ') : p.type}
+                </td>
                 <td className="py-3 px-3 text-center">{p.featured ? '★' : '—'}</td>
                 <td className="py-3 px-3 font-mono text-xs text-dust">{p.sort_order}</td>
                 <td className="py-3 px-3">
@@ -336,7 +341,9 @@ function Field({
     'w-full bg-void border border-fog text-chalk font-mono text-sm px-3 py-2 focus:border-signal outline-none focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-2 transition-colors duration-200';
   return (
     <div>
-      <label htmlFor={id} className="block font-mono text-xs text-bone uppercase mb-1">{label}</label>
+      <label htmlFor={id} className="block font-mono text-xs text-bone uppercase mb-1">
+        {label}
+      </label>
       {textarea ? (
         <textarea
           id={id}
@@ -374,7 +381,9 @@ function Select({
   const id = useId();
   return (
     <div>
-      <label htmlFor={id} className="block font-mono text-xs text-bone uppercase mb-1">{label}</label>
+      <label htmlFor={id} className="block font-mono text-xs text-bone uppercase mb-1">
+        {label}
+      </label>
       <select
         id={id}
         value={value}

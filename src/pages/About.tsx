@@ -130,13 +130,13 @@ export default function About() {
               <span className="text-static">Linux</span>
               <br />
               <span className="text-chalk">editor: </span>
-              <span className="text-static">Neovim</span>
+              <span className="text-static">VS Code</span>
               <br />
               <span className="text-chalk">terminal: </span>
               <span className="text-static">WezTerm</span>
               <br />
               <span className="text-chalk">shell: </span>
-              <span className="text-static">zsh + starship</span>
+              <span className="text-static">zsh</span>
               <br />
               <span className="text-chalk">vcs: </span>
               <span className="text-static">git (self-hosted + GitHub)</span>
@@ -153,10 +153,13 @@ export default function About() {
               <span className="text-chalk">networking: </span>
               <span className="text-static">Tailscale + WireGuard</span>
               <br />
+              <span className="text-chalk">orchestration: </span>
+              <span className="text-static">Kubernetes + Terraform</span>
               <br />
-              <span className="text-dust"># no kubernetes. no terraform.</span>
               <br />
-              <span className="text-dust"># just ssh and a dream.</span>
+              <span className="text-dust"># infrastructure as code.</span>
+              <br />
+              <span className="text-dust"># self-hosted and self-managed.</span>
             </div>
           </TerminalPanel>
         </div>

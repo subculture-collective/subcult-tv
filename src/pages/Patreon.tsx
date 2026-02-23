@@ -3,7 +3,7 @@ import SEOHead from '@/components/SEOHead';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import TerminalPanel from '@/components/effects/TerminalPanel';
-import { Zap, Wrench, Film, Globe, Package } from 'lucide-react';
+import { Zap, Wrench, Film, Globe, Package, Coins } from 'lucide-react';
 import { getPatreonCampaign } from '@/lib/api';
 import type { APIPatreonTier } from '@/lib/api';
 
@@ -60,6 +60,11 @@ const WHAT_SUPPORT_FUNDS = [
     label: 'Open source maintenance',
     detail: 'Bug fixes, reviews, docs — the unglamorous work.',
   },
+  {
+    icon: Coins,
+    label: 'Token allocation & rewards',
+    detail: 'Funding on-chain attribution, contributor tokens, and future incentive structures.',
+  },
 ];
 
 // Strip HTML tags from Patreon descriptions.
@@ -73,9 +78,7 @@ function apiTierToDisplay(tier: APIPatreonTier, index: number): DisplayTier {
   const colors = ['border-fog', 'border-signal', 'border-static', 'border-cyan'];
   const dollars = (tier.amount_cents / 100).toFixed(0);
   const raw = tier.description ? stripHTML(tier.description) : '';
-  const perks = raw
-    ? raw.split(/\n+/).filter((l) => l.trim())
-    : [`${tier.title} tier`];
+  const perks = raw ? raw.split(/\n+/).filter((l) => l.trim()) : [`${tier.title} tier`];
   return {
     name: tier.title,
     price: `$${dollars}/mo`,
@@ -125,7 +128,7 @@ export default function Patreon() {
           {tiers.map((tier) => (
             <Card
               key={tier.name}
-              className={`p-6 ${tier.color} ${tier.highlight ? 'border-2 relative' : ''}`}
+              className={`p-6 h-full flex flex-col ${tier.color} ${tier.highlight ? 'border-2 relative' : ''}`}
             >
               {tier.highlight && (
                 <div className="absolute -top-3 left-4 bg-signal text-void font-mono text-xs px-2 py-0.5 uppercase">
@@ -139,7 +142,7 @@ export default function Patreon() {
                   {tier.patronCount} patron{tier.patronCount !== 1 ? 's' : ''}
                 </p>
               )}
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2 mb-6 flex-1">
                 {tier.perks.map((perk) => (
                   <li key={perk} className="flex items-start gap-2 text-sm text-bone">
                     <span className="text-static mt-0.5">›</span>
@@ -153,7 +156,7 @@ export default function Patreon() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variant={tier.highlight ? 'primary' : 'secondary'}
-                className="w-full"
+                className="w-full mt-auto"
               >
                 Join Tier ↗
               </Button>

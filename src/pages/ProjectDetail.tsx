@@ -123,7 +123,9 @@ export default function ProjectDetail() {
                 <span className="text-chalk">{project.name}</span>
                 <br />
                 <span className="text-bone">type: </span>
-                <span className="text-cyan">{project.type}</span>
+                <span className="text-cyan">
+                  {Array.isArray(project.type) ? project.type.join(', ') : project.type}
+                </span>
                 <br />
                 <span className="text-bone">status: </span>
                 <span className={statusColors[project.status]}>{statusLabels[project.status]}</span>

@@ -15,16 +15,15 @@ const SOCIAL_LINKS = [
     url: 'https://www.patreon.com/subcult',
     handle: 'subcult',
   },
-  // Placeholders — fill in Content Checklist
   {
-    name: 'Mastodon',
-    url: '#',
-    handle: '@subcult@mastodon.social',
+    name: 'Twitter',
+    url: 'https://twitter.com/subcult_tv',
+    handle: '@subcult_tv',
   },
   {
     name: 'Email',
-    url: 'mailto:hello@subcult.tv',
-    handle: 'hello@subcult.tv',
+    url: 'mailto:info@subcult.tv',
+    handle: 'info@subcult.tv',
   },
 ];
 
@@ -53,7 +52,7 @@ export default function Contact() {
       setSubmitted(true);
     } catch (err) {
       // Fallback to mailto if API is unavailable
-      const mailtoUrl = `mailto:hello@subcult.tv?subject=${encodeURIComponent(
+      const mailtoUrl = `mailto:info@subcult.tv?subject=${encodeURIComponent(
         formData.subject || 'Contact from subcult.tv',
       )}&body=${encodeURIComponent(
         `From: ${formData.name} (${formData.email})\n\n${formData.message}`,

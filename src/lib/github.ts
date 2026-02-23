@@ -7,7 +7,7 @@ const CACHE_KEY = 'subcult-github-repos';
 const CACHE_TTL = 1000 * 60 * 60; // 1 hour
 
 // Repos to exclude from display
-const EXCLUDED_REPOS = ['.github', 'subculturecollective.github.io', 'mandalay'];
+const EXCLUDED_REPOS = ['.github', 'subculture-collective.github.io', 'mandalay'];
 
 interface CachedData {
   timestamp: number;
@@ -122,7 +122,12 @@ export function mergeWithOverrides(repos: GitHubRepo[]): Project[] {
     };
   });
 
-  return projects.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+  return projects.sort((a, b) => {
+    // Active projects first
+    if (a.status === 'active' && b.status !== 'active') return -1;
+    if (a.status !== 'active' && b.status === 'active') return 1;
+    return (a.order ?? 999) - (b.order ?? 999);
+  });
 }
 
 // Fallback projects when GitHub API is unavailable
@@ -179,7 +184,7 @@ export const FALLBACK_PROJECTS: Project[] = [
   },
   {
     slug: 'subcult-corp',
-    name: 'SUBCULT OPS',
+    name: 'Subcorp',
     description:
       'Self-sustaining collective of six AI agents running autonomous workflows — proposals, debates, missions, and memory.',
     status: 'active',

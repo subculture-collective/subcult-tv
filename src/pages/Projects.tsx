@@ -26,7 +26,10 @@ export default function Projects() {
   const filtered = useMemo(
     () =>
       projects.filter((p) => {
-        if (typeFilter !== 'all' && p.type !== typeFilter) return false;
+        if (typeFilter !== 'all') {
+          const types = Array.isArray(p.type) ? p.type : [p.type];
+          if (!types.includes(typeFilter)) return false;
+        }
         if (statusFilter !== 'all' && p.status !== statusFilter) return false;
         return true;
       }),

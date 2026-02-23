@@ -5,7 +5,10 @@ import GlitchFrame from '@/components/effects/GlitchFrame';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 
 const WHAT_WE_BUILD = [
-  { label: 'Developer Tools', desc: 'CLI utilities, workflow automation, dev-first infrastructure' },
+  {
+    label: 'Developer Tools',
+    desc: 'CLI utilities, workflow automation, dev-first infrastructure',
+  },
   { label: 'Self-Hosted Software', desc: 'Privacy-respecting alternatives you own and control' },
   { label: 'Media Pipelines', desc: 'Audio, video, and publishing toolchains for creators' },
   { label: 'Privacy Alternatives', desc: 'Replacements for surveillance-economy defaults' },
@@ -30,7 +33,7 @@ const ACTIVE_PROJECTS = [
     stack: ['FFmpeg', 'Node.js', 'Automation'],
   },
   {
-    name: 'SUBCULT OPS',
+    name: 'Subcorp',
     desc: 'Self-hosted infrastructure and deployment toolkit.',
     stack: ['Docker', 'Terraform', 'Ansible'],
   },
@@ -62,9 +65,16 @@ export default function PitchDeckBrand() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Slide 1: Cover */}
         <section className="deck-slide min-h-[80vh] py-20">
-          <GlitchFrame enableScanlines enableNoise enableTracking className="flex flex-col items-center justify-center text-center h-full">
+          <GlitchFrame
+            enableScanlines
+            enableNoise
+            enableTracking
+            className="flex flex-col items-center justify-center text-center h-full"
+          >
             <div className="zine-margin inline-block mb-6">
-              <span className="font-mono text-xs text-dust tracking-widest uppercase">CLASSIFIED // INTERNAL</span>
+              <span className="font-mono text-xs text-dust tracking-widest uppercase">
+                CLASSIFIED // INTERNAL
+              </span>
             </div>
             <h1 className="mb-6 chromatic glitch-text">SUBCULT</h1>
             <p className="text-xl text-bone max-w-2xl leading-relaxed mb-4">
@@ -72,7 +82,8 @@ export default function PitchDeckBrand() {
             </p>
             <p className="font-mono text-sm text-dust">subcult.tv — February 2026</p>
             <div className="mt-8 font-mono text-xs text-dust opacity-50">
-              &gt; LOADING DECK... [OK]<br />
+              &gt; LOADING DECK... [OK]
+              <br />
               &gt; CLASSIFICATION: PARTNER_EYES_ONLY
             </div>
           </GlitchFrame>
@@ -86,28 +97,34 @@ export default function PitchDeckBrand() {
             </div>
             <h2 className="mb-10 text-center chromatic">The Problem</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="halftone">
-                <Card className="p-6 border-signal">
-                  <h4 className="text-signal font-mono text-sm mb-3 uppercase tracking-wider">Surveillance Tools</h4>
-                  <p className="text-bone text-sm">
-                    Creator and developer tools are built on surveillance economics. Your workflow data funds
-                    someone else's ad business. Privacy is an afterthought.
+              <div className="halftone h-full">
+                <Card className="p-6 border-signal h-full flex flex-col">
+                  <h4 className="text-signal font-mono text-sm mb-3 uppercase tracking-wider">
+                    Surveillance Tools
+                  </h4>
+                  <p className="text-bone text-sm flex-1">
+                    Creator and developer tools are built on surveillance economics. Your workflow
+                    data funds someone else's ad business. Privacy is an afterthought.
                   </p>
                 </Card>
               </div>
-              <div className="halftone">
-                <Card className="p-6 border-signal">
-                  <h4 className="text-signal font-mono text-sm mb-3 uppercase tracking-wider">Consolidated Infra</h4>
-                  <p className="text-bone text-sm">
-                    A handful of corporations control the platforms, hosting, and distribution channels.
-                    Lock-in is the default. Portability is a fantasy.
+              <div className="halftone-offset-1 h-full">
+                <Card className="p-6 border-signal h-full flex flex-col">
+                  <h4 className="text-signal font-mono text-sm mb-3 uppercase tracking-wider">
+                    Consolidated Infra
+                  </h4>
+                  <p className="text-bone text-sm flex-1">
+                    A handful of corporations control the platforms, hosting, and distribution
+                    channels. Lock-in is the default. Portability is a fantasy.
                   </p>
                 </Card>
               </div>
-              <div className="halftone">
-                <Card className="p-6 border-signal">
-                  <h4 className="text-signal font-mono text-sm mb-3 uppercase tracking-wider">Underfunded OSS</h4>
-                  <p className="text-bone text-sm">
+              <div className="halftone-offset-2 h-full">
+                <Card className="p-6 border-signal h-full flex flex-col">
+                  <h4 className="text-signal font-mono text-sm mb-3 uppercase tracking-wider">
+                    Underfunded OSS
+                  </h4>
+                  <p className="text-bone text-sm flex-1">
                     The open-source ecosystem powers the internet but runs on burnout and good will.
                     Sustainable funding models are rare.
                   </p>
@@ -131,7 +148,8 @@ export default function PitchDeckBrand() {
                   <span className="text-glow uppercase font-bold">Privacy-First, Open Source</span>
                   <br />
                   <span className="text-bone ml-6 inline-block">
-                    Every tool we ship is open source. No telemetry, no tracking, no ads. You own your data.
+                    Every tool we ship is open source. No telemetry, no tracking, no ads. You own
+                    your data.
                   </span>
                 </div>
                 <div>
@@ -139,7 +157,8 @@ export default function PitchDeckBrand() {
                   <span className="text-glow uppercase font-bold">Community-Funded</span>
                   <br />
                   <span className="text-bone ml-6 inline-block">
-                    Funded by users. Patreon, commercial tiers, and consulting — not VC extraction loops.
+                    Funded by users. Patreon, commercial tiers, and consulting — not VC extraction
+                    loops.
                   </span>
                 </div>
                 <div>
@@ -163,10 +182,12 @@ export default function PitchDeckBrand() {
           <h2 className="mb-10 text-center chromatic">What We Build</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {WHAT_WE_BUILD.map((cat) => (
-              <GlitchFrame key={cat.label} enableScanlines>
-                <Card className="p-5">
-                  <h4 className="font-mono text-sm text-glow mb-2 uppercase tracking-wider">{cat.label}</h4>
-                  <p className="text-xs text-bone">{cat.desc}</p>
+              <GlitchFrame key={cat.label} enableScanlines className="h-full">
+                <Card className="p-5 h-full flex flex-col">
+                  <h4 className="font-mono text-sm text-glow mb-2 uppercase tracking-wider">
+                    {cat.label}
+                  </h4>
+                  <p className="text-xs text-bone flex-1">{cat.desc}</p>
                 </Card>
               </GlitchFrame>
             ))}
@@ -183,13 +204,18 @@ export default function PitchDeckBrand() {
           <h2 className="mb-10 text-center chromatic">Active Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {ACTIVE_PROJECTS.map((proj) => (
-              <GlitchFrame key={proj.name} enableScanlines enableNoise>
-                <Card className="p-6 border-signal">
-                  <h4 className="font-mono text-sm text-glow mb-2 uppercase tracking-wider">{proj.name}</h4>
-                  <p className="text-sm text-bone mb-3">{proj.desc}</p>
-                  <div className="flex flex-wrap gap-2">
+              <GlitchFrame key={proj.name} enableScanlines enableNoise className="h-full">
+                <Card className="p-6 border-signal h-full flex flex-col">
+                  <h4 className="font-mono text-sm text-glow mb-2 uppercase tracking-wider">
+                    {proj.name}
+                  </h4>
+                  <p className="text-sm text-bone mb-3 flex-1">{proj.desc}</p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {proj.stack.map((tag) => (
-                      <span key={tag} className="font-mono text-xs bg-smoke text-static px-2 py-0.5 border border-fog">
+                      <span
+                        key={tag}
+                        className="font-mono text-xs bg-smoke text-static px-2 py-0.5 border border-fog"
+                      >
                         {tag}
                       </span>
                     ))}
@@ -199,9 +225,7 @@ export default function PitchDeckBrand() {
             ))}
           </div>
           <div className="torn-edge-bottom bg-smoke mt-8 pt-2 pb-8 px-4">
-            <p className="font-mono text-xs text-dust text-center">
-              &gt; all systems nominal
-            </p>
+            <p className="font-mono text-xs text-dust text-center">&gt; all systems nominal</p>
           </div>
         </section>
 
@@ -227,7 +251,8 @@ export default function PitchDeckBrand() {
               </Card>
             </div>
             <p className="text-center text-xs text-dust font-mono">
-              * Market estimates based on industry reports. Survey data from developer community polls.
+              * Market estimates based on industry reports. Survey data from developer community
+              polls.
             </p>
           </GlitchFrame>
         </section>
@@ -260,11 +285,15 @@ export default function PitchDeckBrand() {
           </TerminalPanel>
           <GlitchFrame enableScanlines>
             <Card className="p-6">
-              <h4 className="font-mono text-sm text-glow mb-3 uppercase tracking-wider">Key Milestones</h4>
+              <h4 className="font-mono text-sm text-glow mb-3 uppercase tracking-wider">
+                Key Milestones
+              </h4>
               <ul className="space-y-2 text-sm text-bone">
                 <li className="flex items-start gap-2">
                   <span className="text-static font-mono">[+]</span>
-                  <span>Fully operational website with portfolio, zine, and investor materials</span>
+                  <span>
+                    Fully operational website with portfolio, zine, and investor materials
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-static font-mono">[+]</span>
@@ -272,7 +301,9 @@ export default function PitchDeckBrand() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-static font-mono">[+]</span>
-                  <span>Active development across multiple projects with public commit history</span>
+                  <span>
+                    Active development across multiple projects with public commit history
+                  </span>
                 </li>
               </ul>
             </Card>
@@ -287,39 +318,51 @@ export default function PitchDeckBrand() {
             </div>
             <h2 className="mb-10 text-center chromatic">Business Model</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="p-6 border-signal">
+              <Card className="p-6 border-signal h-full flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="font-mono text-xs bg-static text-void px-2 py-0.5">ACTIVE</span>
                   <h4 className="font-mono text-sm text-glow uppercase tracking-wider">Patreon</h4>
                 </div>
-                <p className="text-sm text-bone">
+                <p className="text-sm text-bone flex-1">
                   Community funding via tiers. Early access, BTS updates, roadmap input.
                 </p>
               </Card>
-              <Card className="p-6">
+              <Card className="p-6 h-full flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="font-mono text-xs bg-flicker text-void px-2 py-0.5">PLANNED</span>
-                  <h4 className="font-mono text-sm text-glow uppercase tracking-wider">Commercial Tiers</h4>
+                  <span className="font-mono text-xs bg-flicker text-void px-2 py-0.5">
+                    PLANNED
+                  </span>
+                  <h4 className="font-mono text-sm text-glow uppercase tracking-wider">
+                    Commercial Tiers
+                  </h4>
                 </div>
-                <p className="text-sm text-bone">
+                <p className="text-sm text-bone flex-1">
                   Premium features and hosted versions for teams and businesses.
                 </p>
               </Card>
-              <Card className="p-6">
+              <Card className="p-6 h-full flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="font-mono text-xs bg-flicker text-void px-2 py-0.5">PLANNED</span>
-                  <h4 className="font-mono text-sm text-glow uppercase tracking-wider">Consulting</h4>
+                  <span className="font-mono text-xs bg-flicker text-void px-2 py-0.5">
+                    PLANNED
+                  </span>
+                  <h4 className="font-mono text-sm text-glow uppercase tracking-wider">
+                    Consulting
+                  </h4>
                 </div>
-                <p className="text-sm text-bone">
+                <p className="text-sm text-bone flex-1">
                   Implementation consulting for orgs adopting open-source infra.
                 </p>
               </Card>
-              <Card className="p-6">
+              <Card className="p-6 h-full flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="font-mono text-xs bg-flicker text-void px-2 py-0.5">PLANNED</span>
-                  <h4 className="font-mono text-sm text-glow uppercase tracking-wider">Sponsorships</h4>
+                  <span className="font-mono text-xs bg-flicker text-void px-2 py-0.5">
+                    PLANNED
+                  </span>
+                  <h4 className="font-mono text-sm text-glow uppercase tracking-wider">
+                    Sponsorships
+                  </h4>
                 </div>
-                <p className="text-sm text-bone">
+                <p className="text-sm text-bone flex-1">
                   Project sponsorships from aligned companies. No surveillance sponsors.
                 </p>
               </Card>
@@ -347,7 +390,9 @@ export default function PitchDeckBrand() {
             </div>
           </TerminalPanel>
           <div className="torn-edge-bottom bg-smoke mt-6 pt-2 pb-6 px-4">
-            <p className="font-mono text-xs text-dust text-center">&gt; schedule confirmed. deploying...</p>
+            <p className="font-mono text-xs text-dust text-center">
+              &gt; schedule confirmed. deploying...
+            </p>
           </div>
         </section>
 
@@ -381,20 +426,11 @@ export default function PitchDeckBrand() {
                 <Button as="a" href="mailto:invest@subcult.tv" size="lg">
                   Email Us
                 </Button>
-                <Button
-                  as="a"
-                  href="https://cal.com/subcult/intro"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="signal"
-                  size="lg"
-                >
-                  Schedule a Call
+                <Button as="link" to="/contact" variant="signal" size="lg">
+                  Contact Us
                 </Button>
               </div>
-              <p className="font-mono text-xs text-dust mt-6">
-                invest@subcult.tv — subcult.tv
-              </p>
+              <p className="font-mono text-xs text-dust mt-6">invest@subcult.tv — subcult.tv</p>
               <p className="font-mono text-[10px] text-dust mt-4 opacity-40">
                 &gt; END TRANSMISSION // SUBCULT {new Date().getFullYear()}
               </p>

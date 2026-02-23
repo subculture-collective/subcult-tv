@@ -124,7 +124,8 @@ export default function Invest() {
               <h4 className="font-mono text-sm text-glow mb-1">Pitch Deck</h4>
               <p className="text-[10px] text-dust font-mono mb-2">STANDARD</p>
               <p className="text-xs text-bone mb-4">
-                Full overview: vision, market, product, traction, and the ask. Clean, professional format.
+                Full overview: vision, market, product, traction, and the ask. Clean, professional
+                format.
               </p>
               <div className="flex gap-2">
                 <Button as="link" to="/deck" variant="primary" size="sm" className="flex-1">
@@ -199,7 +200,13 @@ export default function Invest() {
                 Zine-style executive summary with full SUBCULT visual treatment.
               </p>
               <div className="flex gap-2">
-                <Button as="link" to="/onepager/brand" variant="signal" size="sm" className="flex-1">
+                <Button
+                  as="link"
+                  to="/onepager/brand"
+                  variant="signal"
+                  size="sm"
+                  className="flex-1"
+                >
                   View
                 </Button>
                 <Button
@@ -229,15 +236,8 @@ export default function Invest() {
             <Button as="a" href="mailto:invest@subcult.tv" size="lg">
               Email Us ↗
             </Button>
-            <Button
-              as="a"
-              href="https://cal.com/subcult/intro"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="secondary"
-              size="lg"
-            >
-              Schedule a Call ↗
+            <Button as="link" to="/contact" variant="secondary" size="lg">
+              Contact Us
             </Button>
           </div>
 
