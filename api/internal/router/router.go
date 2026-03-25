@@ -7,6 +7,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	chimw "github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	"github.com/subculture-collective/subcult-tv/api/internal/config"
 	"github.com/subculture-collective/subcult-tv/api/internal/handlers"
@@ -48,6 +49,9 @@ func New(cfg *config.Config, h *handlers.Handler) *chi.Mux {
 		AllowCredentials: true,
 		MaxAge:           300,
 	}))
+
+	// ── Metrics ──────────────────────────────────────────────
+	r.Handle("/metrics", promhttp.Handler())
 
 	// ── Health ───────────────────────────────────────────────
 	r.Get("/healthz", func(w http.ResponseWriter, _ *http.Request) {
