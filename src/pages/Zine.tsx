@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-import { posts } from '@/lib/posts';
+import { posts, isPublished } from '@/lib/posts';
 
 const numbered = posts.map((post, index) => ({
   ...post,
@@ -46,7 +46,7 @@ export default function Zine() {
         {/* Posts Index */}
         <div className="space-y-4 max-w-3xl mx-auto">
           {numbered.map((post) => {
-            const published = !!post.mdx;
+            const published = isPublished(post);
 
             const content = (
               <Card hoverable={published} className={`p-6 ${!published ? 'opacity-40' : ''}`}>

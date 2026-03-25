@@ -25,6 +25,7 @@ export const posts: Post[] = [
       'Measurement is necessary. Metrics are dangerous. Why the numbers we worship quietly reshape culture.',
     tags: ['foundations', 'metrics', 'culture'],
     author: 'SUBCULT',
+    mdx: () => import('@content/posts/against-metrics.mdx'),
     series: { name: 'Foundations', week: 2, total: 8 },
   },
   {
@@ -35,6 +36,7 @@ export const posts: Post[] = [
       'The infinite scroll promises discovery but delivers retention. What happens when we build for retrieval instead?',
     tags: ['foundations', 'discovery', 'clipper'],
     author: 'SUBCULT',
+    mdx: () => import('@content/posts/the-feed-without-the-feed.mdx'),
     series: { name: 'Foundations', week: 3, total: 8 },
   },
   {
@@ -45,6 +47,7 @@ export const posts: Post[] = [
       'The order of search results encodes judgment. Search is governance by algorithm.',
     tags: ['foundations', 'search', 'governance'],
     author: 'SUBCULT',
+    mdx: () => import('@content/posts/search-is-governance.mdx'),
     series: { name: 'Foundations', week: 4, total: 8 },
   },
   {
@@ -55,6 +58,7 @@ export const posts: Post[] = [
       'Moderation is not a patch. It is architecture. Every system encodes assumptions about behavior.',
     tags: ['foundations', 'moderation', 'community'],
     author: 'SUBCULT',
+    mdx: () => import('@content/posts/moderation-is-infrastructure.mdx'),
     series: { name: 'Foundations', week: 5, total: 8 },
   },
   {
@@ -65,6 +69,7 @@ export const posts: Post[] = [
       'Before algorithmic feeds, there were zines. They were not optimized. They were intentional.',
     tags: ['foundations', 'zines', 'publishing'],
     author: 'SUBCULT',
+    mdx: () => import('@content/posts/digital-zines-as-resistance.mdx'),
     series: { name: 'Foundations', week: 6, total: 8 },
   },
   {
@@ -75,6 +80,7 @@ export const posts: Post[] = [
       'Most collaborative projects fail because of exhaustion. Sustainability is a design constraint.',
     tags: ['foundations', 'process', 'sustainability'],
     author: 'SUBCULT',
+    mdx: () => import('@content/posts/how-we-work-without-burning-out.mdx'),
     series: { name: 'Foundations', week: 7, total: 8 },
   },
   {
@@ -85,19 +91,27 @@ export const posts: Post[] = [
       'Every community has a shape. These shapes determine how information travels, how conflict spreads, and how innovation emerges.',
     tags: ['foundations', 'community', 'graphmap'],
     author: 'SUBCULT',
+    mdx: () => import('@content/posts/the-shape-of-a-community.mdx'),
     series: { name: 'Foundations', week: 8, total: 8 },
   },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────
 
-/** Only posts with an `mdx` loader are considered published. */
+/** A post is published when it has an `mdx` loader and its date is today or earlier. */
+export function isPublished(post: Post): boolean {
+  if (!post.mdx) return false;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return new Date(post.date + 'T00:00:00') <= today;
+}
+
 export function getPublishedPosts(): Post[] {
-  return posts.filter((p) => p.mdx);
+  return posts.filter(isPublished);
 }
 
 export function getPostBySlug(slug: string): Post | undefined {
-  return posts.find((p) => p.slug === slug && p.mdx);
+  return posts.find((p) => p.slug === slug && isPublished(p));
 }
 
 export function getPostMDX(slug: string) {
@@ -117,6 +131,6 @@ export function getNextInSeries(slug: string): Post | undefined {
   if (!current?.series) return undefined;
   const idx = posts.indexOf(current);
   const next = posts[idx + 1];
-  if (next?.series?.name === current.series.name) return next;
+  if (next?.series?.name === current.series.name && isPublished(next)) return next;
   return undefined;
 }
