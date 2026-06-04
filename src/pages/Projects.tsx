@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import SEOHead from '@/components/SEOHead';
 import ProjectCard from '@/components/ProjectCard';
-import { getCuratedProjects } from '@/lib/github';
+import { getCuratedProjects, getFeaturedProjects, getToolProjects } from '@/lib/github';
 
 type FilterType = 'all' | 'software' | 'media' | 'tools';
 type FilterStatus = 'all' | 'active' | 'incubating' | 'archived';
@@ -10,6 +10,7 @@ export default function Projects() {
   const projects = getCuratedProjects();
   const [typeFilter, setTypeFilter] = useState<FilterType>('all');
   const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
+  const hasFilters = typeFilter !== 'all' || statusFilter !== 'all';
 
   const filtered = useMemo(
     () =>
@@ -24,11 +25,14 @@ export default function Projects() {
     [projects, typeFilter, statusFilter],
   );
 
+  const featuredProjects = getFeaturedProjects(projects);
+  const toolProjects = getToolProjects(projects);
+
   return (
     <>
       <SEOHead
         title="Projects"
-        description="Open source tools, media projects, and infrastructure built by SUBCULT."
+        description="Featured projects and tools in the SUBCULT catalog, curated by hand from self-hosted Gitea."
         path="/projects"
       />
 
@@ -38,8 +42,8 @@ export default function Projects() {
           <p className="font-mono text-xs text-dust mb-3">&gt; ls -la /projects/</p>
           <h1 className="mb-4">Projects</h1>
           <p className="text-bone max-w-2xl">
-            Everything we build is open source. Tools, media, infrastructure — every repo ships with
-            intent.
+            Everything here is curated by hand from the SUBCULT catalog. Featured projects sit
+            alongside tools &amp; infrastructure — every repo ships with intent.
           </p>
         </div>
 
@@ -80,25 +84,67 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Results count */}
-        <p className="font-mono text-xs text-dust mb-6">
-          {`> ${filtered.length} project${filtered.length !== 1 ? 's' : ''} found`}
-        </p>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
-
-        {filtered.length === 0 && (
-          <div className="text-center py-16">
-            <p className="font-mono text-dust">
-              &gt; no projects match current filters
-              <br />
-              &gt; try adjusting parameters
+        {hasFilters ? (
+          <>
+            {/* Results count */}
+            <p className="font-mono text-xs text-dust mb-6">
+              {`> ${filtered.length} project${filtered.length !== 1 ? 's' : ''} found`}
             </p>
+
+            {/* Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+
+            {filtered.length === 0 && (
+              <div className="text-center py-16">
+                <p className="font-mono text-dust">
+                  &gt; no projects match current filters
+                  <br />
+                  &gt; try adjusting parameters
+                </p>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="space-y-16">
+            <section>
+              <div className="flex items-center justify-between mb-6">
+                <h2>
+                  <span className="text-dust font-mono text-sm mr-3">//</span>
+                  Featured Projects
+                </h2>
+                <p className="font-mono text-xs text-dust">flagships // active</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {featuredProjects.map((project) => (
+                  <ProjectCard key={project.slug} project={project} />
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <div className="flex items-center justify-between mb-6">
+                <h2>
+                  <span className="text-dust font-mono text-sm mr-3">//</span>
+                  Tools &amp; Infrastructure
+                </h2>
+                <p className="font-mono text-xs text-dust">utilities // support systems</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {toolProjects.map((project) => (
+                  <ProjectCard key={project.slug} project={project} />
+                ))}
+              </div>
+
+              {toolProjects.length === 0 && (
+                <p className="font-mono text-xs text-dust mt-6">&gt; no tools indexed yet</p>
+              )}
+            </section>
           </div>
         )}
       </div>

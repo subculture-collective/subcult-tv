@@ -21,7 +21,7 @@ Before launching, fill in or replace the following placeholder content.
 ## Content
 
 - [ ] **Project screenshots** — Add real screenshots to replace generated CoverArt for curated entries
-- [ ] **Project descriptions** — Enrich `content/projects.json` with full descriptions, repo URLs, and ordering for each project
+- [ ] **Project descriptions** — Enrich `content/projects.json` with public copy, repo URLs, ordering, and manual curation details for each SUBCULT project/tool
 - [ ] **Patreon tier details** — Update `src/pages/Patreon.tsx` with actual tier names and prices
 - [ ] **About page copy** — Review and personalize mission/values text
 - [ ] **Manifesto post** — Review and finalize `content/posts/subcult-manifesto.mdx`

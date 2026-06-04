@@ -1,7 +1,7 @@
 # subcult.tv
 
 > **SUBCULT — Subculture Collective**
-> We build tools, media, and infrastructure for the counterculture.
+> We build curated projects, tools, media, and infrastructure for the counterculture.
 
 [![Build](https://img.shields.io/badge/build-passing-00ff88)](https://subcult.tv)
 [![License](https://img.shields.io/badge/license-MIT-ff3333)](LICENSE)
@@ -21,7 +21,7 @@
 | **Database**  | PostgreSQL 16                               | Relational storage for projects, posts, contacts, subscribers          |
 | **Auth**      | JWT (HMAC SHA256)                           | Stateless auth with bcrypt password hashing                            |
 | **Analytics** | Umami                                       | Self-hosted, privacy-first analytics                                   |
-| **Data**      | Curated local JSON + DB                     | Manual project catalog, edited locally and served synchronously         |
+| **Data**      | Curated local JSON + DB                     | Manual project catalog, edited locally, synced via self-hosted Gitea    |
 | **Fonts**     | Oswald / Libre Baskerville / JetBrains Mono | Display / body / mono — punk + editorial + terminal                    |
 | **Infra**     | Docker Compose                              | PostgreSQL, Go API, and Umami in containers                            |
 
@@ -107,8 +107,8 @@ VITE_API_URL=                                # Override API base URL (defaults t
 
 | Route             | Page           | Description                                                                      |
 | ----------------- | -------------- | -------------------------------------------------------------------------------- |
-| `/`               | Home           | Hero, featured projects, manifesto, latest posts, newsletter signup, Patreon CTA |
-| `/projects`       | Projects       | Filterable grid of all projects (type + status filters)                          |
+| `/`               | Home           | Hero, featured projects, tools strip, manifesto, latest posts, Patreon CTA      |
+| `/projects`       | Projects       | Featured projects + tools sections, with type + status filters                   |
 | `/projects/:slug` | Project Detail | Full project page with cover art, description, stack, links, CTA                 |
 | `/support`        | Patreon        | Tier blocks, what support funds, shipping cadence, CTA                           |
 | `/about`          | About / Studio | Mission, values, what we build/won't build, toolchain                            |
@@ -137,7 +137,7 @@ All API routes are prefixed with `/api/v1`.
 | Method   | Endpoint                            | Description                          |
 | -------- | ----------------------------------- | ------------------------------------ |
 | `GET`    | `/api/health`                       | Health check                         |
-| `GET`    | `/api/v1/projects`                  | List projects (`?status=`, `?type=`) |
+| `GET`    | `/api/v1/projects`                  | List projects (`?status=`, `?type=`) — backed by curated local data |
 | `GET`    | `/api/v1/projects/:slug`            | Get project by slug                  |
 | `GET`    | `/api/v1/posts`                     | List published posts (paginated)     |
 | `GET`    | `/api/v1/posts/:slug`               | Get post by slug                     |

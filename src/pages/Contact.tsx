@@ -71,7 +71,7 @@ export default function Contact() {
     <>
       <SEOHead
         title="Contact"
-        description="Get in touch with the Subculture Collective. Collaborations, questions, bug reports welcome."
+        description="Get in touch with the Subculture Collective. Collaborations, questions, project leads, and bug reports welcome."
         path="/contact"
       />
 
@@ -81,7 +81,7 @@ export default function Contact() {
           <h1 className="mb-4">Contact</h1>
           <p className="text-bone max-w-2xl">
             Have a question, a collaboration idea, or a bug to report? Open a channel. We respond to
-            genuine signals.
+            genuine signals — especially around the curated projects and tools catalog.
           </p>
         </div>
 

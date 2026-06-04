@@ -1,6 +1,8 @@
 import projectCatalog from '@content/projects.json';
 import type { Project } from '@/types';
 
+type ProjectType = 'software' | 'media' | 'tools';
+
 function sortProjects(projects: Project[]): Project[] {
   return [...projects].sort((a, b) => {
     if (a.status === 'active' && b.status !== 'active') return -1;
@@ -12,6 +14,22 @@ function sortProjects(projects: Project[]): Project[] {
 export const CURATED_PROJECTS: Project[] = sortProjects(
   Object.values(projectCatalog) as Project[],
 );
+
+function getProjectTypes(project: Project): ProjectType[] {
+  return Array.isArray(project.type) ? project.type : [project.type];
+}
+
+export function isToolProject(project: Project): boolean {
+  return getProjectTypes(project).includes('tools');
+}
+
+export function getFeaturedProjects(projects: Project[] = CURATED_PROJECTS): Project[] {
+  return projects.filter((project) => project.featured);
+}
+
+export function getToolProjects(projects: Project[] = CURATED_PROJECTS): Project[] {
+  return projects.filter((project) => isToolProject(project) && !project.featured);
+}
 
 export function getCuratedProjects(): Project[] {
   return CURATED_PROJECTS;

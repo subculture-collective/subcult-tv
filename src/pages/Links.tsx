@@ -47,7 +47,7 @@ export default function Links() {
     <>
       <SEOHead
         title="Links"
-        description="All SUBCULT links in one place. Zine, newsletter, support, and social profiles."
+        description="All SUBCULT links in one place — curated projects, tools, zine, newsletter, support, and social profiles."
         path="/links"
       />
 

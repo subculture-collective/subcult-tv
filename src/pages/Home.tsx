@@ -6,7 +6,7 @@ import PostCard from '@/components/PostCard';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import GlitchFrame from '@/components/effects/GlitchFrame';
 import { useEffects } from '@/context/useEffects';
-import { getCuratedProjects } from '@/lib/github';
+import { getCuratedProjects, getFeaturedProjects, getToolProjects } from '@/lib/github';
 import { getLatestPosts } from '@/lib/posts';
 
 export default function Home() {
@@ -15,8 +15,8 @@ export default function Home() {
 
   const projects = getCuratedProjects();
 
-  const featured = projects.filter((p) => p.featured).slice(0, 6);
-  const displayProjects = featured.length > 0 ? featured : projects.slice(0, 6);
+  const featuredProjects = getFeaturedProjects(projects).slice(0, 6);
+  const toolProjects = getToolProjects(projects).slice(0, 4);
 
   return (
     <>
@@ -43,8 +43,8 @@ export default function Home() {
 
               {/* Tagline */}
               <p className="text-lg md:text-xl text-bone leading-relaxed mb-8 max-w-2xl animate-fade-in-up animation-delay-200">
-                We build tools, media, and infrastructure for the counterculture. Open source. DIY.
-                No masters.
+                We build curated projects, tools, media, and infrastructure for the counterculture.
+                Open source. DIY. No masters.
               </p>
 
               {/* CTAs */}
@@ -126,7 +126,7 @@ export default function Home() {
           <div className="flex items-center justify-between mb-8">
             <h2>
               <span className="text-dust font-mono text-sm mr-3">//</span>
-              Projects
+              Featured Projects
             </h2>
             <Link
               to="/projects"
@@ -136,18 +136,49 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin">
-            {displayProjects.map((project) => (
-              <div
-                key={project.slug}
-                className="min-w-[300px] max-w-[350px] flex-shrink-0 snap-start"
-              >
-                <ProjectCard project={project} />
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </div>
       </section>
+
+      {/* ═══════ TOOLS STRIP ═══════ */}
+      {toolProjects.length > 0 && (
+        <section className="py-12 border-t border-fog bg-soot">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2>
+                <span className="text-dust font-mono text-sm mr-3">//</span>
+                Tools &amp; Infrastructure
+              </h2>
+              <Link
+                to="/projects"
+                className="font-mono text-sm text-bone hover:text-signal transition-colors"
+              >
+                Open the full catalog →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {toolProjects.map((project) => (
+                <Link
+                  key={project.slug}
+                  to={`/projects/${project.slug}`}
+                  className="group block bg-ash border border-fog p-4 hover:border-signal transition-colors no-underline"
+                >
+                  <p className="font-mono text-xs text-dust mb-2">tools // {project.status}</p>
+                  <h3 className="font-display text-lg uppercase tracking-wide text-glow group-hover:text-signal transition-colors mb-2">
+                    {project.name}
+                  </h3>
+                  <p className="text-sm text-bone line-clamp-3">{project.description}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══════ LATEST POSTS ═══════ */}
       <section className="py-16 md:py-24 bg-soot border-t border-fog">

@@ -6,7 +6,7 @@ export default function About() {
     <>
       <SEOHead
         title="About"
-        description="Subculture Collective — our mission, values, process, and the tools we use to build."
+        description="Subculture Collective — mission, values, process, curated projects, and the tools we use to build."
         path="/about"
       />
 
@@ -16,8 +16,8 @@ export default function About() {
           <p className="font-mono text-xs text-dust mb-3">&gt; cat /about/README.md</p>
           <h1 className="mb-6">About // Studio</h1>
           <p className="text-bone max-w-3xl text-lg leading-relaxed">
-            Subculture Collective (SUBCULT) is an independent studio building open source tools,
-            media projects, and infrastructure for people who refuse to be products.
+            Subculture Collective (SUBCULT) is an independent studio building open source projects,
+            tools, media, and infrastructure for people who refuse to be products.
           </p>
         </div>
 
@@ -33,6 +33,11 @@ export default function About() {
                 We exist because the tools we needed didn't exist, and the ones that did were locked
                 behind paywalls, surveillance stacks, and terms of service written by people who've
                 never touched a terminal.
+              </p>
+              <p>
+                The portfolio is curated by hand from{' '}
+                <span className="text-cyan">content/projects.json</span> and self-hosted Gitea
+                repositories — no auto-filled listings, no borrowed credit.
               </p>
               <p>
                 Our mission is simple:{' '}
@@ -140,6 +145,9 @@ export default function About() {
               <br />
               <span className="text-chalk">vcs: </span>
               <span className="text-static">git (self-hosted Gitea)</span>
+              <br />
+              <span className="text-chalk">catalog: </span>
+              <span className="text-static">manual curation from local JSON</span>
               <br />
               <span className="text-chalk">ci: </span>
               <span className="text-static">self-hosted git + custom scripts</span>

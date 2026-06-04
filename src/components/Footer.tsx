@@ -43,7 +43,7 @@ export default function Footer() {
             <p className="font-mono text-xs text-bone mt-3 leading-relaxed">
               Subculture Collective
               <br />
-              Tools, media, and infrastructure
+              Curated projects, tools, and infrastructure
               <br />
               for the counterculture.
             </p>
@@ -95,7 +95,7 @@ export default function Footer() {
               <p className="font-mono text-xs text-fog">
                 &gt; No tracking. No cookies. No surveillance.
                 <br />
-                &gt; Built with open source tools.
+                &gt; Built from a hand-curated local catalog.
                 <br />
                 &gt; Source tracked in self-hosted Gitea.
               </p>
