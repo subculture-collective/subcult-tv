@@ -1,7 +1,7 @@
 import projectCatalog from '@content/projects.json';
 import type { Project } from '@/types';
 
-type ProjectType = 'software' | 'media' | 'tools';
+type ProjectType = 'software' | 'media' | 'tools' | 'social';
 
 function sortProjects(projects: Project[]): Project[] {
   return [...projects].sort((a, b) => {

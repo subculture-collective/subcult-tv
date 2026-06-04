@@ -2,89 +2,218 @@ import { Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-import { posts, isPublished } from '@/lib/posts';
+import { getPublishedPosts } from '@/lib/posts';
+import type { Post } from '@/types';
 
-const numbered = posts.map((post, index) => ({
-  ...post,
-  number: index + 1,
-}));
+type SeriesGroup = {
+  name: string;
+  total: number;
+  posts: Post[];
+};
+
+function buildSeriesGroups(publishedPosts: Post[]): SeriesGroup[] {
+  const groups: SeriesGroup[] = [];
+  const lookup = new Map<string, SeriesGroup>();
+
+  for (const post of publishedPosts) {
+    if (!post.series) continue;
+
+    const existing = lookup.get(post.series.name);
+    if (existing) {
+      existing.posts.push(post);
+      continue;
+    }
+
+    const created: SeriesGroup = {
+      name: post.series.name,
+      total: post.series.total,
+      posts: [post],
+    };
+
+    lookup.set(post.series.name, created);
+    groups.push(created);
+  }
+
+  return groups;
+}
 
 export default function Zine() {
+  const publishedPosts = getPublishedPosts();
+  const seriesGroups = buildSeriesGroups(publishedPosts);
+
   return (
     <>
       <SEOHead
         title="The Zine"
-        description="Founding documents and dispatches from the Subculture Collective. Philosophy, process, and the refusal to be optimized."
+        description="Two serialized zine series from Subculture Collective: Foundations, and the new Field Systems premiere. Philosophy, process, and weekly dispatches."
         path="/zine"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10 md:mb-14">
           <p className="font-mono text-xs text-dust mb-3">&gt; cat /zine/index</p>
           <h1 className="mb-4">The Zine</h1>
-          <p className="font-mono text-sm text-flicker mb-6">Season 0 — Foundations</p>
+          <p className="font-mono text-sm text-flicker mb-6">
+            Two series — Foundations is complete, Field Systems is premiering now
+          </p>
           <p className="text-bone max-w-2xl mx-auto text-lg leading-relaxed">
-            Dispatches from the workshop. Philosophy, process, and the principles
-            that guide what we build.
+            Dispatches from the workshop in two serialized arcs: the original
+            Foundations run, and the newly launched Field Systems series with new
+            entries arriving weekly.
           </p>
         </div>
 
-        {/* Start Here Box */}
-        <div className="bg-ash border border-static p-6 mb-12 max-w-2xl mx-auto">
-          <h2 className="font-mono text-sm text-static mb-3">// START HERE</h2>
-          <p className="text-bone mb-4">
-            <strong className="text-glow">Subculture Collective</strong> is a studio building tools,
-            media, and infrastructure for the counterculture. We ship open-source software, publish
-            technical content, and operate independently of venture capital.
-          </p>
-          <p className="text-bone">
-            Read in order, or jump to what interests you. New entries drop every Tuesday.
-          </p>
+        {/* Series chooser */}
+        <div className="grid gap-4 lg:grid-cols-2 mb-12 md:mb-16">
+          <Link
+            to="/zine/boot-sequence"
+            className="block h-full no-underline focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-4"
+          >
+            <Card className="group relative h-full overflow-hidden border-fog p-6 md:p-8 transition-all duration-200 hover:border-signal hover:shadow-glow">
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-fog to-transparent" />
+              <div className="relative flex h-full flex-col">
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-dust mb-3">
+                  Series One · Foundations
+                </p>
+                <h2 className="font-display text-3xl text-glow mb-3 group-hover:text-signal transition-colors">
+                  Start here
+                </h2>
+                <p className="text-bone text-base leading-relaxed max-w-xl">
+                  The original 8-post arc on mission, metrics, discovery, moderation,
+                  and the operating principles behind Subculture Collective.
+                </p>
+
+                <div className="mt-6 grid grid-cols-2 gap-3 text-center">
+                  <div className="bg-ash border border-fog p-3">
+                    <p className="font-display text-2xl text-glow">8/8</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-dust mt-1">
+                      Published
+                    </p>
+                  </div>
+                  <div className="bg-ash border border-fog p-3">
+                    <p className="font-display text-2xl text-glow">Complete</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-dust mt-1">
+                      Read in order
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex items-center justify-between border-t border-fog pt-4 font-mono text-xs uppercase tracking-[0.3em] text-dust group-hover:text-signal transition-colors">
+                  <span>Open Foundations</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </Card>
+          </Link>
+
+          <Link
+            to="/zine/the-signal-tower"
+            className="block h-full no-underline focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-4"
+          >
+            <Card className="group relative h-full overflow-hidden border-signal p-6 md:p-8 shadow-glow transition-all duration-200 hover:border-signal-dim">
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal to-transparent" />
+              <div className="relative flex h-full flex-col">
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-signal mb-3">
+                  Series Two · Premiere
+                </p>
+                <h2 className="font-display text-3xl text-glow mb-3 group-hover:text-signal transition-colors">
+                  Field Systems
+                </h2>
+                <p className="text-bone text-base leading-relaxed max-w-xl">
+                  Week 1 is live now. New entries publish weekly as the series traces
+                  community legibility, search, memory, and the infrastructure under care.
+                </p>
+
+                <div className="mt-6 grid grid-cols-2 gap-3 text-center">
+                  <div className="bg-ash border border-signal p-3">
+                    <p className="font-display text-2xl text-signal">1/8</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-dust mt-1">
+                      Live now
+                    </p>
+                  </div>
+                  <div className="bg-ash border border-signal p-3">
+                    <p className="font-display text-2xl text-glow">Weekly</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-dust mt-1">
+                      New drops ahead
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex items-center justify-between border-t border-signal pt-4 font-mono text-xs uppercase tracking-[0.3em] text-signal group-hover:text-glow transition-colors">
+                  <span>Read the premiere</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </Card>
+          </Link>
         </div>
 
-        {/* Posts Index */}
-        <div className="space-y-4 max-w-3xl mx-auto">
-          {numbered.map((post) => {
-            const published = isPublished(post);
-
-            const content = (
-              <Card hoverable={published} className={`p-6 ${!published ? 'opacity-40' : ''}`}>
-                <div className="flex items-start gap-4">
-                  <div className="font-mono text-2xl text-dust">
-                    {String(post.number).padStart(2, '0')}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-display text-xl text-glow mb-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-bone mb-3">{post.excerpt}</p>
-                    <div className="flex items-center gap-4 text-xs">
-                      <span className="font-mono text-dust">{post.date}</span>
-                      {!published && (
-                        <span className="font-mono text-xs text-dust">INCOMING</span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="font-mono text-sm text-signal">
-                    {published ? '→' : ''}
-                  </div>
-                </div>
-              </Card>
-            );
-
-            if (!published) {
-              return (
-                <div key={post.slug} className="pointer-events-none select-none">
-                  {content}
-                </div>
-              );
-            }
+        {/* Published posts grouped by series */}
+        <div className="space-y-12 max-w-5xl mx-auto">
+          {seriesGroups.map((group, groupIndex) => {
+            const seriesLabel = groupIndex === 0 ? 'Series One' : 'Series Two';
+            const isFieldSystems = group.name === 'Field Systems';
 
             return (
-              <Link key={post.slug} to={`/zine/${post.slug}`} className="block no-underline">
-                {content}
-              </Link>
+              <section key={group.name}>
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between mb-4">
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-[0.35em] text-dust mb-2">
+                      {seriesLabel}
+                    </p>
+                    <h2 className="font-display text-2xl md:text-3xl text-glow">
+                      {group.name}
+                    </h2>
+                  </div>
+                  <p className="font-mono text-xs uppercase tracking-[0.3em] text-dust">
+                    {group.posts.length}/{group.total} published
+                  </p>
+                </div>
+
+                {isFieldSystems && (
+                  <p className="max-w-2xl text-sm text-bone mb-4">
+                    Premiere week is live now. The rest of the series releases weekly,
+                    so this section will grow one dispatch at a time.
+                  </p>
+                )}
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  {group.posts.map((post) => (
+                    <Link
+                      key={post.slug}
+                      to={`/zine/${post.slug}`}
+                      className="block no-underline focus-visible:outline-2 focus-visible:outline-signal focus-visible:outline-offset-4"
+                    >
+                      <Card hoverable className="group h-full p-6 transition-all duration-200">
+                        <div className="flex items-start gap-4">
+                          <div className="font-mono text-2xl text-dust">
+                            {String(post.series?.week ?? 0).padStart(2, '0')}
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-2 text-[11px] uppercase tracking-[0.25em] font-mono text-dust">
+                              <span>{group.name}</span>
+                              <span className="text-fog">//</span>
+                              <span>Week {post.series?.week}</span>
+                            </div>
+                            <h3 className="font-display text-xl text-glow mb-2 group-hover:text-signal transition-colors">
+                              {post.title}
+                            </h3>
+                            <p className="text-sm text-bone mb-4 leading-relaxed">
+                              {post.excerpt}
+                            </p>
+                            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-dust">
+                              <span>{post.date}</span>
+                              {isFieldSystems && <span>Premiere series</span>}
+                            </div>
+                          </div>
+                          <div className="font-mono text-sm text-signal">→</div>
+                        </div>
+                      </Card>
+                    </Link>
+                  ))}
+                </div>
+              </section>
             );
           })}
         </div>
@@ -93,7 +222,8 @@ export default function Zine() {
         <div className="text-center py-12 mt-12 border-t border-fog">
           <h2 className="mb-4">Stay Updated</h2>
           <p className="text-bone max-w-xl mx-auto mb-8">
-            New entries drop every Tuesday. Subscribe to the memo to get notified.
+            Foundations is complete, and Field Systems is premiering weekly.
+            Subscribe to the memo to get notified when the next dispatch lands.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button as="link" to="/memo" size="lg">

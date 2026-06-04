@@ -160,7 +160,7 @@ export default function AdminProjects() {
                 label="Type"
                 value={form.type}
                 onChange={(v) => setForm({ ...form, type: v })}
-                options={['software', 'media', 'tools']}
+                options={['software', 'media', 'tools', 'social']}
               />
               <Select
                 label="Status"

@@ -3,7 +3,7 @@ import SEOHead from '@/components/SEOHead';
 import ProjectCard from '@/components/ProjectCard';
 import { getCuratedProjects, getFeaturedProjects, getToolProjects } from '@/lib/github';
 
-type FilterType = 'all' | 'software' | 'media' | 'tools';
+type FilterType = 'all' | 'software' | 'media' | 'tools' | 'social';
 type FilterStatus = 'all' | 'active' | 'incubating' | 'archived';
 
 export default function Projects() {
@@ -51,7 +51,7 @@ export default function Projects() {
         <div className="flex flex-wrap gap-4 mb-8 pb-6 border-b border-fog">
           <div className="flex items-center gap-2">
             <span className="font-mono text-xs text-dust">TYPE:</span>
-            {(['all', 'software', 'media', 'tools'] as FilterType[]).map((t) => (
+            {(['all', 'software', 'media', 'tools', 'social'] as FilterType[]).map((t) => (
               <button
                 key={t}
                 onClick={() => setTypeFilter(t)}

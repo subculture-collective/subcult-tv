@@ -1,0 +1,7 @@
+services:
+  subcult-tv-api:
+    ports:
+      - "10.0.0.56:3012:8080"
+  subcult-tv-frontend:
+    ports:
+      - "10.0.0.56:3011:80"
