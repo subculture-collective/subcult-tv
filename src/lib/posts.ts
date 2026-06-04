@@ -94,6 +94,94 @@ export const posts: Post[] = [
     mdx: () => import('@content/posts/the-shape-of-a-community.mdx'),
     series: { name: 'Foundations', week: 8, total: 8 },
   },
+  {
+    slug: 'the-signal-tower',
+    title: 'The Signal Tower: Why Every Collective Needs a Place to Broadcast From',
+    date: '2026-06-04',
+    excerpt:
+      'A website is not just a brochure. It is where a collective decides what persists, what gets framed, and what refuses to disappear into the feed.',
+    tags: ['field-systems', 'homepage', 'archives'],
+    author: 'SUBCULT',
+    mdx: () => import('@content/posts/the-signal-tower.mdx'),
+    series: { name: 'Field Systems', week: 1, total: 8 },
+  },
+  {
+    slug: 'maps-without-leaderboards',
+    title: 'Maps Without Leaderboards: Making Communities Legible Without Ranking Them',
+    date: '2026-06-11',
+    excerpt:
+      'Community analytics usually become status machines. The harder and more interesting problem is making structure visible without turning people into scores.',
+    tags: ['field-systems', 'community', 'mapping'],
+    author: 'SUBCULT',
+    mdx: () => import('@content/posts/maps-without-leaderboards.mdx'),
+    series: { name: 'Field Systems', week: 2, total: 8 },
+  },
+  {
+    slug: 'search-is-a-memory-machine',
+    title: 'Search Is a Memory Machine: Clips, Transcripts, Fingerprints, and the Fight Against Amnesia',
+    date: '2026-06-18',
+    excerpt:
+      'Discovery is usually treated as convenience. For cultural work, it is closer to memory: the ability to find the artifact after the platform has stopped caring.',
+    tags: ['field-systems', 'search', 'memory'],
+    author: 'SUBCULT',
+    mdx: () => import('@content/posts/search-is-a-memory-machine.mdx'),
+    series: { name: 'Field Systems', week: 3, total: 8 },
+  },
+  {
+    slug: 'mutual-aid-has-a-backend',
+    title: 'Mutual Aid Has a Backend: Trust, Moderation, and the Infrastructure Beneath Care',
+    date: '2026-06-25',
+    excerpt:
+      'Mutual aid is often described as emotion and intention. At scale, it also needs schemas, search, moderation, and procedures that protect people without turning care into bureaucracy.',
+    tags: ['field-systems', 'mutual-aid', 'moderation'],
+    author: 'SUBCULT',
+    mdx: () => import('@content/posts/mutual-aid-has-a-backend.mdx'),
+    series: { name: 'Field Systems', week: 4, total: 8 },
+  },
+  {
+    slug: 'argument-machines',
+    title: 'Argument Machines: Markets, Courts, and the Usefulness of Structured Disagreement',
+    date: '2026-07-02',
+    excerpt:
+      'Autonomous systems fail when they collapse debate into execution. Sometimes the safest path forward is to make disagreement procedural before action is allowed.',
+    tags: ['field-systems', 'governance', 'ai'],
+    author: 'SUBCULT',
+    mdx: () => import('@content/posts/argument-machines.mdx'),
+    series: { name: 'Field Systems', week: 5, total: 8 },
+  },
+  {
+    slug: 'tiny-worlds-for-real-life',
+    title: 'Tiny Worlds for Real Life: Place, Memory, and Simulation as Interfaces',
+    date: '2026-07-09',
+    excerpt:
+      'Not every interface should be a dashboard. Sometimes the better representation of a life, a place, or a community is a world that changes over time.',
+    tags: ['field-systems', 'simulation', 'memory'],
+    author: 'SUBCULT',
+    mdx: () => import('@content/posts/tiny-worlds-for-real-life.mdx'),
+    series: { name: 'Field Systems', week: 6, total: 8 },
+  },
+  {
+    slug: 'media-without-a-studio',
+    title: 'Media Without a Studio: Small-Crew Production in the Age of Assembly Lines',
+    date: '2026-07-16',
+    excerpt:
+      'The future of independent media is not one creator doing everything alone. It is small teams and agentic pipelines that make production legible without turning art into factory work.',
+    tags: ['field-systems', 'media', 'production'],
+    author: 'SUBCULT',
+    mdx: () => import('@content/posts/media-without-a-studio.mdx'),
+    series: { name: 'Field Systems', week: 7, total: 8 },
+  },
+  {
+    slug: 'the-workshop-after-the-manifesto',
+    title: 'The Workshop After the Manifesto: Building a Collective Without Becoming a Platform',
+    date: '2026-07-23',
+    excerpt:
+      'The hard part is not declaring values. The hard part is encoding them into tools, templates, queues, archives, defaults, and the small operations that decide what the collective becomes.',
+    tags: ['field-systems', 'operations', 'infrastructure'],
+    author: 'SUBCULT',
+    mdx: () => import('@content/posts/the-workshop-after-the-manifesto.mdx'),
+    series: { name: 'Field Systems', week: 8, total: 8 },
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────
