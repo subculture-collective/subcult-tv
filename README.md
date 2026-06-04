@@ -21,7 +21,7 @@
 | **Database**  | PostgreSQL 16                               | Relational storage for projects, posts, contacts, subscribers          |
 | **Auth**      | JWT (HMAC SHA256)                           | Stateless auth with bcrypt password hashing                            |
 | **Analytics** | Umami                                       | Self-hosted, privacy-first analytics                                   |
-| **Data**      | GitHub API + local JSON + DB                | Auto-populate projects from GitHub, override locally, manage via admin |
+| **Data**      | Curated local JSON + DB                     | Manual project catalog, edited locally and served synchronously         |
 | **Fonts**     | Oswald / Libre Baskerville / JetBrains Mono | Display / body / mono — punk + editorial + terminal                    |
 | **Infra**     | Docker Compose                              | PostgreSQL, Go API, and Umami in containers                            |
 
@@ -29,7 +29,7 @@
 
 ```bash
 # Clone
-git clone https://github.com/subculture-collective/subcult-tv.git
+git clone https://gitea.subcult.tv/subcult/subcult-tv.git
 cd subcult-tv
 
 # Copy environment config
@@ -98,7 +98,6 @@ PORT=8080
 UMAMI_DATABASE_URL=postgresql://subcult:your_secure_password@postgres:5432/umami
 
 # Frontend (optional)
-VITE_GITHUB_TOKEN=ghp_your_token_here      # GitHub API (higher rate limits)
 VITE_API_URL=                                # Override API base URL (defaults to /api via proxy)
 ```
 
@@ -207,7 +206,7 @@ subcult_tv/
 │   ├── context/                  # EffectsContext, AuthContext
 │   ├── lib/
 │   │   ├── api.ts                # Typed API client for Go backend
-│   │   ├── github.ts             # GitHub API fetch layer
+│   │   ├── catalog helpers       # Curated project data access
 │   │   └── posts.ts              # Post registry
 │   ├── pages/
 │   │   ├── admin/                # Admin pages (Login, Dashboard, Projects, Posts, Contacts, Subscribers)
@@ -277,11 +276,11 @@ npm i -g vercel && vercel --prod
 Set environment variables in Vercel dashboard:
 
 - `VITE_API_URL` — Your API server URL (e.g., `https://api.subcult.tv`)
-- `VITE_GITHUB_TOKEN` — Optional, for higher GitHub API rate limits
+- `VITE_UMAMI_URL` — Optional if you self-host Umami elsewhere
 
 ### Frontend Only (Cloudflare Pages)
 
-1. Connect GitHub repo → Build command: `npm run build` → Output: `dist`
+1. Connect your Gitea-hosted repo → Build command: `npm run build` → Output: `dist`
 2. Add environment variables in the dashboard
 
 ### Umami Analytics Setup

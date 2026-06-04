@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import Button from '@/components/ui/Button';
@@ -7,22 +6,14 @@ import PostCard from '@/components/PostCard';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import GlitchFrame from '@/components/effects/GlitchFrame';
 import { useEffects } from '@/context/useEffects';
-import { fetchGitHubRepos, mergeWithOverrides, FALLBACK_PROJECTS } from '@/lib/github';
+import { getCuratedProjects } from '@/lib/github';
 import { getLatestPosts } from '@/lib/posts';
-import type { Project } from '@/types';
 
 export default function Home() {
-  const [projects, setProjects] = useState<Project[]>(FALLBACK_PROJECTS);
   const { effectLevel } = useEffects();
   const latestPosts = getLatestPosts(3);
 
-  useEffect(() => {
-    fetchGitHubRepos().then((repos) => {
-      if (repos.length > 0) {
-        setProjects(mergeWithOverrides(repos));
-      }
-    });
-  }, []);
+  const projects = getCuratedProjects();
 
   const featured = projects.filter((p) => p.featured).slice(0, 6);
   const displayProjects = featured.length > 0 ? featured : projects.slice(0, 6);

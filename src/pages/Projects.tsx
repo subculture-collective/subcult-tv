@@ -1,27 +1,15 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import SEOHead from '@/components/SEOHead';
 import ProjectCard from '@/components/ProjectCard';
-import { fetchGitHubRepos, mergeWithOverrides, FALLBACK_PROJECTS } from '@/lib/github';
-import type { Project } from '@/types';
+import { getCuratedProjects } from '@/lib/github';
 
 type FilterType = 'all' | 'software' | 'media' | 'tools';
 type FilterStatus = 'all' | 'active' | 'incubating' | 'archived';
 
 export default function Projects() {
-  const [projects, setProjects] = useState<Project[]>(FALLBACK_PROJECTS);
+  const projects = getCuratedProjects();
   const [typeFilter, setTypeFilter] = useState<FilterType>('all');
   const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchGitHubRepos()
-      .then((repos) => {
-        if (repos.length > 0) {
-          setProjects(mergeWithOverrides(repos));
-        }
-      })
-      .finally(() => setLoading(false));
-  }, []);
 
   const filtered = useMemo(
     () =>
@@ -94,9 +82,7 @@ export default function Projects() {
 
         {/* Results count */}
         <p className="font-mono text-xs text-dust mb-6">
-          {loading
-            ? '> scanning repositories...'
-            : `> ${filtered.length} project${filtered.length !== 1 ? 's' : ''} found`}
+          {`> ${filtered.length} project${filtered.length !== 1 ? 's' : ''} found`}
         </p>
 
         {/* Grid */}
@@ -106,7 +92,7 @@ export default function Projects() {
           ))}
         </div>
 
-        {filtered.length === 0 && !loading && (
+        {filtered.length === 0 && (
           <div className="text-center py-16">
             <p className="font-mono text-dust">
               &gt; no projects match current filters

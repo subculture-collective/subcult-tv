@@ -13,13 +13,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const hasScreenshot = !!project.screenshot;
 
   const card = (
-    <div
-      className={`group flex flex-col h-full bg-ash border border-fog transition-all duration-200 ${
-        hasScreenshot
-          ? 'hover:border-signal hover:shadow-glow cursor-pointer'
-          : 'opacity-50 grayscale pointer-events-none'
-      }`}
-    >
+    <div className="group flex flex-col h-full bg-ash border border-fog hover:border-signal hover:shadow-glow transition-all duration-200 cursor-pointer">
       {/* Cover */}
       <div className="relative h-40 w-full overflow-hidden">
         {hasScreenshot ? (
@@ -35,13 +29,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             name={project.name}
             className="h-full w-full"
           />
-        )}
-        {!hasScreenshot && (
-          <div className="absolute inset-0 flex items-center justify-center bg-void/70">
-            <span className="font-mono text-xs text-dust uppercase tracking-widest border border-fog px-3 py-1.5">
-              Coming Soon
-            </span>
-          </div>
         )}
       </div>
 
@@ -68,10 +55,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
     </div>
   );
-
-  if (!hasScreenshot) {
-    return card;
-  }
 
   return (
     <Link to={`/projects/${project.slug}`} className="no-underline">

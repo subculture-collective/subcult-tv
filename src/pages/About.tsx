@@ -139,10 +139,10 @@ export default function About() {
               <span className="text-static">zsh</span>
               <br />
               <span className="text-chalk">vcs: </span>
-              <span className="text-static">git (self-hosted + GitHub)</span>
+              <span className="text-static">git (self-hosted Gitea)</span>
               <br />
               <span className="text-chalk">ci: </span>
-              <span className="text-static">GitHub Actions + custom scripts</span>
+              <span className="text-static">self-hosted git + custom scripts</span>
               <br />
               <span className="text-chalk">deploy: </span>
               <span className="text-static">git push && make deploy</span>

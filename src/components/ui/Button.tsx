@@ -58,15 +58,15 @@ export default function Button(props: ButtonProps) {
   `.trim();
 
   if (props.as === 'link') {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {
-      as: _as,
+      as: asProp,
       to,
       ...linkRest
     } = rest as Omit<LinkProps, keyof ButtonBaseProps> & {
       as: 'link';
       to: string;
     };
+    void asProp;
     return (
       <Link to={to} className={baseStyles} {...linkRest}>
         {children}
@@ -75,15 +75,15 @@ export default function Button(props: ButtonProps) {
   }
 
   if (props.as === 'a') {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {
-      as: _as,
+      as: asProp,
       href,
       ...anchorRest
     } = rest as Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof ButtonBaseProps> & {
       as: 'a';
       href: string;
     };
+    void asProp;
     return (
       <a href={href} className={baseStyles} {...anchorRest}>
         {children}
@@ -91,11 +91,11 @@ export default function Button(props: ButtonProps) {
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { as: _as, ...buttonRest } = rest as Omit<
+  const { as: asProp, ...buttonRest } = rest as Omit<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     keyof ButtonBaseProps
   > & { as?: 'button' };
+  void asProp;
   return (
     <button className={baseStyles} {...buttonRest}>
       {children}

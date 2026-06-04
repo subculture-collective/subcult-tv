@@ -38,7 +38,7 @@ const SITE_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { href: 'https://github.com/subculture-collective', label: 'GitHub' },
+  { href: 'https://gitea.subcult.tv/subcult', label: 'Gitea' },
   { href: 'https://www.patreon.com/subcult', label: 'Patreon' },
 ];
 

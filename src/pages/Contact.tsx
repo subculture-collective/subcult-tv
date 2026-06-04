@@ -6,9 +6,9 @@ import { submitContact } from '@/lib/api';
 
 const SOCIAL_LINKS = [
   {
-    name: 'GitHub',
-    url: 'https://github.com/subculture-collective',
-    handle: '@subculture-collective',
+    name: 'Gitea',
+    url: 'https://gitea.subcult.tv/subcult',
+    handle: 'subcult',
   },
   {
     name: 'Patreon',

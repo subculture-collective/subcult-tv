@@ -39,17 +39,3 @@ export interface Post {
     total: number;
   };
 }
-
-export interface GitHubRepo {
-  name: string;
-  full_name: string;
-  description: string | null;
-  html_url: string;
-  homepage: string | null;
-  topics: string[];
-  language: string | null;
-  stargazers_count: number;
-  updated_at: string;
-  archived: boolean;
-  fork: boolean;
-}

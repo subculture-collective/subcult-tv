@@ -15,7 +15,7 @@ const FOOTER_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { href: 'https://github.com/subculture-collective', label: 'GitHub', external: true },
+  { href: 'https://gitea.subcult.tv/subcult', label: 'Gitea', external: true },
   { href: 'https://www.patreon.com/subcult', label: 'Patreon', external: true },
   { href: '/feed.xml', label: 'RSS Feed', external: false },
 ];
@@ -97,7 +97,7 @@ export default function Footer() {
                 <br />
                 &gt; Built with open source tools.
                 <br />
-                &gt; Source available on GitHub.
+                &gt; Source tracked in self-hosted Gitea.
               </p>
             </div>
           </div>

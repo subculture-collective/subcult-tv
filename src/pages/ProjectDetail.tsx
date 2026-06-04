@@ -1,42 +1,17 @@
-import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import Button from '@/components/ui/Button';
 import Tag from '@/components/ui/Tag';
 import CoverArt from '@/components/effects/CoverArt';
 import TerminalPanel from '@/components/effects/TerminalPanel';
-import { fetchGitHubRepos, mergeWithOverrides, FALLBACK_PROJECTS } from '@/lib/github';
+import { getCuratedProjectBySlug } from '@/lib/github';
 import { DEFAULT_COVER_COLOR } from '@/lib/tokens';
 import { statusColors, statusLabels } from '@/lib/project-utils';
-import type { Project } from '@/types';
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const [project, setProject] = useState<Project | null>(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const findProject = async () => {
-      // Try GitHub first
-      const repos = await fetchGitHubRepos();
-      const allProjects = repos.length > 0 ? mergeWithOverrides(repos) : FALLBACK_PROJECTS;
-      const found = allProjects.find((p) => p.slug === slug);
-      setProject(found || null);
-      setLoading(false);
-    };
-    findProject();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <p className="font-mono text-bone">
-          &gt; loading project data...
-          <span className="cursor-blink" />
-        </p>
-      </div>
-    );
-  }
+  const project = getCuratedProjectBySlug(slug);
 
   if (!project) {
     return (
@@ -151,7 +126,7 @@ export default function ProjectDetail() {
                   variant="secondary"
                   className="w-full"
                 >
-                  View on GitHub ↗
+                  View Repository ↗
                 </Button>
                 {project.homepage && (
                   <Button

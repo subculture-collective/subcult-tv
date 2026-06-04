@@ -86,6 +86,6 @@ Design tokens are defined as CSS custom properties inside `@theme` (Tailwind CSS
 - The noise overlay uses a single 256x256 SVG data URI — no external image files.
 - Fonts are loaded via Google Fonts with `display=swap` and preconnect hints.
 - MDX posts are code-split via dynamic imports — only loaded when visited.
-- GitHub API responses are cached in localStorage with a 1-hour TTL.
+- Curated project data is read synchronously from `content/projects.json`.
 - Total CSS (including design system): ~10.5KB gzipped.
 - Total JS (including React + Router + MDX): ~88KB gzipped.

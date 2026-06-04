@@ -1,5 +1,6 @@
 {
   "subcult-tv": {
+    "slug": "subcult-tv",
     "name": "subcult.tv",
     "description": "The hub. This very site. Portfolio, manifesto, signal broadcast.",
     "longDescription": "subcult.tv is the central node of the Subculture Collective network. It serves as our business homepage, project portfolio, zine archive, and Patreon funnel. Built with Vite, React, TypeScript, and Tailwind CSS with a VHS/punk/gothic aesthetic.",
@@ -7,7 +8,10 @@
     "status": "active",
     "type": ["software"],
     "stack": ["TypeScript", "React", "Tailwind CSS", "Vite"],
+    "topics": ["website", "portfolio", "react"],
     "url": "https://subcult.tv",
+    "repoUrl": "https://gitea.subcult.tv/subcult/subcult-tv",
+    "lastUpdated": "2026-06-04T00:00:00Z",
     "screenshot": "/screenshots/subcult.png",
     "featured": false,
     "order": 0,
@@ -15,6 +19,7 @@
     "coverPattern": "circuit"
   },
   "clipper": {
+    "slug": "clipper",
     "name": "clpr",
     "description": "A modern Twitch clip curation platform. Discover, organize, and share your favorite clips.",
     "longDescription": "clpr is a Twitch clip curation platform that lets users discover trending clips, build curated collections, and share highlights across the community.",
@@ -22,7 +27,10 @@
     "status": "active",
     "type": ["software", "media"],
     "stack": ["TypeScript", "React", "Twitch API", "Go", "OpenSearch"],
+    "topics": ["twitch", "clips", "curation"],
     "url": "https://clpr.tv",
+    "repoUrl": "https://gitea.subcult.tv/subcult/clipper",
+    "lastUpdated": "2026-06-04T00:00:00Z",
     "screenshot": "/screenshots/clpr.png",
     "featured": true,
     "order": 1,
@@ -30,6 +38,7 @@
     "coverPattern": "grid"
   },
   "cutroom": {
+    "slug": "cutroom",
     "name": "Cutroom",
     "description": "Collaborative AI video production pipeline. Multi-agent content creation with attribution tracking.",
     "longDescription": "Cutroom is a collaborative AI video production pipeline where multiple specialized agents work together to create short-form video content. Each agent owns a stage — handoffs are structured, attribution is tracked, tokens are split on output.",
@@ -37,7 +46,10 @@
     "status": "incubating",
     "type": ["media", "software"],
     "stack": ["TypeScript", "Next.js", "AI Agents", "Remotion API"],
+    "topics": ["video", "ai", "pipeline"],
     "url": "https://cutroom.subcult.tv",
+    "repoUrl": "https://gitea.subcult.tv/subcult/cutroom",
+    "lastUpdated": "2026-06-04T00:00:00Z",
     "screenshot": "/screenshots/cutroom.png",
     "featured": true,
     "order": 2,
@@ -45,6 +57,7 @@
     "coverPattern": "waves"
   },
   "subcult-corp": {
+    "slug": "subcult-corp",
     "name": "Subcorp",
     "description": "Self-sustaining collective of six AI agents running autonomous workflows — proposals, debates, missions, and memory.",
     "longDescription": "Subcorp is a self-hosted multi-agent system — 6 AI agents with native tool execution, autonomous workflows, roundtable conversations, and semantic memory. Built with Next.js 16, PostgreSQL + pgvector, and OpenRouter.",
@@ -52,7 +65,10 @@
     "status": "active",
     "type": ["software", "tools"],
     "stack": ["Next.js", "PostgreSQL", "pgvector", "OpenRouter"],
+    "topics": ["agents", "memory", "automation"],
     "url": "https://subcorp.subcult.tv",
+    "repoUrl": "https://gitea.subcult.tv/subcult/subcult-corp",
+    "lastUpdated": "2026-06-04T00:00:00Z",
     "screenshot": "/screenshots/subcorp.png",
     "featured": true,
     "order": 3,
@@ -60,6 +76,7 @@
     "coverPattern": "sigil"
   },
   "reddit-cluster-map": {
+    "slug": "reddit-cluster-map",
     "name": "clustr",
     "description": "Interactive visualization of Reddit community relationships. Explore subreddit clusters and cross-posting patterns.",
     "longDescription": "clustr maps the hidden topology of Reddit — visualizing how communities connect through shared users, cross-posts, and semantic overlap. Navigate the social graph, discover related subreddits, and see patterns in how communities form and fragment.",
@@ -67,11 +84,31 @@
     "status": "incubating",
     "type": ["software", "tools"],
     "stack": ["TypeScript", "React", "D3.js", "Reddit API"],
+    "topics": ["reddit", "visualization", "graphs"],
     "url": "https://clustr.subcult.tv",
+    "repoUrl": "https://gitea.subcult.tv/subcult/reddit-cluster-map",
+    "lastUpdated": "2026-06-04T00:00:00Z",
     "screenshot": "/screenshots/clustr.png",
     "featured": true,
     "order": 4,
     "coverColor": "#ff4500",
     "coverPattern": "grid"
+  },
+  "field-notes": {
+    "slug": "field-notes",
+    "name": "Field Notes",
+    "description": "A Gitea-ready project slot for new SUBCULT work that should be curated by hand before launch.",
+    "longDescription": "Field Notes is a manually curated entry reserved for new SUBCULT work. Replace this copy, repository URL, stack, topics, and image once the exact Gitea repository is ready to publish.",
+    "whyItExists": "New work should be staged deliberately, not pulled into the site by an API crawler.",
+    "status": "incubating",
+    "type": ["media", "tools"],
+    "stack": ["Manual Curation", "Gitea"],
+    "topics": ["curated", "gitea", "new-work"],
+    "repoUrl": "https://gitea.subcult.tv/subcult/field-notes",
+    "lastUpdated": "2026-06-04T00:00:00Z",
+    "featured": false,
+    "order": 5,
+    "coverColor": "#7c3aed",
+    "coverPattern": "dots"
   }
 }

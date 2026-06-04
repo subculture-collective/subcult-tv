@@ -20,8 +20,8 @@ Before launching, fill in or replace the following placeholder content.
 
 ## Content
 
-- [ ] **Project screenshots** — Add real screenshots to replace generated CoverArt
-- [ ] **Project descriptions** — Enrich `content/projects.json` with full descriptions for each project
+- [ ] **Project screenshots** — Add real screenshots to replace generated CoverArt for curated entries
+- [ ] **Project descriptions** — Enrich `content/projects.json` with full descriptions, repo URLs, and ordering for each project
 - [ ] **Patreon tier details** — Update `src/pages/Patreon.tsx` with actual tier names and prices
 - [ ] **About page copy** — Review and personalize mission/values text
 - [ ] **Manifesto post** — Review and finalize `content/posts/subcult-manifesto.mdx`
@@ -29,7 +29,6 @@ Before launching, fill in or replace the following placeholder content.
 ## Technical
 
 - [ ] **Domain DNS** — Point `subcult.tv` to deployment, `api.subcult.tv` to API server
-- [ ] **GitHub token** — (Optional) Set `VITE_GITHUB_TOKEN` in `.env.local` for higher API rate limits
 - [x] **Analytics** — Umami analytics integrated (self-hosted via Docker)
 - [x] **Contact form backend** — API-backed with mailto fallback
 - [ ] **OG image as PNG** — Update `index.html` meta tags to point to `.png` instead of `.svg`

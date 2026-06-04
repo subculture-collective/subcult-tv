@@ -2,7 +2,7 @@ You are Claude, acting as a senior designer + full-stack engineer. Build a compl
 
 IMPORTANT LINKS (use these as sources of truth):
 
-- GitHub org: https://github.com/subculture-collective
+- Source repo: https://gitea.subcult.tv/subcult/subcult-tv
 - Patreon: https://www.patreon.com/cw/subcult
 
 STYLE / ART DIRECTION (must be visible in UI, but keep it readable and accessible)
@@ -63,7 +63,7 @@ SITE INFORMATION ARCHITECTURE (implement all pages)
 1. Home
 
 - Hero: SUBCULT identity, tagline, primary CTA (“View Projects”, “Support on Patreon”)
-- Highlight 3–6 flagship projects (auto-populated from GitHub if possible)
+- Highlight 3–6 flagship projects from the curated local catalog
 - “What is Subcult?” short manifesto block
 - Latest updates teaser (from posts/changelog)
 
@@ -74,7 +74,7 @@ SITE INFORMATION ARCHITECTURE (implement all pages)
   - description, screenshots/cover art (stylized), status, stack, links
   - “Why it exists” (short), “How to support” CTA
 - Data source:
-  - Prefer GitHub API to pull repos + topics + descriptions + last updated
+  - Prefer the local curated `content/projects.json` catalog for projects
   - Provide a local override file for curated titles, ordering, screenshots, and richer copy
 
 3. Patreon
@@ -99,7 +99,7 @@ SITE INFORMATION ARCHITECTURE (implement all pages)
 6. Contact
 
 - Contact form (serverless if Next.js; otherwise mailto + instructions)
-- Social links (GitHub, Patreon; leave placeholders for others)
+- Social links (Gitea, Patreon; leave placeholders for others)
 
 7. Press Kit
 
@@ -135,7 +135,7 @@ IMPLEMENTATION DETAILS
 - Content management:
   - /content/posts/\*.mdx
   - /content/projects.json (curation overrides)
-  - GitHub fetch layer with caching (build-time fetch preferred)
+  - Curated project catalog sourced from local JSON (synchronous read preferred)
 - Images:
   - Use SVG patterns and CSS effects; create a few generated “covers” per project if no screenshots exist
 - Deployment:

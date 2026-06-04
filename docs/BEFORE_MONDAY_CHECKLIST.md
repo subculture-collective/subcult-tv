@@ -10,7 +10,7 @@ By Monday, you should have **a canonical home**, **a subscribe path**, **a suppo
 
 * [ ] **Pick one canonical publishing home** (don’t overthink):
 
-  * [ ] **GitHub repo + GitHub Pages** (fastest/cleanest for dev audiences)
+  * [ ] **Gitea repo + static Pages** (fastest/cleanest for dev audiences)
   * [ ] Your existing site (if already easy to deploy)
 * [ ] Create a `/papers` (or `/docs/papers`) folder and put the 7 markdown files there
 * [ ] Add a **Series index page**: `The Subcult Papers — Season 0`
