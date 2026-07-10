@@ -9,7 +9,8 @@ const FOOTER_LINKS = [
   { to: '/contact', label: 'Contact' },
   { to: '/press', label: 'Press Kit' },
   { to: '/memo', label: 'Memo' },
-  { to: '/invest', label: 'Invest' },
+  { to: '/partner', label: 'Partner' },
+  { to: '/funding', label: 'Funding Policy' },
   { to: '/metrics', label: 'Metrics' },
   { to: '/links', label: 'Links' },
 ];
@@ -43,9 +44,9 @@ export default function Footer() {
             <p className="font-mono text-xs text-bone mt-3 leading-relaxed">
               Subculture Collective
               <br />
-              Curated projects, tools, and infrastructure
+              Open systems for culture, coordination,
               <br />
-              for the counterculture.
+              and strange futures.
             </p>
             <p className="font-mono text-xs text-fog mt-4">&gt; carrier_wave.persist()</p>
           </div>
@@ -93,11 +94,11 @@ export default function Footer() {
 
             <div className="mt-6 pt-4 border-t border-fog">
               <p className="font-mono text-xs text-fog">
-                &gt; No tracking. No cookies. No surveillance.
+                &gt; Minimal first-party analytics. No ad tracking.
                 <br />
                 &gt; Built from a hand-curated local catalog.
                 <br />
-                &gt; Source tracked in self-hosted Gitea.
+                &gt; Public source cataloged in Gitea and GitHub.
               </p>
             </div>
           </div>

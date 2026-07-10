@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 /**
- * PDF Generator for SUBCULT Investor Materials
+ * PDF Generator for SUBCULT Partnership Briefs
  *
- * Exports pitch deck and one-pager pages (standard + brand) as PDFs.
+ * Preserves legacy filenames while exporting the current public partnership brief.
  * Requires a Vite preview server running on port 4173.
  *
  * Usage:
@@ -23,31 +23,31 @@ const PAGES = [
   {
     path: '/deck',
     filename: 'subcult-deck.pdf',
-    label: 'Pitch Deck (Standard)',
+    label: 'Partnership Brief (Legacy Deck URL)',
     landscape: true,
   },
   {
     path: '/onepager',
     filename: 'subcult-onepager.pdf',
-    label: 'One-Pager (Standard)',
+    label: 'Partnership Brief (Legacy One-Pager URL)',
     landscape: false,
   },
   {
     path: '/deck/brand',
     filename: 'subcult-deck-brand.pdf',
-    label: 'Pitch Deck (Brand)',
+    label: 'Partnership Brief (Legacy Brand Deck URL)',
     landscape: true,
   },
   {
     path: '/onepager/brand',
     filename: 'subcult-onepager-brand.pdf',
-    label: 'One-Pager (Brand)',
+    label: 'Partnership Brief (Legacy Brand One-Pager URL)',
     landscape: false,
   },
 ];
 
 async function main() {
-  console.log('Generating PDFs for SUBCULT investor materials...');
+  console.log('Generating PDFs for SUBCULT partnership briefs...');
   console.log(`Expecting preview server at ${BASE_URL}\n`);
 
   // Ensure output directory exists
@@ -80,12 +80,25 @@ async function main() {
       // Emulate print media for proper styles
       await tab.emulateMediaType('print');
 
+      // Force an opaque page canvas. Without this, Chromium may leave the area after the final
+      // content block transparent, which Poppler renders as black.
+      await tab.evaluate(() => {
+        for (const element of [
+          document.documentElement,
+          document.body,
+          document.getElementById('root'),
+        ]) {
+          element?.style.setProperty('background', '#ffffff', 'important');
+        }
+      });
+
       // Generate PDF
       await tab.pdf({
         path: outputPath,
         format: 'Letter',
         landscape: page.landscape,
-        printBackground: false,
+        scale: page.landscape ? 1 : 0.82,
+        printBackground: true,
         margin: { top: '0.5in', right: '0.5in', bottom: '0.5in', left: '0.5in' },
       });
 

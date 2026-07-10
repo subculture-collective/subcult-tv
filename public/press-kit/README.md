@@ -10,6 +10,10 @@ This directory contains brand assets for Subculture Collective / SUBCULT.
 - `subcult-banner-square.png` — Square banner (800x800)
 - `subcult-wordmark.svg` — Text-only wordmark
 
+Legacy deck and one-pager PDF filenames now contain the current public Partnership Brief. The
+filenames remain stable so older links do not serve outdated investor, traction, roadmap, or
+funding claims.
+
 ## Color Usage
 
 See the Press Kit page at https://subcult.tv/press for full color palette and usage guidelines.

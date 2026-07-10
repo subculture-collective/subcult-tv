@@ -58,7 +58,7 @@ export default function PressKit() {
             <div>
               <span className="font-mono text-xs text-dust block mb-1">Tagline</span>
               <span className="text-bone italic">
-                "We build tools, media, and infrastructure for the counterculture."
+                "Open systems for culture, coordination, and strange futures."
               </span>
             </div>
           </div>

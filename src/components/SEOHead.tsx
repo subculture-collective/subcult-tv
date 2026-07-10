@@ -15,7 +15,7 @@ interface SEOHeadProps {
  */
 export default function SEOHead({
   title,
-  description = 'SUBCULT — We build tools, media, and infrastructure for the counterculture.',
+  description = 'SUBCULT builds open, inspectable systems for culture, coordination, and strange futures.',
   path = '/',
   image = '/og-image.png',
 }: SEOHeadProps) {

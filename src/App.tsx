@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import Home from '@/pages/Home';
 import Projects from '@/pages/Projects';
@@ -11,13 +11,11 @@ import Contact from '@/pages/Contact';
 import PressKit from '@/pages/PressKit';
 import NotFound from '@/pages/NotFound';
 import Memo from '@/pages/Memo';
-import Invest from '@/pages/Invest';
+import Partner from '@/pages/Partner';
+import Funding from '@/pages/Funding';
 import Metrics from '@/pages/Metrics';
 import Links from '@/pages/Links';
-import PitchDeck from '@/pages/PitchDeck';
-import OnePager from '@/pages/OnePager';
-import PitchDeckBrand from '@/pages/PitchDeckBrand';
-import OnePagerBrand from '@/pages/OnePagerBrand';
+import PartnershipBrief from '@/pages/PartnershipBrief';
 
 // Admin pages
 import AdminLogin from '@/pages/admin/AdminLogin';
@@ -43,13 +41,16 @@ export default function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="press" element={<PressKit />} />
         <Route path="memo" element={<Memo />} />
-        <Route path="invest" element={<Invest />} />
+        <Route path="partner" element={<Partner />} />
+        <Route path="funding" element={<Funding />} />
+        <Route path="invest" element={<Navigate to="/partner" replace />} />
         <Route path="metrics" element={<Metrics />} />
         <Route path="links" element={<Links />} />
-        <Route path="deck" element={<PitchDeck />} />
-        <Route path="onepager" element={<OnePager />} />
-        <Route path="deck/brand" element={<PitchDeckBrand />} />
-        <Route path="onepager/brand" element={<OnePagerBrand />} />
+        <Route path="brief" element={<PartnershipBrief />} />
+        <Route path="deck" element={<PartnershipBrief />} />
+        <Route path="onepager" element={<PartnershipBrief />} />
+        <Route path="deck/brand" element={<PartnershipBrief />} />
+        <Route path="onepager/brand" element={<PartnershipBrief />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

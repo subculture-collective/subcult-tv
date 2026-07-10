@@ -1,175 +1,115 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SEOHead from '@/components/SEOHead';
 import Card from '@/components/ui/Card';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import { Target } from 'lucide-react';
 import { getPatreonCampaign } from '@/lib/api';
+import { getCuratedProjects } from '@/lib/github';
+import { getPublishedPosts } from '@/lib/posts';
 
-// Baseline metrics - update these values manually or fetch from API
-const METRICS = {
-  lastUpdated: '2026-02-15',
-  nextMilestone: {
-    date: '2026-02-17',
-    description: 'Monday public launch',
-  },
-  stats: [
-    {
-      key: 'subscribers',
-      label: 'Newsletter Subscribers',
-      value: 0,
-      unit: '',
-      trend: null,
-    },
-    {
-      key: 'supporters',
-      label: 'Patreon Supporters',
-      value: 0,
-      unit: '',
-      trend: null,
-    },
-    {
-      key: 'shipped',
-      label: 'Proof Shipped (This Week)',
-      value: 3,
-      unit: 'items',
-      trend: null,
-    },
-    {
-      key: 'repos',
-      label: 'Public Repositories',
-      value: 5,
-      unit: '',
-      trend: null,
-    },
-  ],
-};
+const VERIFIED_ON = '2026-07-10';
 
 export default function Metrics() {
   const [patronCount, setPatronCount] = useState<number | null>(null);
+  const projects = getCuratedProjects();
+  const publishedPosts = getPublishedPosts();
+  const activeLabels = projects.filter((project) => project.status === 'active').length;
 
   useEffect(() => {
     getPatreonCampaign()
       .then((data) => {
-        if (data.campaign) {
-          setPatronCount(data.campaign.patron_count);
-        }
+        if (data.campaign) setPatronCount(data.campaign.patron_count);
       })
       .catch(() => {
-        // Silent fallback — keep default value
+        // An unavailable API stays visibly unavailable rather than becoming a fabricated zero.
       });
   }, []);
 
-  const stats = METRICS.stats.map((s) =>
-    s.key === 'supporters' && patronCount !== null ? { ...s, value: patronCount } : s,
-  );
+  const stats = [
+    { key: 'catalog', label: 'Cataloged Projects', value: projects.length },
+    { key: 'active', label: 'Catalog-Labeled Active', value: activeLabels },
+    { key: 'posts', label: 'Published Transmissions', value: publishedPosts.length },
+    { key: 'supporters', label: 'Patreon Supporters', value: patronCount ?? '—' },
+  ];
 
   return (
     <>
       <SEOHead
-        title="Metrics"
-        description="SUBCULT transparency dashboard. Real numbers, updated weekly. No vanity metrics."
+        title="Public Record"
+        description="A dated SUBCULT snapshot generated from the public project catalog, zine registry, and available supporter API."
         path="/metrics"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <p className="font-mono text-xs text-dust mb-3">&gt; TELEMETRY.report()</p>
-          <h1 className="mb-6">Metrics Dashboard</h1>
+        <header className="text-center mb-12">
+          <p className="font-mono text-xs text-dust mb-3">&gt; PUBLIC_RECORD.snapshot()</p>
+          <h1 className="mb-6">Public Record</h1>
           <p className="text-bone max-w-2xl mx-auto text-lg leading-relaxed">
-            Real numbers. No vanity metrics. We publish what we track.
+            A dated snapshot, not a real-time claim. Counts come from the site catalog and
+            publication registry; unavailable external data stays unavailable.
           </p>
-        </div>
+        </header>
 
-        {/* Update Notice */}
-        <div className="text-center mb-12">
-          <p className="font-mono text-xs text-fog">
-            Last updated: {METRICS.lastUpdated} • Updated every Sunday
-          </p>
-        </div>
+        <p className="font-mono text-xs text-fog text-center mb-12">
+          Snapshot verified: {VERIFIED_ON}
+        </p>
 
-        {/* Main Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {stats.map((stat) => (
             <Card key={stat.key} className="p-6 text-center">
               <p className="font-mono text-xs text-dust uppercase tracking-wider mb-2">
                 {stat.label}
               </p>
-              <p className="font-display text-4xl text-glow font-bold">
-                {stat.value}
-                {stat.unit && <span className="text-lg text-bone ml-1">{stat.unit}</span>}
-              </p>
-              {stat.trend && (
-                <p
-                  className={`font-mono text-xs mt-2 ${
-                    stat.trend > 0 ? 'text-static' : stat.trend < 0 ? 'text-signal' : 'text-dust'
-                  }`}
-                >
-                  {stat.trend > 0 ? '↑' : stat.trend < 0 ? '↓' : '→'} {Math.abs(stat.trend)}% vs
-                  last week
-                </p>
-              )}
+              <p className="font-display text-4xl text-glow font-bold">{stat.value}</p>
             </Card>
           ))}
-        </div>
+        </section>
 
-        {/* Next Milestone */}
-        <div className="mb-16">
+        <section className="mb-16">
           <h2 className="mb-6">
             <span className="text-dust font-mono text-sm mr-3">//</span>
-            Next Milestone
+            Next Verification
           </h2>
-
-          <Card className="p-6 border-signal max-w-xl">
-            <div className="flex items-center gap-4">
-              <Target className="w-10 h-10 text-signal" aria-hidden="true" />
+          <Card className="p-6 border-signal max-w-2xl">
+            <div className="flex items-start gap-4">
+              <Target className="w-10 h-10 text-signal shrink-0" aria-hidden="true" />
               <div>
-                <p className="font-mono text-sm text-cyan">{METRICS.nextMilestone.date}</p>
-                <p className="text-lg text-glow">{METRICS.nextMilestone.description}</p>
+                <p className="font-mono text-sm text-cyan">PROJECT STATUS AUDIT</p>
+                <p className="text-lg text-glow mt-1">
+                  Verify each active label against its repository, deployment, owner, and next
+                  milestone.
+                </p>
               </div>
             </div>
           </Card>
-        </div>
+        </section>
 
-        {/* Transparency Note */}
-        <div className="mb-16">
-          <TerminalPanel title="transparency.policy" className="max-w-2xl mx-auto">
-            <div>
-              <span className="text-dust"># why we publish metrics:</span>
-              <br />
-              <br />
-              <span className="text-chalk">1. </span>
-              <span className="text-bone">accountability — we track what matters</span>
-              <br />
-              <span className="text-chalk">2. </span>
-              <span className="text-bone">honesty — zeros are fine if true</span>
-              <br />
-              <span className="text-chalk">3. </span>
-              <span className="text-bone">no vanity — downloads ≠ users ≠ value</span>
-              <br />
-              <span className="text-chalk">4. </span>
-              <span className="text-bone">open source ethos — transparency by default</span>
-              <br />
-              <br />
-              <span className="text-dust"># we'll add more metrics as they become meaningful.</span>
-            </div>
-          </TerminalPanel>
-        </div>
+        <TerminalPanel title="transparency.policy" className="max-w-3xl mx-auto mb-16">
+          <div>
+            <span className="text-chalk">01. </span>
+            <span className="text-bone">publish definitions with the number</span>
+            <br />
+            <span className="text-chalk">02. </span>
+            <span className="text-bone">attach a verification date</span>
+            <br />
+            <span className="text-chalk">03. </span>
+            <span className="text-bone">show unavailable data as unavailable</span>
+            <br />
+            <span className="text-chalk">04. </span>
+            <span className="text-bone">do not confuse activity, readiness, reach, and value</span>
+            <br />
+            <br />
+            <span className="text-dust"># measurement should create legibility, not theater.</span>
+          </div>
+        </TerminalPanel>
 
-        {/* What We Track */}
-        <div className="text-center py-12 border-t border-fog">
-          <h2 className="mb-4">What We Track</h2>
-          <p className="text-bone max-w-xl mx-auto">
-            <span className="text-static">✓</span> Newsletter subscribers (real people who signed
-            up)
-            <br />
-            <span className="text-static">✓</span> Supporters (people who pay monthly)
-            <br />
-            <span className="text-static">✓</span> Shipped work (PRs merged, releases published)
-            <br />
-            <span className="text-signal">✗</span> Page views, impressions, or other noise
+        <section className="text-center py-12 border-t border-fog">
+          <h2 className="mb-4">What These Numbers Do Not Prove</h2>
+          <p className="text-bone max-w-2xl mx-auto">
+            A repository is not a maintained product. A catalog status is not a service guarantee. A
+            subscriber is not a community member. A shipped artifact is not automatically useful.
           </p>
-        </div>
+        </section>
       </div>
     </>
   );

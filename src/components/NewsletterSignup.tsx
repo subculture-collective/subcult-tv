@@ -40,7 +40,9 @@ export default function NewsletterSignup() {
       </div>
 
       <form onSubmit={handleSubmit} className="flex gap-2 max-w-md mx-auto">
-        <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+        <label htmlFor="newsletter-email" className="sr-only">
+          Email address
+        </label>
         <input
           type="email"
           id="newsletter-email"
@@ -66,7 +68,7 @@ export default function NewsletterSignup() {
       )}
 
       <p className="font-mono text-xs text-fog text-center mt-3">
-        No spam. No tracking. Unsubscribe anytime.
+        No spam or ad tracking. Unsubscribe anytime.
       </p>
     </div>
   );

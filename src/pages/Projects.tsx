@@ -116,7 +116,7 @@ export default function Projects() {
                   <span className="text-dust font-mono text-sm mr-3">//</span>
                   Featured Projects
                 </h2>
-                <p className="font-mono text-xs text-dust">flagships // active</p>
+                <p className="font-mono text-xs text-dust">featured // verify status per project</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

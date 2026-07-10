@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
   { to: '/memo', label: 'Memo' },
-  { to: '/invest', label: 'Invest' },
+  { to: '/partner', label: 'Partner' },
 ];
 
 const EFFECT_LABELS: Record<EffectLevel, string> = {

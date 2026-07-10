@@ -20,7 +20,11 @@ export default function Home() {
 
   return (
     <>
-      <SEOHead title="Home" path="/" />
+      <SEOHead
+        title="Home"
+        description="SUBCULT builds open, inspectable software, media systems, and experiments for culture, coordination, and strange futures."
+        path="/"
+      />
 
       {/* ═══════ HERO ═══════ */}
       <section className="relative overflow-hidden">
@@ -29,7 +33,7 @@ export default function Home() {
             <div className="max-w-3xl">
               {/* Overline */}
               <p className="font-mono text-xs text-dust mb-4 animate-fade-in-up">
-                &gt; SUBCULTURE COLLECTIVE // EST. 2026
+                &gt; SUBCULTURE COLLECTIVE // SIGNAL ACTIVE
               </p>
 
               {/* Title */}
@@ -43,8 +47,8 @@ export default function Home() {
 
               {/* Tagline */}
               <p className="text-lg md:text-xl text-bone leading-relaxed mb-8 max-w-2xl animate-fade-in-up animation-delay-200">
-                We build curated projects, tools, media, and infrastructure for the counterculture.
-                Open source. DIY. No masters.
+                Open systems for culture, coordination, and strange futures. Strange enough to be
+                alive. Legible enough to inspect.
               </p>
 
               {/* CTAs */}
@@ -96,13 +100,13 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="mb-6">What Is SUBCULT?</h2>
             <p className="text-bone leading-relaxed mb-4">
-              We are not a company. We are a signal embedded in the noise of the attention economy —
-              a collective of builders, breakers, and broadcasters who refuse to be optimized.
+              SUBCULT is an underground creative-technical collective working between culture, code,
+              and critique.
             </p>
             <p className="text-bone leading-relaxed mb-6">
-              Every project starts with a question:{' '}
-              <em className="text-signal">"Does this need to exist?"</em> If the answer is yes, we
-              ship it.
+              We build software, durable archives, media systems, and documented experiments. Some
+              projects are active. Some are seeds. Some are paused. Their status is part of the
+              interface.
             </p>
             <TerminalPanel title="subcult.status" className="text-left max-w-md mx-auto">
               <div>
@@ -113,7 +117,7 @@ export default function Home() {
                 <span className="text-flicker">STRONG</span>
                 <br />
                 <span className="text-chalk">mission: </span>
-                <span className="text-cyan">BUILD // SHIP // REPEAT</span>
+                <span className="text-cyan">BUILD // DOCUMENT // REMEMBER</span>
               </div>
             </TerminalPanel>
           </div>
@@ -208,10 +212,10 @@ export default function Home() {
       <section className="py-16 md:py-24 border-t border-fog">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-mono text-xs text-dust mb-4">&gt; SIGNAL BOOST REQUESTED</p>
-          <h2 className="mb-6">Fund the Signal</h2>
+          <h2 className="mb-6">Keep the Signal Independent</h2>
           <p className="text-bone max-w-2xl mx-auto mb-8 leading-relaxed">
-            SUBCULT is funded by the people who use what we build. No venture capital. No ads. No
-            exit strategy. Your support keeps the servers running and the code shipping.
+            Support helps pay for hosting, tools, research, accessibility, documentation, and
+            independent production. It does not purchase ownership or hidden control.
           </p>
           <Button
             as="a"

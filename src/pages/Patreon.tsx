@@ -31,48 +31,41 @@ const FALLBACK_TIERS: DisplayTier[] = [
     name: 'Free',
     price: '$0/mo',
     color: 'border-fog',
-    perks: ['Free tier with access to the product and public roadmap.'],
+    perks: ['Public updates and occasional previews. Most finished work remains public.'],
   },
   {
     name: 'Supporter',
     price: '$5/mo',
     color: 'border-signal',
-    highlight: true,
-    badge: 'Popular',
-    perks: ['Help sustain independent, open work. No expectations — just solidarity.'],
+    perks: ['Patron-only operational updates', 'Supporter archive', 'Optional acknowledgment'],
   },
   {
     name: 'Backer',
     price: '$10/mo',
-    color: 'border-fog',
-    perks: ['Get closer to the process: early access, updates, and a voice in direction.'],
+    color: 'border-signal',
+    highlight: true,
+    badge: 'Recommended',
+    perks: ['Everything in Supporter', 'Build notes and dev logs', 'Early previews and drafts'],
   },
   {
-    name: 'Sponsor',
-    price: '$15/mo',
-    color: 'border-fog',
-    perks: [
-      'Participate more directly through private channels, feedback, and collaboration opportunities.',
-    ],
-  },
-  {
-    name: 'Patron',
+    name: 'Workshop',
     price: '$25/mo',
     color: 'border-static',
-    badge: 'Suggested',
-    perks: ['Material support for long-term sustainability and experimentation.'],
+    perks: [
+      'Everything in Backer',
+      'Scheduled group feedback sessions',
+      'Scoped advisory polls and experimental drops',
+    ],
   },
   {
     name: 'Underwriter',
     price: '$50/mo',
-    color: 'border-fog',
-    perks: ['Support at the highest reasonable level.'],
-  },
-  {
-    name: 'Rent',
-    price: '$1425/mo',
-    color: 'border-fog',
-    perks: ['Pay my rent. Literally.'],
+    color: 'border-cyan',
+    perks: [
+      'Everything in Workshop',
+      'Optional public acknowledgment',
+      'Periodic account of what support enabled',
+    ],
   },
 ];
 
@@ -80,20 +73,32 @@ const WHAT_SUPPORT_FUNDS = [
   {
     icon: Zap,
     label: 'Server costs & infrastructure',
-    detail: 'Self-hosted everything. That costs money.',
+    detail: 'Hosting, storage, domains, deployment, and the systems behind the public work.',
   },
-  { icon: Wrench, label: 'Development time', detail: 'Full-time code. No day job safety net.' },
-  { icon: Film, label: 'Media production', detail: 'Hardware, software, hosting for audio/video.' },
-  { icon: Globe, label: 'Domain & DNS', detail: "subcult.tv doesn't renew itself." },
+  {
+    icon: Wrench,
+    label: 'Development time',
+    detail: 'Implementation, testing, maintenance, and review.',
+  },
+  {
+    icon: Film,
+    label: 'Media production',
+    detail: 'Audio, video, editorial, and publishing work.',
+  },
+  {
+    icon: Globe,
+    label: 'Research & access',
+    detail: 'Sources, testing, accessibility, and documentation.',
+  },
   {
     icon: Package,
     label: 'Open source maintenance',
-    detail: 'Bug fixes, reviews, docs — the unglamorous work.',
+    detail: 'Bug fixes, reviews, and durable documentation.',
   },
   {
     icon: Coins,
     label: 'LLM API costs',
-    detail: 'SUBCULT relies on language models, which are not free to run at scale.',
+    detail: 'Model access and compute for bounded experiments and production tools.',
   },
 ];
 
@@ -125,7 +130,7 @@ export default function Patreon() {
     <>
       <SEOHead
         title="Support"
-        description="Fund the SUBCULT signal. Your support keeps the servers running and the code shipping."
+        description="Support SUBCULT and receive build notes, early previews, drafts, and operational memory from the workshop."
         path="/support"
       />
 
@@ -133,10 +138,10 @@ export default function Patreon() {
         {/* Header */}
         <div className="text-center mb-16">
           <p className="font-mono text-xs text-dust mb-3">&gt; SIGNAL_BOOST.request()</p>
-          <h1 className="mb-6">Fund the Signal</h1>
+          <h1 className="mb-6">Enter the Workshop</h1>
           <p className="text-bone max-w-2xl mx-auto text-lg leading-relaxed">
-            SUBCULT is funded by the people who use what we build. No venture capital. No ads. No
-            exit strategy. Just builders and the people who believe in what we're building.
+            Most finished work remains public. Patreon opens the deeper operational layer: build
+            notes, early previews, drafts, experiments, and the decisions behind the work.
           </p>
         </div>
 
@@ -204,32 +209,32 @@ export default function Patreon() {
         <div className="mb-16">
           <TerminalPanel title="shipping.schedule" className="max-w-2xl mx-auto">
             <div>
-              <span className="text-chalk">cadence: </span>
-              <span className="text-static">continuous</span>
+              <span className="text-chalk">support: </span>
+              <span className="text-static">patronage, not investment</span>
               <br />
-              <span className="text-chalk">releases: </span>
-              <span className="text-flicker">when ready, not when scheduled</span>
+              <span className="text-chalk">ownership: </span>
+              <span className="text-flicker">none</span>
               <br />
-              <span className="text-chalk">updates: </span>
-              <span className="text-cyan">monthly patron reports</span>
+              <span className="text-chalk">governance: </span>
+              <span className="text-cyan">none unless explicitly offered</span>
               <br />
-              <span className="text-chalk">transparency: </span>
-              <span className="text-static">100% — public repos, public roadmap</span>
+              <span className="text-chalk">release guarantee: </span>
+              <span className="text-static">none</span>
               <br />
               <br />
-              <span className="text-dust"># we ship when the code is ready.</span>
+              <span className="text-dust"># benefits are defined by tier.</span>
               <br />
-              <span className="text-dust"># not when the calendar says so.</span>
+              <span className="text-dust"># leave whenever the signal stops being useful.</span>
             </div>
           </TerminalPanel>
         </div>
 
         {/* Final CTA */}
         <div className="text-center py-12 border-t border-fog">
-          <h2 className="mb-4">Ready to Boost the Signal?</h2>
+          <h2 className="mb-4">Support the Work. Read the Machinery.</h2>
           <p className="text-bone max-w-xl mx-auto mb-8">
-            Every contribution keeps the infrastructure running and the code flowing. Join the
-            collective.
+            Support creates more room for independent development, documentation, and publishing. It
+            does not buy ownership, governance, unlimited access, or guaranteed releases.
           </p>
           <Button
             as="a"
@@ -240,6 +245,11 @@ export default function Patreon() {
           >
             Support on Patreon ↗
           </Button>
+          <p className="mt-6">
+            <Button as="link" to="/funding" variant="ghost" size="sm">
+              Read the Funding Policy
+            </Button>
+          </p>
         </div>
       </div>
     </>

@@ -23,7 +23,7 @@ const WHAT_YOU_GET = [
   {
     icon: Sparkles,
     label: 'Roadmap Previews',
-    detail: "See what's coming next. Sometimes vote on priorities.",
+    detail: 'See what is under consideration and why priorities change.',
   },
 ];
 

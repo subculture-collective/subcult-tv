@@ -22,9 +22,9 @@ const PRIMARY_LINKS = [
     external: false,
   },
   {
-    to: '/invest',
+    to: '/partner',
     label: 'Partner With Us',
-    description: 'Investment inquiries',
+    description: 'Grants, collaborations, and aligned funding',
     external: false,
   },
 ];
@@ -35,6 +35,7 @@ const SITE_LINKS = [
   { to: '/about', label: 'About', external: false },
   { to: '/contact', label: 'Contact', external: false },
   { to: '/metrics', label: 'Metrics', external: false },
+  { to: '/funding', label: 'Funding', external: false },
 ];
 
 const SOCIAL_LINKS = [

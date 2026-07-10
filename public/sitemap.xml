@@ -36,7 +36,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://subcult.tv/invest</loc>
+    <loc>https://subcult.tv/partner</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -61,23 +61,13 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://subcult.tv/deck</loc>
+    <loc>https://subcult.tv/funding</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://subcult.tv/onepager</loc>
+    <loc>https://subcult.tv/brief</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://subcult.tv/deck/brand</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://subcult.tv/onepager/brand</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
   </url>
 </urlset>

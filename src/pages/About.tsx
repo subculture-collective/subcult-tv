@@ -1,185 +1,183 @@
 import SEOHead from '@/components/SEOHead';
 import TerminalPanel from '@/components/effects/TerminalPanel';
+import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
+
+const PRINCIPLES = [
+  {
+    label: 'Reality over hype',
+    detail: 'Describe what exists, what remains experimental, and what changed direction.',
+  },
+  {
+    label: 'Agency over capture',
+    detail: 'Increase what people can understand, control, preserve, export, or leave.',
+  },
+  {
+    label: 'Symbolic outside, legible inside',
+    detail: 'The surface may carry myth. The machinery must show its work.',
+  },
+  {
+    label: 'Memory is infrastructure',
+    detail: 'Documentation, provenance, and archives are part of the system—not aftercare.',
+  },
+  {
+    label: 'Open structure where feasible',
+    detail: 'Prefer inspectability, portability, and self-hosting without making false absolutes.',
+  },
+  {
+    label: 'Experiment without theater',
+    detail: 'Weird prototypes are welcome. Inflated promises are not.',
+  },
+];
+
+const OUTPUTS = [
+  ['Software', 'Self-hosted systems, utilities, alternative interfaces, and operational tools.'],
+  [
+    'Media infrastructure',
+    'Discovery, archives, transcripts, production pipelines, and broadcast experiments.',
+  ],
+  [
+    'Participatory formats',
+    'Structured spaces for play, argument, performance, and collective attention.',
+  ],
+  [
+    'Research and documentation',
+    'System maps, public working notes, and memory that can outlive a feed.',
+  ],
+];
 
 export default function About() {
   return (
     <>
       <SEOHead
         title="About"
-        description="Subculture Collective — mission, values, process, curated projects, and the tools we use to build."
+        description="SUBCULT is an underground creative-technical collective building open, inspectable systems for culture, coordination, and strange futures."
         path="/about"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        {/* Header */}
-        <div className="mb-16">
+        <header className="mb-16 max-w-4xl">
           <p className="font-mono text-xs text-dust mb-3">&gt; cat /about/README.md</p>
-          <h1 className="mb-6">About // Studio</h1>
-          <p className="text-bone max-w-3xl text-lg leading-relaxed">
-            Subculture Collective (SUBCULT) is an independent studio building open source projects,
-            tools, media, and infrastructure for people who refuse to be products.
+          <h1 className="mb-6">A Worldview With Outputs</h1>
+          <p className="text-bone text-lg leading-relaxed">
+            SUBCULT is an underground creative-technical collective building open, inspectable
+            systems for culture, coordination, and strange futures.
           </p>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Mission */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div>
             <h2 className="mb-6">
               <span className="text-dust font-mono text-sm mr-3">//</span>
-              Mission
+              Why This Shape
             </h2>
             <div className="space-y-4 text-bone leading-relaxed">
               <p>
-                We exist because the tools we needed didn't exist, and the ones that did were locked
-                behind paywalls, surveillance stacks, and terms of service written by people who've
-                never touched a terminal.
+                We work across software, media, research, and participatory formats because culture
+                does not live in one medium. It lives in protocols and archives, interfaces and
+                institutions, stages and private rooms.
               </p>
               <p>
-                The portfolio is curated by hand from{' '}
-                <span className="text-cyan">content/projects.json</span> and self-hosted Gitea
-                repositories — no auto-filled listings, no borrowed credit.
+                The common thread is a commitment to systems that increase agency instead of
+                manufacturing dependence. We prefer inspectable mechanisms to black-box authority,
+                durable memory to disposable feeds, and concrete experiments to future-facing
+                theater.
               </p>
               <p>
-                Our mission is simple:{' '}
-                <span className="text-signal font-bold">
-                  build what's needed, ship it open source, and fund it through the people who use
-                  it.
-                </span>
-              </p>
-              <p>
-                No venture capital. No growth hacking. No engagement metrics. Just code that works
-                and documentation that doesn't lie.
+                We use symbolic language because systems need identity and memory. We keep the
+                inside legible because mystery is not governance.
               </p>
             </div>
           </div>
 
-          {/* Values */}
-          <div>
-            <h2 className="mb-6">
-              <span className="text-dust font-mono text-sm mr-3">//</span>
-              Values
-            </h2>
-            <ul className="space-y-4">
-              {[
-                { label: 'Privacy by default', detail: "If it phones home, we don't ship it." },
-                {
-                  label: 'Open source as baseline',
-                  detail: 'Not a marketing strategy. A principle.',
-                },
-                { label: 'Ship over polish', detail: 'v0.1 beats a pitch deck. Always.' },
-                {
-                  label: 'Self-hosting as independence',
-                  detail: 'Your data lives on your hardware.',
-                },
-                {
-                  label: 'Documentation is a feature',
-                  detail: "If it's not documented, it doesn't exist.",
-                },
-                { label: 'Ugly-beautiful design', detail: 'Communicates first. Decorates second.' },
-              ].map((v) => (
-                <li key={v.label} className="border-l-2 border-signal pl-4">
-                  <span className="font-mono text-sm text-glow block">{v.label}</span>
-                  <span className="text-sm text-bone">{v.detail}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* What we build / won't build */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-          <div className="bg-ash border border-fog p-6">
-            <h3 className="text-static mb-4">
-              <span className="font-mono text-sm mr-2">✓</span>
-              What We Build
-            </h3>
-            <ul className="space-y-2 text-sm text-bone">
-              <li>→ Privacy-respecting software</li>
-              <li>→ Open source developer tools</li>
-              <li>→ Self-hostable infrastructure</li>
-              <li>→ Creative media tools and platforms</li>
-              <li>→ Documentation and educational resources</li>
-              <li>→ Terminal-first applications</li>
-            </ul>
-          </div>
-
-          <div className="bg-ash border border-fog p-6">
-            <h3 className="text-signal mb-4">
-              <span className="font-mono text-sm mr-2">✗</span>
-              What We Won't Build
-            </h3>
-            <ul className="space-y-2 text-sm text-bone">
-              <li>→ Surveillance tools disguised as analytics</li>
-              <li>→ Engagement traps masquerading as features</li>
-              <li>→ Software that requires data surrender</li>
-              <li>→ Anything that phones home without consent</li>
-              <li>→ Closed-source dependencies we can't audit</li>
-              <li>→ Products that optimize for addiction</li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Toolchain */}
-        <div className="mt-16">
-          <h2 className="mb-6">
-            <span className="text-dust font-mono text-sm mr-3">//</span>
-            DIY Operations
-          </h2>
-
-          <TerminalPanel title="subcult.toolchain" className="max-w-2xl">
+          <TerminalPanel title="subcult.identity" className="h-fit">
             <div>
-              <span className="text-dust"># the stack is a stance, not a choice</span>
+              <span className="text-chalk">form: </span>
+              <span className="text-static">creator-led collective</span>
+              <br />
+              <span className="text-chalk">field: </span>
+              <span className="text-cyan">culture // code // critique</span>
+              <br />
+              <span className="text-chalk">method: </span>
+              <span className="text-flicker">build // document // revise</span>
+              <br />
+              <span className="text-chalk">promise: </span>
+              <span className="text-static">status stays visible</span>
               <br />
               <br />
-              <span className="text-chalk">os: </span>
-              <span className="text-static">Linux</span>
+              <span className="text-dust"># the aesthetic can be haunted.</span>
               <br />
-              <span className="text-chalk">editor: </span>
-              <span className="text-static">VS Code</span>
-              <br />
-              <span className="text-chalk">terminal: </span>
-              <span className="text-static">WezTerm</span>
-              <br />
-              <span className="text-chalk">shell: </span>
-              <span className="text-static">zsh</span>
-              <br />
-              <span className="text-chalk">vcs: </span>
-              <span className="text-static">git (self-hosted Gitea)</span>
-              <br />
-              <span className="text-chalk">catalog: </span>
-              <span className="text-static">manual curation from local JSON</span>
-              <br />
-              <span className="text-chalk">ci: </span>
-              <span className="text-static">self-hosted git + custom scripts</span>
-              <br />
-              <span className="text-chalk">deploy: </span>
-              <span className="text-static">git push && make deploy</span>
-              <br />
-              <span className="text-chalk">monitoring: </span>
-              <span className="text-static">Grafana + Prometheus</span>
-              <br />
-              <span className="text-chalk">networking: </span>
-              <span className="text-static">Tailscale + WireGuard</span>
-              <br />
-              <span className="text-chalk">orchestration: </span>
-              <span className="text-static">Kubernetes + Terraform</span>
-              <br />
-              <br />
-              <span className="text-dust"># infrastructure as code.</span>
-              <br />
-              <span className="text-dust"># self-hosted and self-managed.</span>
+              <span className="text-dust"># the engineering has to be real.</span>
             </div>
           </TerminalPanel>
-        </div>
+        </section>
 
-        {/* Philosophy */}
-        <div className="mt-16 py-12 border-t border-fog text-center">
-          <blockquote className="text-lg text-bone italic max-w-2xl mx-auto">
-            "The best software is software that lets you forget it exists. It does its job, respects
-            your time, and gets out of the way."
-          </blockquote>
-          <p className="font-mono text-xs text-dust mt-4">— Subculture Collective</p>
-        </div>
+        <section className="mb-16" aria-labelledby="principles">
+          <h2 id="principles" className="mb-6">
+            <span className="text-dust font-mono text-sm mr-3">//</span>
+            Operating Principles
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {PRINCIPLES.map((principle) => (
+              <Card key={principle.label} className="p-5 border-l-2 border-l-signal">
+                <h3 className="font-mono text-sm text-glow mb-2">{principle.label}</h3>
+                <p className="text-sm text-bone">{principle.detail}</p>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-16" aria-labelledby="outputs">
+          <h2 id="outputs" className="mb-6">
+            <span className="text-dust font-mono text-sm mr-3">//</span>
+            What We Make
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {OUTPUTS.map(([title, detail]) => (
+              <div key={title} className="bg-ash border border-fog p-5">
+                <h3 className="font-display text-xl uppercase mb-2">{title}</h3>
+                <p className="text-sm text-bone">{detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <Card className="p-6">
+            <p className="font-mono text-xs text-cyan mb-3">[PARTICIPATION]</p>
+            <h2 className="text-xl mb-4">Creator-Led Today</h2>
+            <p className="text-bone leading-relaxed">
+              Projects have different lifecycles, licenses, audiences, and contribution paths. The
+              umbrella supplies a shared worldview and a place to transmit the work; it does not
+              make every participant an owner or every prototype active.
+            </p>
+          </Card>
+          <Card className="p-6 border-signal">
+            <p className="font-mono text-xs text-signal mb-3">[FUNDING]</p>
+            <h2 className="text-xl mb-4">No Hidden Control</h2>
+            <p className="text-bone leading-relaxed">
+              SUBCULT may use patron support, earned revenue, grants, sponsorships, partnerships, or
+              aligned investment. Each relationship is judged by its terms and disclosed in
+              proportion to its effect.
+            </p>
+          </Card>
+        </section>
+
+        <section className="text-center py-12 border-t border-fog">
+          <h2 className="mb-4">Inspect the Work</h2>
+          <p className="text-bone max-w-xl mx-auto mb-8">
+            Read the archive, verify project status, and choose the relationship that matches what
+            you actually want to do.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button as="link" to="/projects" size="lg">
+              View Projects
+            </Button>
+            <Button as="link" to="/funding" variant="secondary" size="lg">
+              Read the Funding Policy
+            </Button>
+          </div>
+        </section>
       </div>
     </>
   );
