@@ -20,6 +20,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <img
             src={project.screenshot}
             alt={`${project.name} screenshot`}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-top"
           />
         ) : (
