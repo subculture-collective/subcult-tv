@@ -29,7 +29,7 @@
 
 ```bash
 # Clone
-git clone https://gitea.subcult.tv/subcult/subcult-tv.git
+git clone https://git.subcult.tv/subculture-collective/subcult-tv.git
 cd subcult-tv
 
 # Copy environment config

@@ -21,12 +21,6 @@ const PRIMARY_LINKS = [
     description: 'Become a patron',
     external: false,
   },
-  {
-    to: '/invest',
-    label: 'Partner With Us',
-    description: 'Investment inquiries',
-    external: false,
-  },
 ];
 
 const SITE_LINKS = [
@@ -34,11 +28,10 @@ const SITE_LINKS = [
   { to: '/zine', label: 'Zine', external: false },
   { to: '/about', label: 'About', external: false },
   { to: '/contact', label: 'Contact', external: false },
-  { to: '/metrics', label: 'Metrics', external: false },
 ];
 
 const SOCIAL_LINKS = [
-  { href: 'https://gitea.subcult.tv/subcult', label: 'Gitea' },
+  { href: 'https://git.subcult.tv/subculture-collective', label: 'Gitea' },
   { href: 'https://www.patreon.com/subcult', label: 'Patreon' },
 ];
 

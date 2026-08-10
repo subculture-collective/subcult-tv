@@ -58,6 +58,7 @@ export default function PitchDeckBrand() {
     <>
       <SEOHead
         title="Pitch Deck (Brand Edition)"
+        noIndex
         description="SUBCULT investor pitch deck — brand edition. Tools, media, and infrastructure for the counterculture."
         path="/deck/brand"
       />

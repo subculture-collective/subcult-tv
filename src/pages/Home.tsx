@@ -6,7 +6,7 @@ import PostCard from '@/components/PostCard';
 import TerminalPanel from '@/components/effects/TerminalPanel';
 import GlitchFrame from '@/components/effects/GlitchFrame';
 import { useEffects } from '@/context/useEffects';
-import { getCuratedProjects, getFeaturedProjects, getToolProjects } from '@/lib/github';
+import { getCuratedProjects, getFeaturedProjects } from '@/lib/github';
 import { getLatestPosts } from '@/lib/posts';
 
 export default function Home() {
@@ -15,8 +15,7 @@ export default function Home() {
 
   const projects = getCuratedProjects();
 
-  const featuredProjects = getFeaturedProjects(projects).slice(0, 6);
-  const toolProjects = getToolProjects(projects).slice(0, 4);
+  const featuredProjects = getFeaturedProjects(projects);
 
   return (
     <>
@@ -41,26 +40,23 @@ export default function Home() {
                 SUBCULT
               </h1>
 
-              {/* Tagline */}
+              {/* Positioning */}
               <p className="text-lg md:text-xl text-bone leading-relaxed mb-8 max-w-2xl animate-fade-in-up animation-delay-200">
-                We build curated projects, tools, media, and infrastructure for the counterculture.
-                Open source. DIY. No masters.
+                Open-source tools for culture that shouldn't belong to platforms.
+              </p>
+              <p className="text-base text-dust leading-relaxed mb-8 max-w-2xl animate-fade-in-up animation-delay-200">
+                We design and operate software for underground scenes, mutual aid, archives, and
+                independent media — built to be understood, self-hosted, and changed by the people
+                who use it.
               </p>
 
               {/* CTAs */}
               <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-300">
                 <Button as="link" to="/projects" size="lg">
-                  View Projects
+                  Explore the Work
                 </Button>
-                <Button
-                  as="a"
-                  href="https://www.patreon.com/subcult"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="signal"
-                  size="lg"
-                >
-                  Support on Patreon ↗
+                <Button as="link" to="/zine" variant="secondary" size="lg">
+                  Read the Field Notes
                 </Button>
               </div>
             </div>
@@ -90,30 +86,30 @@ export default function Home() {
         <div className="h-px bg-gradient-to-r from-transparent via-signal to-transparent" />
       </section>
 
-      {/* ═══════ MANIFESTO BLOCK ═══════ */}
+      {/* ═══════ FOCUS BLOCK ═══════ */}
       <section className="bg-soot torn-edge-bottom">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="mb-6">What Is SUBCULT?</h2>
+            <h2 className="mb-6">Independent by Design</h2>
             <p className="text-bone leading-relaxed mb-4">
-              We are not a company. We are a signal embedded in the noise of the attention economy —
-              a collective of builders, breakers, and broadcasters who refuse to be optimized.
+              SUBCULT is an independent software studio. We build focused tools where commercial
+              platforms flatten communities, capture their history, or make participation depend on
+              surveillance.
             </p>
             <p className="text-bone leading-relaxed mb-6">
-              Every project starts with a question:{' '}
-              <em className="text-signal">"Does this need to exist?"</em> If the answer is yes, we
-              ship it.
+              Our work is public, documented, and honest about its current state. Some projects are
+              deployed; others are active experiments. We label the difference.
             </p>
             <TerminalPanel title="subcult.status" className="text-left max-w-md mx-auto">
               <div>
-                <span className="text-chalk">status: </span>
-                <span className="text-static">BROADCASTING</span>
+                <span className="text-chalk">practice: </span>
+                <span className="text-static">OPEN SOURCE</span>
                 <br />
-                <span className="text-chalk">signal: </span>
-                <span className="text-flicker">STRONG</span>
+                <span className="text-chalk">focus: </span>
+                <span className="text-flicker">INDEPENDENT CULTURE</span>
                 <br />
-                <span className="text-chalk">mission: </span>
-                <span className="text-cyan">BUILD // SHIP // REPEAT</span>
+                <span className="text-chalk">method: </span>
+                <span className="text-cyan">BUILD // DOCUMENT // SHARE</span>
               </div>
             </TerminalPanel>
           </div>
@@ -126,13 +122,13 @@ export default function Home() {
           <div className="flex items-center justify-between mb-8">
             <h2>
               <span className="text-dust font-mono text-sm mr-3">//</span>
-              Featured Projects
+              Selected Work
             </h2>
             <Link
               to="/projects"
               className="font-mono text-sm text-bone hover:text-signal transition-colors"
             >
-              View all →
+              Open the full catalog →
             </Link>
           </div>
 
@@ -144,55 +140,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ TOOLS STRIP ═══════ */}
-      {toolProjects.length > 0 && (
-        <section className="py-12 border-t border-fog bg-soot">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between mb-6">
-              <h2>
-                <span className="text-dust font-mono text-sm mr-3">//</span>
-                Tools &amp; Infrastructure
-              </h2>
-              <Link
-                to="/projects"
-                className="font-mono text-sm text-bone hover:text-signal transition-colors"
-              >
-                Open the full catalog →
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {toolProjects.map((project) => (
-                <Link
-                  key={project.slug}
-                  to={`/projects/${project.slug}`}
-                  className="group block bg-ash border border-fog p-4 hover:border-signal transition-colors no-underline"
-                >
-                  <p className="font-mono text-xs text-dust mb-2">tools // {project.status}</p>
-                  <h3 className="font-display text-lg uppercase tracking-wide text-glow group-hover:text-signal transition-colors mb-2">
-                    {project.name}
-                  </h3>
-                  <p className="text-sm text-bone line-clamp-3">{project.description}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ═══════ LATEST POSTS ═══════ */}
       <section className="py-16 md:py-24 bg-soot border-t border-fog">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <h2>
               <span className="text-dust font-mono text-sm mr-3">//</span>
-              Latest Transmissions
+              Latest Field Notes
             </h2>
             <Link
               to="/zine"
               className="font-mono text-sm text-bone hover:text-signal transition-colors"
             >
-              Read the zine →
+              Read all notes →
             </Link>
           </div>
 
@@ -207,11 +167,11 @@ export default function Home() {
       {/* ═══════ PATREON CTA ═══════ */}
       <section className="py-16 md:py-24 border-t border-fog">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="font-mono text-xs text-dust mb-4">&gt; SIGNAL BOOST REQUESTED</p>
-          <h2 className="mb-6">Fund the Signal</h2>
+          <p className="font-mono text-xs text-dust mb-4">&gt; KEEP THE WORK INDEPENDENT</p>
+          <h2 className="mb-6">Support the Work</h2>
           <p className="text-bone max-w-2xl mx-auto mb-8 leading-relaxed">
-            SUBCULT is funded by the people who use what we build. No venture capital. No ads. No
-            exit strategy. Your support keeps the servers running and the code shipping.
+            Contributions help cover hosting, research, and the unglamorous maintenance that keeps
+            public software useful. The code stays open whether or not you contribute.
           </p>
           <Button
             as="a"

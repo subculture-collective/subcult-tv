@@ -56,6 +56,7 @@ export default function PitchDeck() {
     <>
       <SEOHead
         title="Pitch Deck"
+        noIndex
         description="SUBCULT investor pitch deck. Tools, media, and infrastructure for the counterculture."
         path="/deck"
       />

@@ -7,6 +7,7 @@ interface SEOHeadProps {
   description?: string;
   path?: string;
   image?: string;
+  noIndex?: boolean;
 }
 
 /**
@@ -15,11 +16,13 @@ interface SEOHeadProps {
  */
 export default function SEOHead({
   title,
-  description = 'SUBCULT — We build tools, media, and infrastructure for the counterculture.',
+  description = 'SUBCULT is an independent studio building open-source tools for underground scenes, mutual aid, archives, and independent media.',
   path = '/',
   image = '/og-image.png',
+  noIndex = false,
 }: SEOHeadProps) {
-  const fullTitle = title === 'Home' ? 'SUBCULT — Subculture Collective' : `${title} — SUBCULT`;
+  const fullTitle =
+    title === 'Home' ? 'SUBCULT — Open-source tools for independent culture' : `${title} — SUBCULT`;
   const url = `${SITE_URL}${path}`;
   const absoluteImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
 
@@ -37,6 +40,7 @@ export default function SEOHead({
     };
 
     setMeta('name', 'description', description);
+    setMeta('name', 'robots', noIndex ? 'noindex, nofollow' : 'index, follow');
 
     // OpenGraph
     setMeta('property', 'og:title', fullTitle);
@@ -54,7 +58,7 @@ export default function SEOHead({
     setMeta('name', 'twitter:title', fullTitle);
     setMeta('name', 'twitter:description', description);
     setMeta('name', 'twitter:image', absoluteImage);
-  }, [fullTitle, description, url, absoluteImage]);
+  }, [fullTitle, description, url, absoluteImage, noIndex]);
 
   return null;
 }

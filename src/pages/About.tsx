@@ -6,7 +6,7 @@ export default function About() {
     <>
       <SEOHead
         title="About"
-        description="Subculture Collective — mission, values, process, curated projects, and the tools we use to build."
+        description="SUBCULT is an independent studio building open-source tools for underground scenes, mutual aid, archives, and independent media."
         path="/about"
       />
 
@@ -16,8 +16,8 @@ export default function About() {
           <p className="font-mono text-xs text-dust mb-3">&gt; cat /about/README.md</p>
           <h1 className="mb-6">About // Studio</h1>
           <p className="text-bone max-w-3xl text-lg leading-relaxed">
-            Subculture Collective (SUBCULT) is an independent studio building open source projects,
-            tools, media, and infrastructure for people who refuse to be products.
+            SUBCULT is an independent software studio building open-source tools for underground
+            scenes, mutual aid, archives, and independent media.
           </p>
         </div>
 
@@ -30,25 +30,24 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-bone leading-relaxed">
               <p>
-                We exist because the tools we needed didn't exist, and the ones that did were locked
-                behind paywalls, surveillance stacks, and terms of service written by people who've
-                never touched a terminal.
+                We work where commercial platforms are a poor fit: small communities, local scenes,
+                shared memory, and cooperation that should not depend on surveillance or algorithmic
+                reach.
               </p>
               <p>
-                The portfolio is curated by hand from{' '}
-                <span className="text-cyan">content/projects.json</span> and self-hosted Gitea
-                repositories — no auto-filled listings, no borrowed credit.
+                The software is developed in public whenever practical. Repositories, documentation,
+                and project status are available so people can inspect the work and judge it on the
+                evidence.
               </p>
               <p>
                 Our mission is simple:{' '}
                 <span className="text-signal font-bold">
-                  build what's needed, ship it open source, and fund it through the people who use
-                  it.
+                  give independent culture tools it can understand, host, adapt, and keep.
                 </span>
               </p>
               <p>
-                No venture capital. No growth hacking. No engagement metrics. Just code that works
-                and documentation that doesn't lie.
+                That means making smaller claims, documenting limitations, and treating maintenance
+                as part of the work rather than an afterthought.
               </p>
             </div>
           </div>
@@ -61,15 +60,21 @@ export default function About() {
             </h2>
             <ul className="space-y-4">
               {[
-                { label: 'Privacy by default', detail: "If it phones home, we don't ship it." },
+                {
+                  label: 'Privacy by default',
+                  detail: 'Collect less, explain what remains, and make consent meaningful.',
+                },
                 {
                   label: 'Open source as baseline',
                   detail: 'Not a marketing strategy. A principle.',
                 },
-                { label: 'Ship over polish', detail: 'v0.1 beats a pitch deck. Always.' },
+                {
+                  label: 'Evidence over hype',
+                  detail: 'Status, limitations, and outcomes stay clear.',
+                },
                 {
                   label: 'Self-hosting as independence',
-                  detail: 'Your data lives on your hardware.',
+                  detail: 'People should be able to run and understand the tools they depend on.',
                 },
                 {
                   label: 'Documentation is a feature',
@@ -95,11 +100,11 @@ export default function About() {
             </h3>
             <ul className="space-y-2 text-sm text-bone">
               <li>→ Privacy-respecting software</li>
-              <li>→ Open source developer tools</li>
-              <li>→ Self-hostable infrastructure</li>
-              <li>→ Creative media tools and platforms</li>
-              <li>→ Documentation and educational resources</li>
-              <li>→ Terminal-first applications</li>
+              <li>→ Tools for local and underground scenes</li>
+              <li>→ Mutual-aid and community infrastructure</li>
+              <li>→ Archives, discovery, and cultural memory</li>
+              <li>→ Independent media tools</li>
+              <li>→ Small utilities that support that work</li>
             </ul>
           </div>
 
@@ -109,65 +114,41 @@ export default function About() {
               What We Won't Build
             </h3>
             <ul className="space-y-2 text-sm text-bone">
-              <li>→ Surveillance tools disguised as analytics</li>
+              <li>→ Surveillance disguised as analytics</li>
               <li>→ Engagement traps masquerading as features</li>
               <li>→ Software that requires data surrender</li>
               <li>→ Anything that phones home without consent</li>
-              <li>→ Closed-source dependencies we can't audit</li>
+              <li>→ Hidden data collection or unclear consent</li>
               <li>→ Products that optimize for addiction</li>
             </ul>
           </div>
         </div>
 
-        {/* Toolchain */}
+        {/* Process */}
         <div className="mt-16">
           <h2 className="mb-6">
             <span className="text-dust font-mono text-sm mr-3">//</span>
-            DIY Operations
+            How We Work
           </h2>
 
-          <TerminalPanel title="subcult.toolchain" className="max-w-2xl">
+          <TerminalPanel title="subcult.practice" className="max-w-2xl">
             <div>
-              <span className="text-dust"># the stack is a stance, not a choice</span>
+              <span className="text-dust"># principles before platforms</span>
               <br />
               <br />
-              <span className="text-chalk">os: </span>
-              <span className="text-static">Linux</span>
+              <span className="text-chalk">start: </span>
+              <span className="text-static">NAME THE COMMUNITY NEED</span>
               <br />
-              <span className="text-chalk">editor: </span>
-              <span className="text-static">VS Code</span>
+              <span className="text-chalk">build: </span>
+              <span className="text-static">USE BORING, INSPECTABLE PARTS</span>
               <br />
-              <span className="text-chalk">terminal: </span>
-              <span className="text-static">WezTerm</span>
+              <span className="text-chalk">verify: </span>
+              <span className="text-static">TEST THE CLAIMS WE PUBLISH</span>
               <br />
-              <span className="text-chalk">shell: </span>
-              <span className="text-static">zsh</span>
+              <span className="text-chalk">share: </span>
+              <span className="text-static">DOCUMENT THE PATH IN AND OUT</span>
               <br />
-              <span className="text-chalk">vcs: </span>
-              <span className="text-static">git (self-hosted Gitea)</span>
-              <br />
-              <span className="text-chalk">catalog: </span>
-              <span className="text-static">manual curation from local JSON</span>
-              <br />
-              <span className="text-chalk">ci: </span>
-              <span className="text-static">self-hosted git + custom scripts</span>
-              <br />
-              <span className="text-chalk">deploy: </span>
-              <span className="text-static">git push && make deploy</span>
-              <br />
-              <span className="text-chalk">monitoring: </span>
-              <span className="text-static">Grafana + Prometheus</span>
-              <br />
-              <span className="text-chalk">networking: </span>
-              <span className="text-static">Tailscale + WireGuard</span>
-              <br />
-              <span className="text-chalk">orchestration: </span>
-              <span className="text-static">Kubernetes + Terraform</span>
-              <br />
-              <br />
-              <span className="text-dust"># infrastructure as code.</span>
-              <br />
-              <span className="text-dust"># self-hosted and self-managed.</span>
+              <span className="text-dust"># status and limitations included.</span>
             </div>
           </TerminalPanel>
         </div>

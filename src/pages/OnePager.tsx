@@ -6,6 +6,7 @@ export default function OnePager() {
     <>
       <SEOHead
         title="One-Pager"
+        noIndex
         description="SUBCULT executive summary. Tools, media, and infrastructure for the counterculture."
         path="/onepager"
       />

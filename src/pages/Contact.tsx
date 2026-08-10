@@ -7,8 +7,8 @@ import { submitContact } from '@/lib/api';
 const SOCIAL_LINKS = [
   {
     name: 'Gitea',
-    url: 'https://gitea.subcult.tv/subcult',
-    handle: 'subcult',
+    url: 'https://git.subcult.tv/subculture-collective',
+    handle: 'subculture-collective',
   },
   {
     name: 'Patreon',

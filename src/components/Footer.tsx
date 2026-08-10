@@ -2,20 +2,21 @@ import { Link } from 'react-router-dom';
 import NewsletterSignup from '@/components/NewsletterSignup';
 
 const FOOTER_LINKS = [
-  { to: '/projects', label: 'Projects' },
-  { to: '/zine', label: 'Zine' },
+  { to: '/projects', label: 'Work' },
+  { to: '/zine', label: 'Field Notes' },
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
   { to: '/contact', label: 'Contact' },
   { to: '/press', label: 'Press Kit' },
-  { to: '/memo', label: 'Memo' },
-  { to: '/invest', label: 'Invest' },
-  { to: '/metrics', label: 'Metrics' },
   { to: '/links', label: 'Links' },
 ];
 
 const SOCIAL_LINKS = [
-  { href: 'https://gitea.subcult.tv/subcult', label: 'Gitea', external: true },
+  {
+    href: 'https://git.subcult.tv/subculture-collective',
+    label: 'Gitea',
+    external: true,
+  },
   { href: 'https://www.patreon.com/subcult', label: 'Patreon', external: true },
   { href: '/feed.xml', label: 'RSS Feed', external: false },
 ];
@@ -43,9 +44,9 @@ export default function Footer() {
             <p className="font-mono text-xs text-bone mt-3 leading-relaxed">
               Subculture Collective
               <br />
-              Curated projects, tools, and infrastructure
+              Open-source tools and field notes
               <br />
-              for the counterculture.
+              for independent culture.
             </p>
             <p className="font-mono text-xs text-fog mt-4">&gt; carrier_wave.persist()</p>
           </div>
@@ -93,9 +94,9 @@ export default function Footer() {
 
             <div className="mt-6 pt-4 border-t border-fog">
               <p className="font-mono text-xs text-fog">
-                &gt; No tracking. No cookies. No surveillance.
+                &gt; No advertising profiles. No data brokerage.
                 <br />
-                &gt; Built from a hand-curated local catalog.
+                &gt; Projects are documented in a public catalog.
                 <br />
                 &gt; Source tracked in self-hosted Gitea.
               </p>

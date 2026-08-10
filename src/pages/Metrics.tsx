@@ -67,6 +67,7 @@ export default function Metrics() {
     <>
       <SEOHead
         title="Metrics"
+        noIndex
         description="SUBCULT transparency dashboard. Real numbers, updated weekly. No vanity metrics."
         path="/metrics"
       />

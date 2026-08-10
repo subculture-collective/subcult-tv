@@ -41,6 +41,7 @@ export default function Invest() {
     <>
       <SEOHead
         title="Invest"
+        noIndex
         description="Partner with SUBCULT. We're building open-source tools and infrastructure for the counterculture. View our investor materials and get in touch."
         path="/invest"
       />

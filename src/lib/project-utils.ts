@@ -7,7 +7,7 @@ export const statusColors: Record<Project['status'], string> = {
 };
 
 export const statusLabels: Record<Project['status'], string> = {
-  active: '● LIVE',
-  incubating: '◐ INCUBATING',
+  active: '● ACTIVE',
+  incubating: '◐ IN DEVELOPMENT',
   archived: '○ ARCHIVED',
 };

@@ -8,6 +8,7 @@ export default function OnePagerBrand() {
     <>
       <SEOHead
         title="One-Pager (Brand Edition)"
+        noIndex
         description="SUBCULT executive summary — brand edition. Tools, media, and infrastructure for the counterculture."
         path="/onepager/brand"
       />

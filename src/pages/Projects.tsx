@@ -32,7 +32,7 @@ export default function Projects() {
     <>
       <SEOHead
         title="Projects"
-        description="Featured projects and tools in the SUBCULT catalog, curated by hand from self-hosted Gitea."
+        description="Selected work and open-source experiments from SUBCULT, an independent software studio for culture and community."
         path="/projects"
       />
 
@@ -40,10 +40,11 @@ export default function Projects() {
         {/* Header */}
         <div className="mb-12">
           <p className="font-mono text-xs text-dust mb-3">&gt; ls -la /projects/</p>
-          <h1 className="mb-4">Projects</h1>
+          <h1 className="mb-4">Work</h1>
           <p className="text-bone max-w-2xl">
-            Everything here is curated by hand from the SUBCULT catalog. Featured projects sit
-            alongside tools &amp; infrastructure — every repo ships with intent.
+            These selected projects show where the studio is headed. The rest of the catalog remains
+            public as working software, experiments, and infrastructure — with status labels that
+            describe the work rather than imply every project is deployed.
           </p>
         </div>
 
@@ -114,9 +115,9 @@ export default function Projects() {
               <div className="flex items-center justify-between mb-6">
                 <h2>
                   <span className="text-dust font-mono text-sm mr-3">//</span>
-                  Featured Projects
+                  Current Focus
                 </h2>
-                <p className="font-mono text-xs text-dust">flagships // active</p>
+                <p className="font-mono text-xs text-dust">selected projects</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -130,7 +131,7 @@ export default function Projects() {
               <div className="flex items-center justify-between mb-6">
                 <h2>
                   <span className="text-dust font-mono text-sm mr-3">//</span>
-                  Tools &amp; Infrastructure
+                  Tools &amp; Experiments
                 </h2>
                 <p className="font-mono text-xs text-dust">utilities // support systems</p>
               </div>

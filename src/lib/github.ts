@@ -3,6 +3,16 @@ import type { Project } from '@/types';
 
 type ProjectType = 'software' | 'media' | 'tools' | 'social';
 
+const FLAGSHIP_SLUGS = [
+  'augr',
+  'clpr',
+  'echo-trails',
+  'edda',
+  'subcorp',
+  'subcults',
+  'patchwork',
+] as const;
+
 function sortProjects(projects: Project[]): Project[] {
   return [...projects].sort((a, b) => {
     if (a.status === 'active' && b.status !== 'active') return -1;
@@ -11,9 +21,7 @@ function sortProjects(projects: Project[]): Project[] {
   });
 }
 
-export const CURATED_PROJECTS: Project[] = sortProjects(
-  Object.values(projectCatalog) as Project[],
-);
+export const CURATED_PROJECTS: Project[] = sortProjects(Object.values(projectCatalog) as Project[]);
 
 function getProjectTypes(project: Project): ProjectType[] {
   return Array.isArray(project.type) ? project.type : [project.type];
@@ -24,7 +32,9 @@ export function isToolProject(project: Project): boolean {
 }
 
 export function getFeaturedProjects(projects: Project[] = CURATED_PROJECTS): Project[] {
-  return projects.filter((project) => project.featured);
+  return FLAGSHIP_SLUGS.map((slug) => projects.find((project) => project.slug === slug)).filter(
+    (project): project is Project => Boolean(project),
+  );
 }
 
 export function getToolProjects(projects: Project[] = CURATED_PROJECTS): Project[] {

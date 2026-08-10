@@ -128,10 +128,10 @@ export default function ProjectDetail() {
                 >
                   View Repository ↗
                 </Button>
-                {project.homepage && (
+                {project.url && (
                   <Button
                     as="a"
-                    href={project.homepage}
+                    href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="ghost"

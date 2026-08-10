@@ -4,13 +4,10 @@ import { useEffects } from '@/context/useEffects';
 import type { EffectLevel } from '@/types';
 
 const NAV_LINKS = [
-  { to: '/', label: 'Home' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/zine', label: 'Zine' },
+  { to: '/projects', label: 'Work' },
+  { to: '/zine', label: 'Field Notes' },
   { to: '/about', label: 'About' },
   { to: '/support', label: 'Support' },
-  { to: '/memo', label: 'Memo' },
-  { to: '/invest', label: 'Invest' },
 ];
 
 const EFFECT_LABELS: Record<EffectLevel, string> = {
