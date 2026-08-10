@@ -45,7 +45,7 @@ export default function Zine() {
     <>
       <SEOHead
         title="The Zine"
-        description="Two serialized zine series from Subculture Collective: Foundations, and the new Field Systems premiere. Philosophy, process, and weekly dispatches."
+        description="Two complete serialized zine series from Subculture Collective: Foundations and Field Systems. Philosophy, process, and dispatches from the workshop."
         path="/zine"
       />
 
@@ -55,12 +55,11 @@ export default function Zine() {
           <p className="font-mono text-xs text-dust mb-3">&gt; cat /zine/index</p>
           <h1 className="mb-4">The Zine</h1>
           <p className="font-mono text-sm text-flicker mb-6">
-            Two series — Foundations is complete, Field Systems is premiering now
+            Two complete series — sixteen dispatches from the workshop
           </p>
           <p className="text-bone max-w-2xl mx-auto text-lg leading-relaxed">
-            Dispatches from the workshop in two serialized arcs: the original
-            Foundations run, and the newly launched Field Systems series with new
-            entries arriving weekly.
+            Foundations lays out the collective&rsquo;s operating principles. Field Systems follows
+            those principles into the tools, interfaces, and habits that make cultural work durable.
           </p>
         </div>
 
@@ -80,8 +79,8 @@ export default function Zine() {
                   Start here
                 </h2>
                 <p className="text-bone text-base leading-relaxed max-w-xl">
-                  The original 8-post arc on mission, metrics, discovery, moderation,
-                  and the operating principles behind Subculture Collective.
+                  The original 8-post arc on mission, metrics, discovery, moderation, and the
+                  operating principles behind Subculture Collective.
                 </p>
 
                 <div className="mt-6 grid grid-cols-2 gap-3 text-center">
@@ -115,33 +114,33 @@ export default function Zine() {
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal to-transparent" />
               <div className="relative flex h-full flex-col">
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-signal mb-3">
-                  Series Two · Premiere
+                  Series Two · Field Systems
                 </p>
                 <h2 className="font-display text-3xl text-glow mb-3 group-hover:text-signal transition-colors">
                   Field Systems
                 </h2>
                 <p className="text-bone text-base leading-relaxed max-w-xl">
-                  Week 1 is live now. New entries publish weekly as the series traces
-                  community legibility, search, memory, and the infrastructure under care.
+                  The complete 8-post arc on community legibility, search, memory, structured
+                  disagreement, media, and the infrastructure beneath care.
                 </p>
 
                 <div className="mt-6 grid grid-cols-2 gap-3 text-center">
                   <div className="bg-ash border border-signal p-3">
-                    <p className="font-display text-2xl text-signal">1/8</p>
+                    <p className="font-display text-2xl text-signal">8/8</p>
                     <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-dust mt-1">
-                      Live now
+                      Published
                     </p>
                   </div>
                   <div className="bg-ash border border-signal p-3">
-                    <p className="font-display text-2xl text-glow">Weekly</p>
+                    <p className="font-display text-2xl text-glow">Complete</p>
                     <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-dust mt-1">
-                      New drops ahead
+                      Read in order
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-6 flex items-center justify-between border-t border-signal pt-4 font-mono text-xs uppercase tracking-[0.3em] text-signal group-hover:text-glow transition-colors">
-                  <span>Read the premiere</span>
+                  <span>Open Field Systems</span>
                   <span>→</span>
                 </div>
               </div>
@@ -162,9 +161,7 @@ export default function Zine() {
                     <p className="font-mono text-xs uppercase tracking-[0.35em] text-dust mb-2">
                       {seriesLabel}
                     </p>
-                    <h2 className="font-display text-2xl md:text-3xl text-glow">
-                      {group.name}
-                    </h2>
+                    <h2 className="font-display text-2xl md:text-3xl text-glow">{group.name}</h2>
                   </div>
                   <p className="font-mono text-xs uppercase tracking-[0.3em] text-dust">
                     {group.posts.length}/{group.total} published
@@ -173,8 +170,8 @@ export default function Zine() {
 
                 {isFieldSystems && (
                   <p className="max-w-2xl text-sm text-bone mb-4">
-                    Premiere week is live now. The rest of the series releases weekly,
-                    so this section will grow one dispatch at a time.
+                    The complete series traces how a collective turns its values into durable tools,
+                    interfaces, archives, and operating practices.
                   </p>
                 )}
 
@@ -199,12 +196,10 @@ export default function Zine() {
                             <h3 className="font-display text-xl text-glow mb-2 group-hover:text-signal transition-colors">
                               {post.title}
                             </h3>
-                            <p className="text-sm text-bone mb-4 leading-relaxed">
-                              {post.excerpt}
-                            </p>
+                            <p className="text-sm text-bone mb-4 leading-relaxed">{post.excerpt}</p>
                             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-dust">
                               <span>{post.date}</span>
-                              {isFieldSystems && <span>Premiere series</span>}
+                              {isFieldSystems && <span>Field Systems</span>}
                             </div>
                           </div>
                           <div className="font-mono text-sm text-signal">→</div>
@@ -222,8 +217,8 @@ export default function Zine() {
         <div className="text-center py-12 mt-12 border-t border-fog">
           <h2 className="mb-4">Stay Updated</h2>
           <p className="text-bone max-w-xl mx-auto mb-8">
-            Foundations is complete, and Field Systems is premiering weekly.
-            Subscribe to the memo to get notified when the next dispatch lands.
+            Foundations and Field Systems are complete. Subscribe to the memo for the next series
+            and new dispatches from the workshop.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button as="link" to="/memo" size="lg">
